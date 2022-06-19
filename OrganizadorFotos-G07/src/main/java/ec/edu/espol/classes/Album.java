@@ -4,6 +4,9 @@
  */
 package ec.edu.espol.classes;
 
+import java.util.LinkedList;
+import tdas.CircularDoublyLinkedListG07;
+
 /**
  *
  * @author santi
@@ -11,7 +14,11 @@ package ec.edu.espol.classes;
 public class Album {
     private String nombre;
     private String descripcion;
+    private static CircularDoublyLinkedListG07<Album> listaAlbumes=new CircularDoublyLinkedListG07<>();
+    private CircularDoublyLinkedListG07<Foto> fotosDelAlbum=new CircularDoublyLinkedListG07();
 
+    public Album() {}
+    
     public Album(String nombre) {
         this.nombre = nombre;
     }
@@ -35,6 +42,18 @@ public class Album {
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+    }
+    
+    public static CircularDoublyLinkedListG07<Album> getListaAlbumes() {
+        return listaAlbumes;
+    }
+
+     public CircularDoublyLinkedListG07<Foto> getFotosDelAlbum() {
+        return fotosDelAlbum;
+    }
+     
+    public void setFotosDelAlbum(CircularDoublyLinkedListG07<Foto> fotosDelAlbum) {
+        this.fotosDelAlbum = fotosDelAlbum;
     }
     
     

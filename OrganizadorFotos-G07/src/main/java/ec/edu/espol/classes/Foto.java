@@ -6,6 +6,7 @@ package ec.edu.espol.classes;
 
 import java.util.ArrayList;
 import java.util.Date;
+import javafx.scene.image.Image;
 
 /**
  *
@@ -17,13 +18,24 @@ public class Foto {
     private Date fecha;
     private ArrayList<Persona> personas;
     private Album album;
+    private Image imagen;
+    private String nombre;
 
-    public Foto(String descripcion, String lugar, Date fecha, ArrayList<Persona> personas, Album album) {
+    public Foto(Image imagen,String nombre,String descripcion, String lugar, Date fecha, ArrayList<Persona> personas, Album album) {
+        this.imagen=imagen;
+        this.nombre=nombre;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.fecha = fecha;
         this.personas = personas;
         this.album = album;
+    }
+    
+    public Foto(){};
+
+    public Foto(String nombre, Image imagen) {
+        this.nombre = nombre;
+        this.imagen = imagen;
     }
 
     public String getDescripcion() {
@@ -64,6 +76,22 @@ public class Foto {
 
     public void setAlbum(Album album) {
         this.album = album;
+    }
+    
+    public Image getImage() {
+        return imagen;
+    }
+    
+    public void setImage(Image imagen) {
+        this.imagen=imagen;
+    }
+    
+    public String getNombre() {
+        return nombre;
+    }
+    
+    public void setNombre(String nombte) {
+        this.nombre=nombre;
     }
     
     
