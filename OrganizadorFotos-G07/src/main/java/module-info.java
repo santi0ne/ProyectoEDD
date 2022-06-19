@@ -5,3 +5,4 @@ module ec.edu.espol.util {
     opens ec.edu.espol.util to javafx.fxml;
     exports ec.edu.espol.util;
 }
+
