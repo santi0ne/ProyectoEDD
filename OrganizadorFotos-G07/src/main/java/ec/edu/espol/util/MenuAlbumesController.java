@@ -11,9 +11,12 @@ import java.io.*;
 import java.util.Arrays;
 import java.util.LinkedList;
 import javafx.fxml.FXML;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -43,11 +46,24 @@ public class MenuAlbumesController {
     @FXML
     private Button btnSig;
     @FXML
-    private Text nombreFoto;
-    private TableColumn<Album, String> columnaAlbumes;
+    private Text nombreFotoSelec;
     
     private Foto fotoSeleccionada=new Foto();
+    
     private Album albumSeleccionado=new Album();
+    @FXML
+    private Menu menuArchivos;
+    @FXML
+    private MenuItem itemAggAlbum;
+    @FXML
+    private MenuItem itemAggFotos;
+    @FXML
+    private MenuItem itemEdAlbum;
+    @FXML
+    private Button btnEliminarFoto;
+    @FXML
+    private Button btnEditarFoto;
+    
     
    
     
@@ -67,6 +83,8 @@ public class MenuAlbumesController {
         }
         
         
+        listaAlbumes.setAlignment(Pos.CENTER);
+        listaAlbumes.setSpacing(10);
         
         for(int i=0;i<Album.getListaAlbumes().size();i++){
                
@@ -89,7 +107,7 @@ public class MenuAlbumesController {
         albumSeleccionado=Album.getListaAlbumes().get(0);
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
         imageFoto.setImage(fotoSeleccionada.getImage());
-        nombreFoto.setText(fotoSeleccionada.getNombre());
+        nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     
     }
 
@@ -99,7 +117,7 @@ public class MenuAlbumesController {
         int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(indice+1);
         imageFoto.setImage(fotoSeleccionada.getImage());
-        nombreFoto.setText(fotoSeleccionada.getNombre());
+        nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
     
     @FXML
@@ -107,15 +125,43 @@ public class MenuAlbumesController {
         int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(indice-1);
         imageFoto.setImage(fotoSeleccionada.getImage());
-        nombreFoto.setText(fotoSeleccionada.getNombre());
+        nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
     
-    @FXML
     public void cambiarAlbum(Album a){
         albumSeleccionado=a; 
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
         imageFoto.setImage(fotoSeleccionada.getImage());
-        nombreFoto.setText(fotoSeleccionada.getNombre());
+        nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
+    }
+    
+    @FXML
+    public void agregarAlbum(){
+        //TODO;
+    }
+    
+    @FXML
+    public void editarAlbum(){
+        //TODO;
+    }
+    
+    public void eliminarAlbum(){
+        //TODO;
+    }
+    
+    @FXML
+    public void agregarFoto(){
+        //TODO;
+    }
+    
+    @FXML
+    public void editarFoto(){
+        //TODO;
+    }
+    
+    @FXML
+    public void eliminarFoto(){
+        //TODO;
     }
     
 }
