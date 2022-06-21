@@ -4,14 +4,14 @@
  */
 package ec.edu.espol.classes;
 
+import tdas.CircularDoublyLinkedListG07;
+
 /**
  *
  * @author santi
  */
-public class Cliente extends Persona{
+public class Biblioteca {
+     private static CircularDoublyLinkedListG07<Album> listaAlbumes=new CircularDoublyLinkedListG07<>();
 
-    public Cliente(String nombre) {
-        super(nombre);
-    }
-    
+   
 }

@@ -95,4 +95,10 @@ public class Foto {
     }
     
     
+    // metodos 
+    public static void eliminarPersona(Persona p){
+        //personas.remove(p);
+    }
+    
+    
 }

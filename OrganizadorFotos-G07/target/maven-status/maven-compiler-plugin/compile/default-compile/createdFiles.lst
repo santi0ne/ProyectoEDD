@@ -1,6 +1,7 @@
 ec\edu\espol\util\App.class
 tdas\CircularDoublyLinkedListG07$Node.class
 tdas\CircularDoublyLinkedListG07.class
+ec\edu\espol\util\MenuAlbumesController.class
 ec\edu\espol\classes\Persona.class
 tdas\ArrayListG07.class
 tdas\NodeListG07.class
