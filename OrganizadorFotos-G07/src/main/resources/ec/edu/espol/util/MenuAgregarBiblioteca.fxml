@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAgregarBibliotecaController">
+   <children>
+      <Pane layoutX="7.0" layoutY="6.0" prefHeight="42.0" prefWidth="592.0">
+         <children>
+            <Label layoutX="220.0" layoutY="5.0" text="NUEVO ALBUM">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
+      <Label layoutX="58.0" layoutY="87.0" prefHeight="27.0" prefWidth="113.0" text="Nombre       =">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="58.0" layoutY="138.0" prefHeight="27.0" prefWidth="124.0" text="Descripción  =">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField id="txtNombreAlbum" layoutX="193.0" layoutY="90.0" prefHeight="25.0" prefWidth="272.0" promptText="Ingrese nombre" />
+      <TextField id="txtDetalleAlbum" layoutX="193.0" layoutY="138.0" prefHeight="102.0" prefWidth="272.0" promptText="Ingrese Detalle" />
+      <Button id="btnAgregarFotos" fx:id="btnAgregarFotos" layoutX="284.0" layoutY="270.0" mnemonicParsing="false" text="Agregar Fotos" />
+      <Button id="btnCancelarAlbum" fx:id="btnCancelarAlbum" layoutX="423.0" layoutY="363.0" mnemonicParsing="false" onAction="#cancelarAlbum" text="CANCELAR" />
+      <Button id="btnCrearFoto" fx:id="btnCrearFoto" layoutX="519.0" layoutY="361.0" mnemonicParsing="false" text="CREAR">
+         <font>
+            <Font name="System Bold" size="14.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

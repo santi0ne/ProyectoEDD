@@ -1,15 +1,86 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.ScrollBar?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
    <center>
-      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Menú Principal" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <SplitPane dividerPositions="0.14457831325301204" orientation="VERTICAL" prefHeight="334.0" prefWidth="448.0">
+              <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <Pane prefHeight="50.0" prefWidth="439.0">
+                           <children>
+                              <Label alignment="TOP_CENTER" contentDisplay="CENTER" layoutX="117.0" layoutY="2.0" prefHeight="29.0" prefWidth="162.0" text="BIBLIOTECA" textAlignment="CENTER">
+                                 <font>
+                                    <Font size="31.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                     </children>
+                  </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                     <children>
+                        <FlowPane id="paneAlbumes" fx:id="paneAlbumes" prefHeight="279.0" prefWidth="421.0" />
+                        <ScrollBar layoutX="412.0" layoutY="6.0" orientation="VERTICAL" prefHeight="266.0" prefWidth="27.0" />
+                     </children>
+                  </AnchorPane>
+              </items>
+            </SplitPane>
+         </children>
+      </Pane>
    </center>
+   <left>
+      <Pane prefHeight="311.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="55.0" layoutY="21.0" text="Usuario" />
+         </children>
+      </Pane>
+   </left>
    <bottom>
-      <Button fx:id="botonMenu" mnemonicParsing="false" onAction="#cambiarMenuAlbumes" text="Ingresar" BorderPane.alignment="CENTER" />
+      <Pane prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="513.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="25.0" prefWidth="73.0" text="Salir">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="200.0" layoutY="10.0" mnemonicParsing="false" onAction="#EliminarBiblioteca" text="Eliminar" />
+            <Button id="btnModificarBiblioteca" fx:id="btnModificarBiblioteca" layoutX="277.0" layoutY="10.0" mnemonicParsing="false" onAction="#ModificarBiblioteca" text="Modificar" />
+         </children>
+      </Pane>
    </bottom>
+   <top>
+      <MenuBar prefHeight="25.0" prefWidth="613.0" BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="Opciones">
+            <items>
+              <MenuItem fx:id="menuNuevaBiblioteca" mnemonicParsing="false" onAction="#NuevaBiblioteca" text="Nueva Album" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Buscar">
+            <items>
+              <MenuItem fx:id="menuBusqueda" mnemonicParsing="false" onAction="#Busqueda" text="Busqueda Avanzada" />
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Acerca de...">
+            <items>
+              <MenuItem fx:id="menuAcercaDeG07" mnemonicParsing="false" onAction="#AcercaDe" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
 </BorderPane>
