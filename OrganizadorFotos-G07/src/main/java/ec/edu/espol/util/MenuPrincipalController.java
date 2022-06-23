@@ -6,15 +6,11 @@
 package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Album;
+import ec.edu.espol.classes.Biblioteca;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
-import java.util.List;
-import java.util.ResourceBundle;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
@@ -22,13 +18,14 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import tdas.ArrayListG07;
 
 /**
  * FXML Controller class
  *
  * @author g_are
  */
-public class MenuPrincipalController implements Initializable {
+public class MenuPrincipalController  {
 
     @FXML
     private MenuItem menuNuevaBiblioteca;
@@ -44,17 +41,34 @@ public class MenuPrincipalController implements Initializable {
     private Button btnModificarBiblioteca;
     @FXML
     private FlowPane paneAlbumes;
+   
     
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-         List<Album> albumes = Album.leerAlbumes();
-        for(Album a : albumes){
+    public void initialize() throws IOException {
+        
+        ArrayListG07<Album> listaAlbum=Album.lecturaAlbumes();
+       
+        for (int i = 0; i < listaAlbum.size(); i++) {
+            Album album= new Album(listaAlbum.get(i).getId(),listaAlbum.get(i).getNombre(),listaAlbum.get(i).getDescripcion());
+            Biblioteca.getListaAlbumes().addLast(album);
+           
+        }
+        
+        for (int i = 0; i < listaAlbum.size(); i++) {
+            System.out.println(Biblioteca.getListaAlbumes().get(i).getNombre());
+           
+        }
+
+        
+        for(int i=0;i<listaAlbum.size();i++){
+            
+            Album album=listaAlbum.get(i);
+            
+            
             VBox vboxalbum = new VBox();
             ImageView imgview = null;
             try{
                 //agrego la imagen de la miniatura
-                InputStream input = App.class.getResource(a.getMiniatura()).openStream();
+                InputStream input = App.class.getResource("miniaturaAlbum.jpg").openStream();
                 Image img = new Image(input, 100,100, true, true);
                 imgview = new ImageView(img);
             }catch(NullPointerException | IOException ex){
@@ -63,28 +77,27 @@ public class MenuPrincipalController implements Initializable {
             } 
             
             vboxalbum.getChildren().add(imgview);
-            vboxalbum.getChildren().add(new Label(a.getNombre()));
-            vboxalbum.getChildren().add(new Label(a.getDescripcion()));
+            vboxalbum.getChildren().add(new Label(album.getNombre()));
+            vboxalbum.getChildren().add(new Label(album.getDescripcion()));
             
             paneAlbumes.getChildren().add(vboxalbum);
-            
-            EventHandler eventHandler = (event)->{
-                // EN ESTE BLOQUE DE CODIGO SE ESCRIBIRA LA ACCION QUE
-                //SE REALIZARA CUANDO SE CLICKEA UN ALBUM y se muestra las fotos dentro del album
-            };
+           
                     
-            vboxalbum.setOnMouseClicked(eventHandler);
+           vboxalbum.setOnMouseClicked(eh-> {
+                try {
+                    verAlbumDeFotos();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
         }
-        
-        
-        
-        
-        
-        
+          
     }  
     
+    @FXML
     private void verAlbumDeFotos() throws IOException {
         App.setRoot("MenuAlbumes");
+        
     }
     
     public void Salir() throws IOException{

@@ -4,14 +4,18 @@
  */
 package ec.edu.espol.classes;
 
-import tdas.CircularDoublyLinkedListG07;
+import tdas.ArrayListG07;
 
 /**
  *
  * @author santi
  */
 public class Biblioteca {
-     private static CircularDoublyLinkedListG07<Album> listaAlbumes=new CircularDoublyLinkedListG07<>();
-
+    
+    private static ArrayListG07<Album> listaAlbumes=new ArrayListG07<>();
+    
+    public static ArrayListG07<Album> getListaAlbumes() {
+        return listaAlbumes;
+    }
    
 }

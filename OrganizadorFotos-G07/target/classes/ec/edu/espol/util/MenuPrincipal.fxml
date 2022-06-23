@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
    <center>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -57,7 +57,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="200.0" layoutY="10.0" mnemonicParsing="false" onAction="#EliminarBiblioteca" text="Eliminar" />
+            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="200.0" layoutY="10.0" mnemonicParsing="false" onAction="#verAlbumDeFotos" text="Eliminar" />
             <Button id="btnModificarBiblioteca" fx:id="btnModificarBiblioteca" layoutX="277.0" layoutY="10.0" mnemonicParsing="false" onAction="#ModificarBiblioteca" text="Modificar" />
          </children>
       </Pane>

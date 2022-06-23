@@ -4,10 +4,11 @@
  */
 package ec.edu.espol.classes;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import tdas.ArrayListG07;
 import tdas.CircularDoublyLinkedListG07;
 
 /**
@@ -18,7 +19,7 @@ public class Album {
     private String nombre;
     private String descripcion;
     private String miniatura;
-    private static CircularDoublyLinkedListG07<Album> listaAlbumes=new CircularDoublyLinkedListG07<>();
+    private int idAlbum;
     private CircularDoublyLinkedListG07<Foto> fotosDelAlbum=new CircularDoublyLinkedListG07();
 
     public Album() {}
@@ -32,10 +33,14 @@ public class Album {
         this.descripcion = descripcion;
     }
     
-       public Album(String nombre, String descripcion, String miniatura) {
+     public Album(int idAlbum,String nombre, String descripcion) {
         this.nombre = nombre;
         this.descripcion = descripcion;
-        this.miniatura = miniatura;
+        this.idAlbum=idAlbum;
+    }
+     
+    public int getId() {
+        return idAlbum;
     }
 
     public String getNombre() {
@@ -62,9 +67,6 @@ public class Album {
         this.miniatura=miniatura;
     }
     
-    public static CircularDoublyLinkedListG07<Album> getListaAlbumes() {
-        return listaAlbumes;
-    }
 
      public CircularDoublyLinkedListG07<Foto> getFotosDelAlbum() {
         return fotosDelAlbum;
@@ -74,19 +76,45 @@ public class Album {
         this.fotosDelAlbum = fotosDelAlbum;
     }
     
+    public static ArrayListG07<Album> lecturaAlbumes() throws FileNotFoundException, IOException{
+        
+        ArrayListG07<Album> listaAlbumes= new ArrayListG07<>();
+        
+        try(BufferedReader bufferedReader= new BufferedReader(new FileReader ("archivos/albumes.txt"))){
+
+            String linea;
+            bufferedReader.readLine();
+            
+            int i=0;
+            
+            while((linea=bufferedReader.readLine())!=null){
+                
+                String[] info=linea.split(",");
+         
+                Album album=new Album(Integer.valueOf(info[0]),info[1],info[2]);
+                
+                listaAlbumes.addLast(album);
+                i++;
+            }
+            
+        } 
+    
+        return listaAlbumes;
+    }
+    
    
     
    //Aqui se debe implementar el codigo para leer los nombres de las carpetas de albumes.
     //por el momento hemos creado 4 directamente, PERO!! tiene que leer los datos y devolver
     // una lista de algumes lleno.
-   public static List<Album> leerAlbumes(){
+   /*public static List<Album> leerAlbumes(){
         List<Album> albumes = Arrays.asList(
-                new Album("Album1", "Ejemplo del album 1", "miniaturaAlbum.jpg"),
-                new Album("Album2", "Ejemplo de album 2", "miniaturaAlbum1.png"),
-                new Album("Album3", "Ejempli del album 3", "miniaturaAlbum2.png"),
-                new Album("Album1", "Ejemplo del album 1", "miniaturaAlbum3.png")
+                new Album(1,"Album1", "Ejemplo del album 1", "miniaturaAlbum.jpg"),
+                new Album(2,"Album2", "Ejemplo de album 2", "miniaturaAlbum1.png"),
+                new Album(3,"Album3", "Ejempli del album 3", "miniaturaAlbum2.png"),
+                new Album(4,"Album1", "Ejemplo del album 1", "miniaturaAlbum3.png")
         );
         return albumes;
-    }
+    }*/
     
 }

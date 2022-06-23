@@ -6,6 +6,7 @@
 package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Album;
+import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.*;
 import java.util.Arrays;
@@ -36,8 +37,6 @@ public class MenuAlbumesController {
     @FXML
     private MenuBar menuBar;
     @FXML
-    private VBox listaAlbumes;
-    @FXML
     private HBox menúOpciones;
     @FXML
     private Button btnAnt;
@@ -47,10 +46,6 @@ public class MenuAlbumesController {
     private Button btnSig;
     @FXML
     private Text nombreFotoSelec;
-    
-    private Foto fotoSeleccionada=new Foto();
-    
-    private Album albumSeleccionado=new Album();
     @FXML
     private Menu menuArchivos;
     @FXML
@@ -64,36 +59,27 @@ public class MenuAlbumesController {
     @FXML
     private Button btnEditarFoto;
     
+    private static Foto fotoSeleccionada=new Foto();
+    
+    private static Album albumSeleccionado=new Album();
+    @FXML
+    private Button btnRegresar;
+    
     
    
     
     public  void initialize() throws FileNotFoundException, IOException {
        
-        File directorio = new File("archivos");                                              
-        String[] lista = directorio.list();
-        Arrays.sort(lista);
-        for (int i = 0; i < lista.length; i++) {
-            Album album= new Album(lista[i]);
-            Album.getListaAlbumes().add(Album.getListaAlbumes().size(), album);
-            
-            Button boton=new Button(album.getNombre());
-            boton.setOnAction(ev->cambiarAlbum(album));
-            
-            listaAlbumes.getChildren().add(boton);
-        }
-        
-        
-        listaAlbumes.setAlignment(Pos.CENTER);
-        listaAlbumes.setSpacing(10);
-        
-        for(int i=0;i<Album.getListaAlbumes().size();i++){
+            for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
                
-            File directorioF = new File("archivos/"+Album.getListaAlbumes().get(i).getNombre());                                              
+            File directorioF = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()); 
+            
             String[] listaF = directorioF.list();
-            Arrays.sort(listaF);
+           
+            
             CircularDoublyLinkedListG07<Foto> listaFotos=new CircularDoublyLinkedListG07<Foto>();
             for (int j = 0; j < listaF.length;j++) {
-                File file = new File("archivos/"+Album.getListaAlbumes().get(i).getNombre()+"/"+listaF[j]);
+                File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listaF[j]);
                 Image image = new Image(file.toURI().toString());
                 
                 Foto foto=new Foto(listaF[j],image);
@@ -101,17 +87,18 @@ public class MenuAlbumesController {
                 listaFotos.add(listaFotos.size(), foto);
                 
         }
-            Album.getListaAlbumes().get(i).setFotosDelAlbum(listaFotos);
+            Biblioteca.getListaAlbumes().get(i).setFotosDelAlbum(listaFotos);
         }
         
-        albumSeleccionado=Album.getListaAlbumes().get(0);
+        albumSeleccionado=Biblioteca.getListaAlbumes().get(0);
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     
+    
+    
     }
-
-
+    
     @FXML
     public void siguienteFoto(){
         int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
@@ -134,6 +121,10 @@ public class MenuAlbumesController {
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
+    
+    public void regresarMenu() throws IOException{
+        App.setRoot("MenuPrincipal");
+    } 
     
     @FXML
     public void agregarAlbum(){
