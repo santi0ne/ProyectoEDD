@@ -18,6 +18,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import tdas.ArrayListG07;
 
 /**
@@ -87,7 +88,6 @@ public class MenuPrincipalController  {
                 try {
                     verAlbumDeFotos();
                 } catch (IOException ex) {
-                    ex.printStackTrace();
                 }
             });
         }
@@ -102,6 +102,8 @@ public class MenuPrincipalController  {
     
     public void Salir() throws IOException{
     // escribir codigo para cerrar proyecto
+        Stage stage = (Stage) this.btnSalir.getScene().getWindow();
+        stage.close();
     }
     
     @FXML
