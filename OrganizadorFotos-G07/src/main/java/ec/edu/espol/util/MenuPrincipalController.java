@@ -88,13 +88,7 @@ public class MenuPrincipalController  {
         }
           
     }  
-    
-    @FXML
-    private void verAlbumDeFotos() throws IOException {
-        App.setRoot("MenuAlbumes");
-        
-    }
-    
+       
     public void Salir() throws IOException{
     // escribir codigo para cerrar proyecto
         Stage stage = (Stage) this.btnSalir.getScene().getWindow();

@@ -14,6 +14,8 @@ import java.util.LinkedList;
 import javafx.fxml.FXML;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -24,7 +26,9 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.StageStyle;
 import tdas.CircularDoublyLinkedListG07;
+
 
 /**
  * FXML Controller class
@@ -64,6 +68,8 @@ public class MenuAlbumesController {
      static Album albumSeleccionado=new Album();
     @FXML
     private Button btnRegresar;
+    @FXML
+    private Button btnInfo;
     
     
    
@@ -96,7 +102,7 @@ public class MenuAlbumesController {
             }
         }   
         
-        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
+        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(albumSeleccionado.getFotosDelAlbum().size()-1);
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     
@@ -125,6 +131,7 @@ public class MenuAlbumesController {
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
     
+    @FXML
     public void regresarMenu() throws IOException{
         App.setRoot("MenuPrincipal");
     } 
@@ -158,4 +165,14 @@ public class MenuAlbumesController {
         //TODO;
     }
     
+    @FXML
+    public void informacionFoto(){
+        //todo;
+        Alert dialogo = new Alert(AlertType.INFORMATION);
+        dialogo.setTitle("info");
+        dialogo.setHeaderText("Informacion de la foto");
+        dialogo.setContentText("Contenido");
+        dialogo.initStyle(StageStyle.UTILITY);
+        dialogo.showAndWait();
+    }
 }
