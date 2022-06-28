@@ -53,13 +53,7 @@ public class MenuPrincipalController  {
             Biblioteca.getListaAlbumes().addLast(album);
            
         }
-        
-        for (int i = 0; i < listaAlbum.size(); i++) {
-            System.out.println(Biblioteca.getListaAlbumes().get(i).getNombre());
-           
-        }
-
-        
+  
         for(int i=0;i<listaAlbum.size();i++){
             
             Album album=listaAlbum.get(i);
@@ -86,7 +80,8 @@ public class MenuPrincipalController  {
                     
            vboxalbum.setOnMouseClicked(eh-> {
                 try {
-                    verAlbumDeFotos();
+                    Biblioteca.setAlbumSelec(album);
+                    App.setRoot("MenuAlbumes");
                 } catch (IOException ex) {
                 }
             });

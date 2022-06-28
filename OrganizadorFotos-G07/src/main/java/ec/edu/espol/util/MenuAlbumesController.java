@@ -61,7 +61,7 @@ public class MenuAlbumesController {
     
     private static Foto fotoSeleccionada=new Foto();
     
-    private static Album albumSeleccionado=new Album();
+     static Album albumSeleccionado=new Album();
     @FXML
     private Button btnRegresar;
     
@@ -90,12 +90,15 @@ public class MenuAlbumesController {
             Biblioteca.getListaAlbumes().get(i).setFotosDelAlbum(listaFotos);
         }
         
-        albumSeleccionado=Biblioteca.getListaAlbumes().get(0);
+        for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
+            if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(Biblioteca.getAlbumSelec().getNombre())){
+                albumSeleccionado=Biblioteca.getListaAlbumes().get(i);
+            }
+        }   
+        
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
-    
-    
     
     }
     
