@@ -5,6 +5,7 @@
 package ec.edu.espol.classes;
 
 import java.io.File;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
@@ -19,10 +20,13 @@ public class Foto {
     private String descripcion;
     private String lugar;
     private Date fecha;
+    private LocalDate date;
     private ArrayList<Persona> personas;
+    private String[] listapersonas;
     private Album album;
     private Image imagen;
     private String nombre;
+    private String albumName;
 
     public Foto(Image imagen,String nombre,String descripcion, String lugar, Date fecha, ArrayList<Persona> personas, Album album) {
         this.imagen=imagen;
@@ -32,6 +36,16 @@ public class Foto {
         this.fecha = fecha;
         this.personas = personas;
         this.album = album;
+    }
+    
+        public Foto(Image imagen,String nombre,String descripcion, String lugar, LocalDate date, String[] listapersonas, String album) {
+        this.imagen=imagen;
+        this.nombre=nombre;
+        this.descripcion = descripcion;
+        this.lugar = lugar;
+        this.date = date;
+        this.listapersonas = listapersonas;
+        this.albumName = album;
     }
     
     public Foto(){};
@@ -64,9 +78,21 @@ public class Foto {
     public void setFecha(Date fecha) {
         this.fecha = fecha;
     }
+    
+    public LocalDate getDate(){
+        return date;
+    }
+    
+    public void setDate(LocalDate date){
+        this.date = date;
+    }
 
     public ArrayList<Persona> getPersonas() {
         return personas;
+    }
+    
+      public String[] getListaPersonas() {
+        return listapersonas;
     }
 
     public void setPersonas(ArrayList<Persona> personas) {
@@ -74,7 +100,7 @@ public class Foto {
     }
     
     public int numeroPersonas() {
-        return this.personas.size();
+        return this.listapersonas.length;
     }
 
     public Album getAlbum() {

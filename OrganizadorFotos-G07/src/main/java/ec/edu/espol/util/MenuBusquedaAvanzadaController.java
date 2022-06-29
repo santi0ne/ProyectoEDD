@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.util;
 
+import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.File;
@@ -11,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.ResourceBundle;
@@ -51,7 +53,9 @@ public class MenuBusquedaAvanzadaController implements Initializable {
     private TextArea txtCriterio;
     @FXML
     private Button btnBuscar;
+    
     private  Foto fotoseleccionada = new Foto();
+    
     private ArrayListG07<Foto> listaFotos = Foto.cargarAllFotos();
     @FXML
     private Label lblNombre;
@@ -93,7 +97,7 @@ public class MenuBusquedaAvanzadaController implements Initializable {
 
                 listaFotos.insert(listaFotos.size(), foto);
 
-                VBox vboxcausa = new VBox();
+                VBox vboxfoto = new VBox();
                 ImageView imgview = null;
                 try {
                     imgview = new ImageView(image);
@@ -101,8 +105,8 @@ public class MenuBusquedaAvanzadaController implements Initializable {
                     imgview = new ImageView();
                 }
 
-                vboxcausa.getChildren().add(imgview);
-                galeria.getChildren().add(vboxcausa);
+                vboxfoto.getChildren().add(imgview);
+                galeria.getChildren().add(vboxfoto);
                 
                 
                 EventHandler eventHandler = (event)->{ 
@@ -110,7 +114,7 @@ public class MenuBusquedaAvanzadaController implements Initializable {
                 fotoseleccionada= foto;
             };
             
-            vboxcausa.setOnMouseClicked(eventHandler);
+            vboxfoto.setOnMouseClicked(eventHandler);
             }
             
 
@@ -128,25 +132,6 @@ public class MenuBusquedaAvanzadaController implements Initializable {
     }
     
     
-    public ArrayListG07<Foto> filtarPorNombre(){
-        ArrayListG07<Foto> fotosNombre = new ArrayListG07<>();
-        
-        return fotosNombre;
-    
-    }
-
-    public ArrayListG07<Foto> filtarPorLugar() {
-        ArrayListG07<Foto> fotosLugar = new ArrayListG07<>();
-        
-        return fotosLugar;
-    }
-    
-    public ArrayListG07<Foto> filtarPorFecha() {
-        ArrayListG07<Foto> fotosFecha = new ArrayListG07<>();
-        
-        return fotosFecha;
-    }
-    
     public void inicializarScroll() {
         scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Horizontal
         scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Vertical scroll bar
@@ -160,47 +145,118 @@ public class MenuBusquedaAvanzadaController implements Initializable {
     
     @FXML
     public void buscarFotos(){
-        
-    }
-    
-    
-    public ArrayListG07<Foto> filtrarLugar(){
-        ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
-        return listaFiltrada;
-        
-    }
-    
-    public ArrayListG07<Foto> filtrarFecha(){
-        ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
-        return listaFiltrada;
-        
-    }
-    public ArrayListG07<Foto> filtrarPersona(){
-        ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
-        return listaFiltrada;
-        
-    }
-    
-    public boolean compareLugar(String lugar,Foto f2){
-        if(lugar.toLowerCase().equals(f2.getLugar().toLowerCase())){
-            return true;
+        ArrayListG07<Foto> listaFiltrada = null;
+        if(rbLugar.isSelected()){
+            limpiarGaleria();
+            listaFiltrada = filtrarLugar(txtCriterio.getText());
+            showFotos(listaFiltrada);
+        }else if(rbPersona.isSelected()){
+            limpiarGaleria();
+            listaFiltrada = filtrarPersona(txtCriterio.getText());
+            showFotos(listaFiltrada);
+        }else if(rbFecha.isSelected()){
+            limpiarGaleria();
+            LocalDate d = dateCalendario.getValue();
+            txtCriterio.setText(d.toString());
+            listaFiltrada = filtrarFecha(d);
+            showFotos(listaFiltrada);
         }
-        return false;
     }
     
-    public boolean compareFecha(Date d, Foto f2) {
-        if (d.equals(f2.getFecha())) {
-            return true;
+    
+    public ArrayListG07<Foto> filtrarLugar(String lugar){
+        ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
+        
+        if(listaFotos.isEmpty()){
+            //en esta parte se le debe poner una ventana de dialogo
+            System.out.println( "No existen fotos para buscar, esta vacia");
+            return listaFiltrada = null;
+        }else{
+            for(int i=0;i<listaFotos.size();i++){
+                if(lugar.toLowerCase().equals(listaFotos.get(i).getLugar().toLowerCase())){
+                    listaFiltrada.addLast(listaFotos.get(i));
+                }
+            }
+        
         }
-        return false;
+        
+        return listaFiltrada;
+        
     }
-
+    
+    public ArrayListG07<Foto> filtrarFecha(LocalDate fecha){
+          ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
+        
+        if(listaFotos.isEmpty()){
+            //en esta parte se le debe poner una ventana de dialogo
+            System.out.println( "No existen fotos para buscar, esta vacia");
+            return listaFiltrada = null;
+        }else{
+            for(int i=0;i<listaFotos.size();i++){
+                if(fecha.equals(listaFotos.get(i).getFecha())){
+                    listaFiltrada.addLast(listaFotos.get(i));
+                }
+            }
+        
+        }
+        
+        return listaFiltrada;
+        
+        
+    }
+    
+    public ArrayListG07<Foto> filtrarPersona(String persona){
+         ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
+        
+        if(listaFotos.isEmpty()){
+            //en esta parte se le debe poner una ventana de dialogo
+            System.out.println( "No existen fotos para buscar, esta vacia");
+            return listaFiltrada = null;
+        }else{
+            for(int i=0;i<listaFotos.size();i++){
+                if(comparePersona(persona,listaFotos.get(i))){
+                    listaFiltrada.addLast(listaFotos.get(i));
+                }
+            }
+        
+        }
+        
+        return listaFiltrada;
+        
+    }
+    
     public boolean comparePersona(String persona, Foto f2) {
+       String [] p = f2.getListaPersonas();
         for(int i=0;i<f2.numeroPersonas();i++){
-            if(persona.toLowerCase().equals(f2.getPersonas().get(i).getNombre().toLowerCase()))
+            if(persona.toLowerCase().equals(p[i].toLowerCase()))
                 return true;
         }
         return false;
     }
+    
+    public void limpiarGaleria(){
+        galeria.getChildren().clear();
+    }
+    
+    public void showFotos(ArrayListG07<Foto> listaFiltrada) {
+   
+        for (int i = 0; i < listaFiltrada.size(); i++) {
+            String url = listaFiltrada.get(i).getImage().getUrl();
+            Image image = new Image(url, 100, 100, true, true);
+            System.out.println("Se creo miniatura: " + listaFiltrada.get(i).getNombre());
+            VBox vboxfoto = new VBox();
+            ImageView imgview = null;
+            try {
+                imgview = new ImageView(image);
+            } catch (NullPointerException ex) {
+                imgview = new ImageView();
+            }
+
+            vboxfoto.getChildren().add(imgview);
+            galeria.getChildren().add(vboxfoto);
+        }
+    }
+    
+    
     
 }
