@@ -4,9 +4,12 @@
  */
 package ec.edu.espol.classes;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 import javafx.scene.image.Image;
+import tdas.ArrayListG07;
 
 /**
  *
@@ -69,6 +72,10 @@ public class Foto {
     public void setPersonas(ArrayList<Persona> personas) {
         this.personas = personas;
     }
+    
+    public int numeroPersonas() {
+        return this.personas.size();
+    }
 
     public Album getAlbum() {
         return album;
@@ -99,6 +106,39 @@ public class Foto {
     public static void eliminarPersona(Persona p){
         //personas.remove(p);
     }
+    
+     public static ArrayListG07<Foto> cargarAllFotos(){
+        
+        ArrayListG07<Foto> listaFotos= new ArrayListG07<Foto>();
+        
+         for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
+               
+            File directorioF = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()); 
+            // System.out.println(directorioF);
+            
+            String[] listaF = directorioF.list();
+             //System.out.println(listaF);
+           
+            for (int j = 0; j < listaF.length;j++) {
+                File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listaF[j]);
+                Image image = new Image(file.toURI().toString(),100,100,true,true);
+                
+                Foto foto=new Foto(listaF[j],image);
+                System.out.println(foto.nombre);
+                
+                
+                listaFotos.insert(listaFotos.size(), foto);
+                
+        }
+            
+        }
+         System.out.println(listaFotos);
+         return listaFotos;
+        
+        
+    }
+    
+    
     
     
 }
