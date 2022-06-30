@@ -9,25 +9,18 @@ import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.*;
-import java.util.Arrays;
-import java.util.LinkedList;
 import javafx.fxml.FXML;
-import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TableColumn;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.StageStyle;
-import tdas.CircularDoublyLinkedListG07;
 
 
 /**
@@ -62,50 +55,55 @@ public class MenuAlbumesController {
     private Button btnEliminarFoto;
     @FXML
     private Button btnEditarFoto;
-    
-    private static Foto fotoSeleccionada=new Foto();
-    
-     static Album albumSeleccionado=new Album();
     @FXML
     private Button btnRegresar;
     @FXML
     private Button btnInfo;
     
+    private static Foto fotoSeleccionada=new Foto();
     
-   
+    private static Album albumSeleccionado=new Album();
     
+
     public  void initialize() throws FileNotFoundException, IOException {
-       
+        
+            cargarFotos(Biblioteca.getAlbumSelec());
+    
+    }
+    
+    public void cargarFotos(Album a) throws IOException{
+        Album album=new Album();
+                    
             for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
-               
-            File directorioF = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()); 
-            
-            String[] listaF = directorioF.list();
-           
-            
-            CircularDoublyLinkedListG07<Foto> listaFotos=new CircularDoublyLinkedListG07<Foto>();
-            for (int j = 0; j < listaF.length;j++) {
-                File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listaF[j]);
+                if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(a.getNombre())){
+                    album=Biblioteca.getListaAlbumes().get(i);
+                }
+            } 
+              
+                  
+            for (int j = 0; j < Foto.lecturaFotos(album).size();j++) {
+                
+                File file = new File("archivos/albumes/"+album.getNombre()+"/"+Foto.lecturaFotos(album).get(j).getNombre()+".jpg");
                 Image image = new Image(file.toURI().toString());
                 
-                Foto foto=new Foto(listaF[j],image);
+                Foto foto=new Foto(Foto.lecturaFotos(album).get(j).getNombre(),image,Foto.lecturaFotos(album).get(j).getDescripcion());
                 
-                listaFotos.add(listaFotos.size(), foto);
-                
-        }
-            Biblioteca.getListaAlbumes().get(i).setFotosDelAlbum(listaFotos);
-        }
-        
-        for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
-            if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(Biblioteca.getAlbumSelec().getNombre())){
-                albumSeleccionado=Biblioteca.getListaAlbumes().get(i);
+                for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
+                if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(Biblioteca.getAlbumSelec().getNombre())){
+                    Biblioteca.getListaAlbumes().get(i).aggFotosDelAlbum(foto);
+                }
+            } 
+    
             }
-        }   
-        
+            
+        mostrarFotos(album);
+    }
+    
+    public void mostrarFotos(Album a){
+        albumSeleccionado=a;
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(albumSeleccionado.getFotosDelAlbum().size()-1);
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
-    
     }
     
     @FXML

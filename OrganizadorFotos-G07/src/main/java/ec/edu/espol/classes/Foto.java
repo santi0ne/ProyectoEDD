@@ -4,13 +4,17 @@
  */
 package ec.edu.espol.classes;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.Objects;
 import javafx.scene.image.Image;
 import tdas.ArrayListG07;
+import tdas.CircularDoublyLinkedListG07;
 
 /**
  *
@@ -49,10 +53,21 @@ public class Foto {
     }
     
     public Foto(){};
-
+    
     public Foto(String nombre, Image imagen) {
         this.nombre = nombre;
         this.imagen = imagen;
+    }
+
+    public Foto(String nombre, Image imagen, String descripcion) {
+        this.nombre = nombre;
+        this.imagen = imagen;
+        this.descripcion = descripcion;
+    }
+    
+    public Foto(String nombre, String descripcion) {
+        this.nombre = nombre;
+        this.descripcion = descripcion;
     }
 
     public String getDescripcion() {
@@ -133,29 +148,28 @@ public class Foto {
         //personas.remove(p);
     }
     
-     public static ArrayListG07<Foto> cargarAllFotos(){
+    public static ArrayListG07<Foto> cargarAllFotos(){
         
         ArrayListG07<Foto> listaFotos= new ArrayListG07<Foto>();
         
          for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
                
-            File directorioF = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()); 
-            // System.out.println(directorioF);
-            
-            String[] listaF = directorioF.list();
-             //System.out.println(listaF);
-           
-            for (int j = 0; j < listaF.length;j++) {
-                File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listaF[j]);
-                Image image = new Image(file.toURI().toString(),100,100,true,true);
+            try {
+                CircularDoublyLinkedListG07<Foto> listFotos= lecturaFotos(Biblioteca.getListaAlbumes().get(i));
                 
-                Foto foto=new Foto(listaF[j],image);
-                System.out.println(foto.nombre);
-                
-                
-                listaFotos.insert(listaFotos.size(), foto);
-                
-        }
+                for (int j = 0; j < listFotos.size();j++) {
+                    File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listFotos.get(i).getNombre());
+                    Image image = new Image(file.toURI().toString(),100,100,true,true);
+                    
+                    Foto foto=new Foto(listFotos.get(i).getNombre(),image,listFotos.get(i).getDescripcion());
+                    System.out.println(foto.nombre);
+                    
+                    
+                    listaFotos.insert(listaFotos.size(), foto);
+                    
+                }   } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             
         }
          System.out.println(listaFotos);
@@ -164,6 +178,31 @@ public class Foto {
         
     }
     
+    
+    public static CircularDoublyLinkedListG07<Foto> lecturaFotos(Album a) throws FileNotFoundException, IOException{
+        
+        CircularDoublyLinkedListG07<Foto> listaFotos= new CircularDoublyLinkedListG07<>();
+        
+        try(BufferedReader bufferedReader= new BufferedReader(new FileReader ("archivos/albumes/"+a.getNombre()+"/infoFotos.txt"))){
+
+            String linea;
+            bufferedReader.readLine();
+            
+            
+            while((linea=bufferedReader.readLine())!=null){
+                
+                String[] info=linea.split(",");
+         
+                Foto foto=new Foto(info[0],info[1]);
+                
+                listaFotos.addLast(foto);
+
+            }
+            
+        } 
+    
+        return listaFotos;
+    }
     
     
     

@@ -1,19 +1,19 @@
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\ArrayListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuAcercaDeGrupoController.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\DoublyNodeListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\ListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Persona.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\module-info.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\NodeListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\DoublyLinkedListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuPrincipalController.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\SimpleLinkedListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Biblioteca.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Cliente.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\CircularDoublyLinkedListG07.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\App.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuBusquedaAvanzadaController.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Album.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Foto.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuAlbumesController.java
-D:\ProyectosGITHUB\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuAgregarBibliotecaController.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuAcercaDeGrupoController.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\CircularDoublyLinkedListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Album.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\ListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Persona.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\module-info.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\ArrayListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\DoublyNodeListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\DoublyLinkedListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuAgregarBibliotecaController.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\SimpleLinkedListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\App.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Foto.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuBusquedaAvanzadaController.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuPrincipalController.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\tdas\NodeListG07.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\util\MenuAlbumesController.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Cliente.java
+C:\Users\g_are\OneDrive\Tercer semestre\Estructura de datos\ProyectoEDD\OrganizadorFotos-G07\src\main\java\ec\edu\espol\classes\Biblioteca.java

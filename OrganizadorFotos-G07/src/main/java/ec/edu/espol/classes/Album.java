@@ -76,6 +76,10 @@ public class Album {
         this.fotosDelAlbum = fotosDelAlbum;
     }
     
+    public void aggFotosDelAlbum( Foto foto ) {
+        fotosDelAlbum.addLast(foto);
+    }
+    
     public static ArrayListG07<Album> lecturaAlbumes() throws FileNotFoundException, IOException{
         
         ArrayListG07<Album> listaAlbumes= new ArrayListG07<>();
