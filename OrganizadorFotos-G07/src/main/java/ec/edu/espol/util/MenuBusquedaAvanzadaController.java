@@ -33,6 +33,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import tdas.ArrayListG07;
+import tdas.CircularDoublyLinkedListG07;
 
 /**
  * FXML Controller class
@@ -85,14 +86,13 @@ public class MenuBusquedaAvanzadaController implements Initializable {
         ArrayListG07<Foto> listaFotos = new ArrayListG07<Foto>();
 
         for (int i = 0; i < Biblioteca.getListaAlbumes().size(); i++) {
-            File directorioF1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre());
+            
+            CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaFotos(Biblioteca.getListaAlbumes().get(i));
 
-            String[] listaF = directorioF1.list();
-
-            for (int j = 0; j < listaF.length; j++) {
-                File file1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre() + "/" + listaF[j]);
+            for (int j = 0; j < listFotos.size(); j++) {
+                File file1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre() + "/" + listFotos.get(j).getNombre()+".jpg");
                 Image image = new Image(file1.toURI().toString(), 100, 100, true, true);
-                Foto foto = new Foto(listaF[j], image);
+                Foto foto = new Foto(listFotos.get(j).getNombre(), image);
                 System.out.println(foto.getNombre());
 
                 listaFotos.insert(listaFotos.size(), foto);

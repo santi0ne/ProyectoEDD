@@ -154,22 +154,18 @@ public class Foto {
         
          for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
                
-            try {
-                CircularDoublyLinkedListG07<Foto> listFotos= lecturaFotos(Biblioteca.getListaAlbumes().get(i));
-                
-                for (int j = 0; j < listFotos.size();j++) {
-                    File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listFotos.get(i).getNombre());
-                    Image image = new Image(file.toURI().toString(),100,100,true,true);
-                    
-                    Foto foto=new Foto(listFotos.get(i).getNombre(),image,listFotos.get(i).getDescripcion());
-                    System.out.println(foto.nombre);
-                    
-                    
-                    listaFotos.insert(listaFotos.size(), foto);
-                    
-                }   } catch (IOException ex) {
-                ex.printStackTrace();
-            }
+             CircularDoublyLinkedListG07<Foto> listFotos= lecturaFotos(Biblioteca.getListaAlbumes().get(i));
+             for (int j = 0; j < listFotos.size();j++) {
+                 File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listFotos.get(i).getNombre());
+                 Image image = new Image(file.toURI().toString(),100,100,true,true);
+                 
+                 Foto foto=new Foto(listFotos.get(i).getNombre(),image,listFotos.get(i).getDescripcion());
+                 System.out.println(foto.nombre);
+                 
+                 
+                 listaFotos.insert(listaFotos.size(), foto);
+                 
+             }
             
         }
          System.out.println(listaFotos);
@@ -179,7 +175,7 @@ public class Foto {
     }
     
     
-    public static CircularDoublyLinkedListG07<Foto> lecturaFotos(Album a) throws FileNotFoundException, IOException{
+    public static CircularDoublyLinkedListG07<Foto> lecturaFotos(Album a) {
         
         CircularDoublyLinkedListG07<Foto> listaFotos= new CircularDoublyLinkedListG07<>();
         
@@ -199,7 +195,9 @@ public class Foto {
 
             }
             
-        } 
+        } catch (IOException ex) { 
+            ex.printStackTrace();
+        }
     
         return listaFotos;
     }
