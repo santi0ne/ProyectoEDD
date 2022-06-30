@@ -4,25 +4,16 @@
  */
 package ec.edu.espol.util;
 
-import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
-import java.lang.reflect.Array;
-import java.net.URL;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.ResourceBundle;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
@@ -40,7 +31,7 @@ import tdas.CircularDoublyLinkedListG07;
  *
  * @author jeras
  */
-public class MenuBusquedaAvanzadaController implements Initializable {
+public class MenuBusquedaAvanzadaController  {
 
     @FXML
     private Button btnRegresar;
@@ -57,7 +48,7 @@ public class MenuBusquedaAvanzadaController implements Initializable {
     
     private  Foto fotoseleccionada = new Foto();
     
-    private ArrayListG07<Foto> listaFotos = Foto.cargarAllFotos();
+    private ArrayListG07<Foto> listaFotos; //= Foto.cargarAllFotos();
     @FXML
     private Label lblNombre;
     @FXML
@@ -79,8 +70,8 @@ public class MenuBusquedaAvanzadaController implements Initializable {
     /**
      * Initializes the controller class.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    
+    public void initialize() {
        inicializarScroll();
         
         ArrayListG07<Foto> listaFotos = new ArrayListG07<Foto>();
@@ -128,7 +119,8 @@ public class MenuBusquedaAvanzadaController implements Initializable {
     
     @FXML
     public void RegresarMenu() throws IOException{
-         App.setRoot("MenuPrincipal");
+        limpiarGaleria();
+        App.setRoot("MenuPrincipal");
     }
     
     

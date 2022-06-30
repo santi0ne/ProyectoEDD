@@ -63,17 +63,11 @@ public class MenuPrincipalController  {
         scrollBiblioteca.setContent(biblioteca);
 
         
-        ArrayListG07<Album> listaAlbum=Album.lecturaAlbumes();
-       
-        for (int i = 0; i < listaAlbum.size(); i++) {
-            Album album= new Album(listaAlbum.get(i).getId(),listaAlbum.get(i).getNombre(),listaAlbum.get(i).getDescripcion());
-            Biblioteca.getListaAlbumes().addLast(album);
-           
-        }
+        
   
-        for(int i=0;i<listaAlbum.size();i++){
+        for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
             
-            Album album=listaAlbum.get(i);
+            Album album=Biblioteca.getListaAlbumes().get(i);
             
             
             VBox vboxalbum = new VBox();
