@@ -167,9 +167,9 @@ public class MenuAlbumesController {
     public void informacionFoto(){
         //todo;
         Alert dialogo = new Alert(AlertType.INFORMATION);
-        dialogo.setTitle("info");
-        dialogo.setHeaderText("Informacion de la foto");
-        dialogo.setContentText("Contenido");
+        dialogo.setTitle("Informacion de foto");
+        dialogo.setHeaderText(fotoSeleccionada.getNombre());
+        dialogo.setContentText(fotoSeleccionada.toString());
         dialogo.initStyle(StageStyle.UTILITY);
         dialogo.showAndWait();
     }

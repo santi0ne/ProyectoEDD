@@ -144,6 +144,18 @@ public class Foto {
     
     
     // metodos 
+
+    @Override
+    public String toString() {
+        return "descripcion = " + descripcion + "\n"
+               + "lugar = " + lugar + "\n"
+                + "fecha = " + fecha + "\n"
+                + "date = " + date + "\n"
+                + "albumName = " + albumName;
+    }
+    
+    
+    
     public static void eliminarPersona(Persona p){
         //personas.remove(p);
     }
