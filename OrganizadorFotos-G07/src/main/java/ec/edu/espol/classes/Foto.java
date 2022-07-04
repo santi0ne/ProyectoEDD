@@ -5,9 +5,10 @@
 package ec.edu.espol.classes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -212,6 +213,19 @@ public class Foto {
         }
     
         return listaFotos;
+    }
+    
+    public void escribirFoto() {
+        //String mascotas="";
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes/"+Biblioteca.getAlbumSelec().getNombre()+"/infoFotos.txt", true))) {
+            sb.append("\r\n");
+            sb.append(this.nombre).append(","); 
+            sb.append(this.descripcion);
+            bufferedW.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
     
     

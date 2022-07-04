@@ -80,6 +80,10 @@ public class Album {
         fotosDelAlbum.addLast(foto);
     }
     
+    public String toString(){
+        return nombre;
+    }
+    
     public static ArrayListG07<Album> lecturaAlbumes() throws FileNotFoundException, IOException{
         
         ArrayListG07<Album> listaAlbumes= new ArrayListG07<>();

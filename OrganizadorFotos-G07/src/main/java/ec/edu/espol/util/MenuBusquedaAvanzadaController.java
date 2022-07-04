@@ -81,7 +81,7 @@ public class MenuBusquedaAvanzadaController  {
             CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaFotos(Biblioteca.getListaAlbumes().get(i));
 
             for (int j = 0; j < listFotos.size(); j++) {
-                File file1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre() + "/" + listFotos.get(j).getNombre()+".jpg");
+                File file1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre() + "/" + listFotos.get(j).getNombre());
                 Image image = new Image(file1.toURI().toString(), 100, 100, true, true);
                 Foto foto = new Foto(listFotos.get(j).getNombre(), image);
                 System.out.println(foto.getNombre());

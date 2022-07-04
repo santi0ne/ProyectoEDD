@@ -16,7 +16,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -66,9 +65,7 @@ public class MenuAlbumesController {
     
 
     public  void initialize() throws FileNotFoundException, IOException {
-        
-            cargarFotos(Biblioteca.getAlbumSelec());
-    
+        cargarFotos(Biblioteca.getAlbumSelec());
     }
     
     public void cargarFotos(Album a) throws IOException{
@@ -78,22 +75,6 @@ public class MenuAlbumesController {
                 if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(a.getNombre())){
                     album=Biblioteca.getListaAlbumes().get(i);
                 }
-            } 
-              
-                  
-            for (int j = 0; j < Foto.lecturaFotos(album).size();j++) {
-                
-                File file = new File("archivos/albumes/"+album.getNombre()+"/"+Foto.lecturaFotos(album).get(j).getNombre()+".jpg");
-                Image image = new Image(file.toURI().toString());
-                
-                Foto foto=new Foto(Foto.lecturaFotos(album).get(j).getNombre(),image,Foto.lecturaFotos(album).get(j).getDescripcion());
-                
-                for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
-                if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(Biblioteca.getAlbumSelec().getNombre())){
-                    Biblioteca.getListaAlbumes().get(i).aggFotosDelAlbum(foto);
-                }
-            } 
-    
             }
             
         mostrarFotos(album);
@@ -109,7 +90,13 @@ public class MenuAlbumesController {
     @FXML
     public void siguienteFoto(){
         int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
+        if(indice==albumSeleccionado.getFotosDelAlbum().size()-1){
+            fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
+        }
+        
+        else{
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(indice+1);
+        }
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
@@ -117,7 +104,13 @@ public class MenuAlbumesController {
     @FXML
     public void anteriorFoto(){
         int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
+        if(indice==0){
+            fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(albumSeleccionado.getFotosDelAlbum().size()-1);
+        }
+        
+        else{
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(indice-1);
+        }
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
@@ -149,8 +142,8 @@ public class MenuAlbumesController {
     }
     
     @FXML
-    public void agregarFoto(){
-        //TODO;
+    public void agregarFoto() throws IOException{
+        App.setRoot("AgregarFoto");
     }
     
     @FXML

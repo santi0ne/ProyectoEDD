@@ -2,6 +2,8 @@ package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
+import ec.edu.espol.classes.Foto;
+import java.io.File;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -9,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import javafx.scene.image.Image;
 import tdas.ArrayListG07;
 
 /**
@@ -40,6 +43,17 @@ public class App extends Application {
         for (int i = 0; i < listaAlbum.size(); i++) {
             Album album= new Album(listaAlbum.get(i).getId(),listaAlbum.get(i).getNombre(),listaAlbum.get(i).getDescripcion());
             Biblioteca.getListaAlbumes().addLast(album);
+            
+            for (int j = 0; j < Foto.lecturaFotos(album).size();j++) {
+                
+                File file = new File("archivos/albumes/"+album.getNombre()+"/"+Foto.lecturaFotos(album).get(j).getNombre());
+                Image image = new Image(file.toURI().toString());
+                
+                Foto foto=new Foto(Foto.lecturaFotos(album).get(j).getNombre(),image,Foto.lecturaFotos(album).get(j).getDescripcion());
+                
+                album.aggFotosDelAlbum(foto); 
+    
+            }
            
         }
     }
