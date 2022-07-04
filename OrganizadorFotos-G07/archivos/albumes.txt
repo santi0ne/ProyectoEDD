@@ -1,3 +1,2 @@
 idAlbum,nombreAlbum,descripcion
-1,album1,"Este es el album 1"
-2,album2,"Este es el album 2"
+1,albumFamiliar,"Fotos de familias"

@@ -11,8 +11,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
 import javafx.scene.image.Image;
 import tdas.ArrayListG07;
 import tdas.CircularDoublyLinkedListG07;
@@ -24,34 +22,38 @@ import tdas.CircularDoublyLinkedListG07;
 public class Foto {
     private String descripcion;
     private String lugar;
-    private Date fecha;
-    private LocalDate date;
-    private ArrayList<Persona> personas;
-    private String[] listapersonas;
-    private Album album;
+    private LocalDate fecha;
+    private ArrayListG07<String> personas;
     private Image imagen;
     private String nombre;
-    private String albumName;
 
-    public Foto(Image imagen,String nombre,String descripcion, String lugar, Date fecha, ArrayList<Persona> personas, Album album) {
+    public Foto(Image imagen,String nombre,String descripcion, String lugar, LocalDate fecha, ArrayListG07<String> personas) {
         this.imagen=imagen;
         this.nombre=nombre;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.fecha = fecha;
         this.personas = personas;
-        this.album = album;
+
     }
     
-        public Foto(Image imagen,String nombre,String descripcion, String lugar, LocalDate date, String[] listapersonas, String album) {
-        this.imagen=imagen;
+    public Foto(String nombre,String lugar,String descripcion, LocalDate fecha,Image imagen) {
         this.nombre=nombre;
         this.descripcion = descripcion;
         this.lugar = lugar;
-        this.date = date;
-        this.listapersonas = listapersonas;
-        this.albumName = album;
+        this.fecha = fecha;
+        this.imagen=imagen;
+
     }
+    
+    public Foto(String nombre,String lugar,String descripcion, LocalDate fecha) {
+        this.nombre=nombre;
+        this.descripcion = descripcion;
+        this.lugar = lugar;
+        this.fecha = fecha;
+
+    }
+    
     
     public Foto(){};
     
@@ -87,44 +89,33 @@ public class Foto {
         this.lugar = lugar;
     }
 
-    public Date getFecha() {
+    public LocalDate getFecha() {
         return fecha;
     }
 
-    public void setFecha(Date fecha) {
+    public void setFecha(LocalDate fecha) {
         this.fecha = fecha;
     }
     
     public LocalDate getDate(){
-        return date;
+        return fecha;
     }
     
     public void setDate(LocalDate date){
-        this.date = date;
+        this.fecha = fecha;
     }
 
-    public ArrayList<Persona> getPersonas() {
+    public ArrayListG07<String> getPersonas() {
         return personas;
     }
-    
-      public String[] getListaPersonas() {
-        return listapersonas;
-    }
+   
 
-    public void setPersonas(ArrayList<Persona> personas) {
+    public void setPersonas(ArrayListG07<String> personas) {
         this.personas = personas;
     }
     
     public int numeroPersonas() {
-        return this.listapersonas.length;
-    }
-
-    public Album getAlbum() {
-        return album;
-    }
-
-    public void setAlbum(Album album) {
-        this.album = album;
+        return this.personas.size();
     }
     
     public Image getImage() {
@@ -150,9 +141,7 @@ public class Foto {
     public String toString() {
         return "descripcion = " + descripcion + "\n"
                + "lugar = " + lugar + "\n"
-                + "fecha = " + fecha + "\n"
-                + "date = " + date + "\n"
-                + "albumName = " + albumName;
+                + "fecha = " + fecha;
     }
     
     
@@ -199,14 +188,16 @@ public class Foto {
             
             
             while((linea=bufferedReader.readLine())!=null){
-                
+
+                        
                 String[] info=linea.split(",");
          
-                Foto foto=new Foto(info[0],info[1]);
+                Foto foto=new Foto(info[0],info[1],info[2],LocalDate.parse(info[3]));
                 
                 listaFotos.addLast(foto);
+                }
 
-            }
+            
             
         } catch (IOException ex) { 
             ex.printStackTrace();
@@ -221,7 +212,9 @@ public class Foto {
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes/"+Biblioteca.getAlbumSelec().getNombre()+"/infoFotos.txt", true))) {
             sb.append("\r\n");
             sb.append(this.nombre).append(","); 
-            sb.append(this.descripcion);
+            sb.append(this.lugar).append(","); 
+            sb.append(this.descripcion).append(",");
+            sb.append(this.fecha); 
             bufferedW.write(sb.toString());
         } catch (IOException e) {
             System.out.println(e);

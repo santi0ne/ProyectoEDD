@@ -8,6 +8,7 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Objects;
 import tdas.ArrayListG07;
 import tdas.CircularDoublyLinkedListG07;
 
@@ -83,6 +84,24 @@ public class Album {
     public String toString(){
         return nombre;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Album other = (Album) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    } 
     
     public static ArrayListG07<Album> lecturaAlbumes() throws FileNotFoundException, IOException{
         

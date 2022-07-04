@@ -1,4 +1,0 @@
-nombre,descripcion
-75552.ngsversion.1422285553360.jpg,foto1
-61454424_303.jpg,foto2
-descubre-como-se-comporta-un-gato.jpg,foto3

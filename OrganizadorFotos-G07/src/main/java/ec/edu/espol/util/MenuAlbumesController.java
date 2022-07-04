@@ -72,7 +72,7 @@ public class MenuAlbumesController {
         Album album=new Album();
                     
             for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
-                if(Biblioteca.getListaAlbumes().get(i).getNombre().equals(a.getNombre())){
+                if(Biblioteca.getListaAlbumes().get(i).equals(a)){
                     album=Biblioteca.getListaAlbumes().get(i);
                 }
             }

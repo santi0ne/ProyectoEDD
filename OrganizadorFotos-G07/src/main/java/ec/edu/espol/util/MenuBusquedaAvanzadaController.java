@@ -83,8 +83,7 @@ public class MenuBusquedaAvanzadaController  {
             for (int j = 0; j < listFotos.size(); j++) {
                 File file1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre() + "/" + listFotos.get(j).getNombre());
                 Image image = new Image(file1.toURI().toString(), 100, 100, true, true);
-                Foto foto = new Foto(listFotos.get(j).getNombre(), image);
-                System.out.println(foto.getNombre());
+                Foto foto = new Foto(listFotos.get(j).getNombre(),listFotos.get(j).getLugar(),listFotos.get(j).getDescripcion(),listFotos.get(j).getFecha(), image);
 
                 listaFotos.insert(listaFotos.size(), foto);
 
@@ -101,7 +100,9 @@ public class MenuBusquedaAvanzadaController  {
                 
                 
                 EventHandler eventHandler = (event)->{ 
-                lblNombre.setText("Nombre"+foto.getNombre());
+                lblNombre.setText(foto.getNombre());
+                lblFecha.setText("Fecha: "+foto.getDate().toString());
+                lblDescripcion.setText("Descripción: "+foto.getDescripcion());
                 fotoseleccionada= foto;
             };
             
@@ -218,9 +219,9 @@ public class MenuBusquedaAvanzadaController  {
     }
     
     public boolean comparePersona(String persona, Foto f2) {
-       String [] p = f2.getListaPersonas();
+       ArrayListG07<String> p = f2.getPersonas();
         for(int i=0;i<f2.numeroPersonas();i++){
-            if(persona.toLowerCase().equals(p[i].toLowerCase()))
+            if(persona.toLowerCase().equals(p.get(i).toLowerCase()))
                 return true;
         }
         return false;
