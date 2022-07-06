@@ -5,15 +5,81 @@
  */
 package tdas;
 
+import java.util.Iterator;
+import java.util.ListIterator;
+
 /**
  *
  * @author jeras
+ * @param <E>
  */
-public class CircularDoublyLinkedListG07<E> {
+public class CircularDoublyLinkedListG07<E> implements ListG07<E>,Iterable<E> {
     private Node<E> tail = null;
     private int size = 0;
 
     public CircularDoublyLinkedListG07() {
+    }
+
+    @Override
+    public ListIterator<E> iterator() {
+        
+        ListIterator<E> it=new ListIterator<E>(){
+            
+            private Node<E> p=tail.getNext();
+           
+            @Override
+            public boolean hasNext() {
+                return p!=null;
+            }
+
+            @Override
+            public E next() {
+                E tmp=p.getElement();
+                p=p.getNext();
+                return tmp;
+            }
+
+            @Override
+            public boolean hasPrevious() {
+                return p!=null;
+            }
+
+            @Override
+            public E previous() {
+                E tmp=p.getElement();
+                p=p.getPrevious();
+                return tmp;            
+            }
+
+            @Override
+            public int nextIndex() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public int previousIndex() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void remove() {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void add(E e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void set(E e) {
+                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+            }
+            
+        };
+          
+                
+       return it;
     }
 
 /////////////////////////////////  N  O  D  E  /////////////////////////////////
@@ -49,64 +115,28 @@ public class CircularDoublyLinkedListG07<E> {
             this.next = next;
         }
     }
+    
+    
+    //Métodos interfaz Lista
 
-////////////////////// CONSULTAR PRIMERO, ÚLTIMO Y TAMAÑO //////////////////////
-    public E first() {
+    @Override
+    public E getFirst() {
         if (isEmpty()) {
             return null;
         }
         return tail.getNext().getElement();
     }
 
-    public E last() {
+    @Override
+    public E getLast() {
         if (isEmpty()) {
             return null;
         }
         return tail.getElement();
     }
 
-    public int size() {
-        return size;
-    }
-
-//////////////////////////////// CONOCER ESTADO ////////////////////////////////
-    public boolean isEmpty() {
-        return size == 0;
-    }
-
-/////////////////////////////// AÑADIR Y REMOVER ///////////////////////////////
-    public void addFirst(E e) {
-        if (isEmpty()) {
-            Node<E> first = new Node(e, null, null);
-            first.setPrevious(first);
-            first.setNext(first);
-            tail = first;
-        } else {
-            Node<E> first = new Node(e, tail, tail.getNext());
-            first.setPrevious(tail);
-            first.setNext(tail.getNext());
-            tail.getNext().setPrevious(first);
-            tail.setNext(first);
-        }
-        size++;
-    }
-
-    public void addLast(E e) {
-        if (isEmpty()) {
-            Node<E> last = new Node(e, null, null);
-            last.setPrevious(last);
-            last.setNext(last);
-            tail = last;
-        } else {
-            Node<E> last = new Node(e, tail, tail.getNext());
-            tail.getNext().setPrevious(last);
-            tail.setNext(last);
-            tail = last;
-        }
-        size++;
-    }
-
-    public boolean add(int index, E element) {
+    @Override
+    public boolean insert(int index, E element) {
         if (element == null || index < 0 || index > size) {
             return false;
         }
@@ -162,9 +192,63 @@ public class CircularDoublyLinkedListG07<E> {
         return false;
     }
 
-    public E removeFirst() {
+    @Override
+    public boolean set(int index, E e) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+   
+    @Override
+    public int size() {
+        return size;
+    }
+
+//////////////////////////////// CONOCER ESTADO ////////////////////////////////
+    public boolean isEmpty() {
+        return size == 0;
+    }
+
+/////////////////////////////// AÑADIR Y REMOVER ///////////////////////////////
+    @Override
+    public boolean addFirst(E e) {
         if (isEmpty()) {
-            return null;
+            Node<E> first = new Node(e, null, null);
+            first.setPrevious(first);
+            first.setNext(first);
+            tail = first;
+        } else {
+            Node<E> first = new Node(e, tail, tail.getNext());
+            first.setPrevious(tail);
+            first.setNext(tail.getNext());
+            tail.getNext().setPrevious(first);
+            tail.setNext(first);
+        }
+        size++;
+        return true;
+    }
+
+    @Override
+    public boolean addLast(E e) {
+        if (isEmpty()) {
+            Node<E> last = new Node(e, null, null);
+            last.setPrevious(last);
+            last.setNext(last);
+            tail = last;
+        } else {
+            Node<E> last = new Node(e, tail, tail.getNext());
+            tail.getNext().setPrevious(last);
+            tail.setNext(last);
+            tail = last;
+        }
+        size++;
+        return true;
+    }
+
+    
+
+    public boolean removeFirst() {
+        if (isEmpty()) {
+            return false;
         }
         E e;
         if (size == 1) {
@@ -179,12 +263,13 @@ public class CircularDoublyLinkedListG07<E> {
             tail.setNext(temp);
         }
         size--;
-        return e;
+        return true;
     }
 
-    public E removeLast() {
+    @Override
+    public boolean removeLast() {
         if (isEmpty()) {
-            return null;
+            return false ;
         }
         E e;
         if (size == 1) {
@@ -197,12 +282,13 @@ public class CircularDoublyLinkedListG07<E> {
             tail = tail.getPrevious();
         }
         size--;
-        return e;
+        return true;
     }
 
-    public E remove(int i) {
+    @Override
+    public boolean remove(int i) {
         if (i < 0 || i >= size) {
-            return null;
+            return false;
         }
         if (i == 0) {
             return removeFirst();
@@ -241,10 +327,11 @@ public class CircularDoublyLinkedListG07<E> {
                 finIndex++;
             }
         }
-        return e;
+        return true;
     }
 
     /////////////////////////////////// BÚSQUEDA ///////////////////////////////////
+    @Override
     public int indexOf(E e) {
         Node<E> temp = tail.getNext();
         int c = 0;
@@ -262,15 +349,16 @@ public class CircularDoublyLinkedListG07<E> {
         return !(indexOf(e) == -1);
     }
 
+    @Override
     public E get(int i) {
         if (i < 0 || i >= size) {
             return null;
         }
         if (i == 0) {
-            return first();
+            return getFirst();
         }
         if (i == size - 1) {
-            return last();
+            return getLast();
         }
         E e = null;
         int mitad = size / 2;

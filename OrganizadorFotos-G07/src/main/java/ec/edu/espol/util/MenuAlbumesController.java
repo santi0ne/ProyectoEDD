@@ -9,6 +9,7 @@ import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.*;
+import java.util.ListIterator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
@@ -63,6 +64,8 @@ public class MenuAlbumesController {
     
     private static Album albumSeleccionado=new Album();
     
+    private ListIterator<Foto> iterador;
+      
 
     public  void initialize() throws FileNotFoundException, IOException {
         cargarFotos(Biblioteca.getAlbumSelec());
@@ -78,39 +81,29 @@ public class MenuAlbumesController {
             }
             
         mostrarFotos(album);
+        iterador= albumSeleccionado.getFotosDelAlbum().iterator();
     }
+    
+    //Iterator<Foto> iterador= albumSeleccionado.getFotosDelAlbum().iterator();
     
     public void mostrarFotos(Album a){
         albumSeleccionado=a;
-        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(albumSeleccionado.getFotosDelAlbum().size()-1);
+        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().getLast();
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
     
     @FXML
     public void siguienteFoto(){
-        int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
-        if(indice==albumSeleccionado.getFotosDelAlbum().size()-1){
-            fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
-        }
         
-        else{
-        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(indice+1);
-        }
+        fotoSeleccionada=iterador.next();
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
     
     @FXML
     public void anteriorFoto(){
-        int indice=albumSeleccionado.getFotosDelAlbum().indexOf(fotoSeleccionada);
-        if(indice==0){
-            fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(albumSeleccionado.getFotosDelAlbum().size()-1);
-        }
-        
-        else{
-        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(indice-1);
-        }
+        fotoSeleccionada=iterador.previous();
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
