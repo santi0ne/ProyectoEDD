@@ -32,6 +32,8 @@ public class MenuAcercaDeGrupoController implements Initializable {
     private ImageView imgSantiago;
     @FXML
     private ImageView imgGuillermo;
+    @FXML
+    private ImageView imgJefferson;
 
     /**
      * Initializes the controller class.

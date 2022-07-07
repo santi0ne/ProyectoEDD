@@ -46,6 +46,16 @@
                <font>
                   <Font size="14.0" />
                </font></Label>
+            <ImageView fx:id="imgJefferson" fitHeight="152.0" fitWidth="148.0" layoutX="531.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../acercade/011185d1-681f-4208-82a5-4fd91c5fd67d.jpg" />
+               </image>
+            </ImageView>
+            <Label layoutX="548.0" layoutY="354.0" prefHeight="42.0" prefWidth="114.0" text="Jefferson Andres Eras Lindao" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>
