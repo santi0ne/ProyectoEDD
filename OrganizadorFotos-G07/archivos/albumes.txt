@@ -1,2 +1,2 @@
 nombreAlbum,descripcion
-Álbum familiar,Álbum de familia
+Album familiar,Álbum de familia
