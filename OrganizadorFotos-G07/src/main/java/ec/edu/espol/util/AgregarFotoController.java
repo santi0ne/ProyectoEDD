@@ -161,5 +161,10 @@ public class AgregarFotoController {
         alert.showAndWait();
         
     }
+    
+    @FXML
+    public void cancelar() throws IOException{
+        App.setRoot("MenuAlbumes");
+    }
 }
 

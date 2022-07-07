@@ -10,6 +10,8 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -20,6 +22,16 @@ public class MenuAcercaDeGrupoController implements Initializable {
 
     @FXML
     private Button btnRegresar;
+    @FXML
+    private Label lblTitulo;
+    @FXML
+    private Label txtParrafo;
+    @FXML
+    private Label lblDesarroladores;
+    @FXML
+    private ImageView imgSantiago;
+    @FXML
+    private ImageView imgGuillermo;
 
     /**
      * Initializes the controller class.

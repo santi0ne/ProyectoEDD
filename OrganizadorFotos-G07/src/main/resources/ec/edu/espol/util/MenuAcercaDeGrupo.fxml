@@ -2,20 +2,50 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAcercaDeGrupoController">
    <children>
-      <Pane prefHeight="400.0" prefWidth="600.0">
+      <Pane prefHeight="480.0" prefWidth="740.0">
          <children>
-            <Label layoutX="176.0" layoutY="14.0" text="ACERCA DE NOSOTROS">
+            <Label fx:id="lblTitulo" layoutX="248.0" layoutY="14.0" text="ACERCA DE NOSOTROS">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Button id="btnRegresar" fx:id="btnRegresar" layoutX="471.0" layoutY="348.0" mnemonicParsing="false" onAction="#RegresarMenu" text="Regresar Menu" />
+            <Button id="btnRegresar" fx:id="btnRegresar" layoutX="589.0" layoutY="421.0" mnemonicParsing="false" onAction="#RegresarMenu" prefHeight="32.0" prefWidth="114.0" text="Regresar Menu" />
+            <Label fx:id="txtParrafo" layoutX="90.0" layoutY="56.0" prefHeight="82.0" prefWidth="559.0" text="Hola a todxs! Somos el grupo 7 de Estructuras de Datos. Nuestra aplicación consiste en un organizador de fotos que implemeta los TDAs listas aprendidos. Su base principal es la presentacion de las fotos con un comportamiento de recorrido circular, lo cual fue implementado con una lista circular doblemente enlazada. Espero que sea de su agrado! " wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblDesarroladores" layoutX="304.0" layoutY="148.0" text="Desarrolladores">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ImageView fx:id="imgSantiago" fitHeight="156.0" fitWidth="148.0" layoutX="65.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../acercade/a1ce1423-7f69-4da0-b2ca-6af184e3bd22.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="imgGuillermo" fitHeight="152.0" fitWidth="148.0" layoutX="302.0" layoutY="194.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../acercade/ff5e72bd-0b4c-4d02-94a8-6e7ec12bd222.jpg" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="72.0" layoutY="348.0" prefHeight="52.0" prefWidth="133.0" text="Johnny Santiago Rodriguez Salinas" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
+            <Label layoutX="322.0" layoutY="348.0" prefHeight="52.0" prefWidth="97.0" text="Guillermo Jose Arevalo Saltos" wrapText="true">
+               <font>
+                  <Font size="14.0" />
+               </font></Label>
          </children>
       </Pane>
    </children>
