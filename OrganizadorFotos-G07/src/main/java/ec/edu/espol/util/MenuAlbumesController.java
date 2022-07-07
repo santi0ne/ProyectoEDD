@@ -122,8 +122,8 @@ public class MenuAlbumesController {
     } 
     
     @FXML
-    public void agregarAlbum(){
-        //TODO;
+    public void crearAlbum() throws IOException{
+        App.setRoot("AgregarAlbum");
     }
     
     @FXML

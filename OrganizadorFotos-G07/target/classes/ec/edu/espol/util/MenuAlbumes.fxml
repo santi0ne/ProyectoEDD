@@ -16,7 +16,7 @@
         <menus>
           <Menu fx:id="menuArchivos" mnemonicParsing="false" text="Archivos">
             <items>
-              <MenuItem fx:id="itemAggAlbum" mnemonicParsing="false" onAction="#agregarAlbum" text="Agregar Álbum" />
+              <MenuItem fx:id="itemAggAlbum" mnemonicParsing="false" onAction="#crearAlbum" text="Agregar Álbum" />
                   <MenuItem fx:id="itemAggFotos" mnemonicParsing="false" onAction="#agregarFoto" text="Agregar Fotos" />
             </items>
           </Menu>

@@ -45,6 +45,8 @@ public class MenuPrincipalController  {
     private ScrollPane scrollBiblioteca;
     @FXML
     private TilePane biblioteca;
+    @FXML
+    private Button crearAlbum;
    
     
     public void initialize() throws IOException {
@@ -129,6 +131,11 @@ public class MenuPrincipalController  {
     @FXML
     public void AcercaDe() throws IOException{
         App.setRoot("MenuAcercaDeGrupo");
+    }
+    
+    @FXML
+    public void crearAlbum() throws IOException{
+        App.setRoot("AgregarAlbum");
     }
     
     

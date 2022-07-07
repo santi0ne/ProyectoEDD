@@ -43,7 +43,7 @@ public class App extends Application {
         
        
         for (Album al:listaAlbum) {
-            Album album= new Album(al.getId(),al.getNombre(),al.getDescripcion());
+            Album album= new Album(al.getNombre(),al.getDescripcion());
             Biblioteca.getListaAlbumes().addLast(album);
             
             for (int j = 0; j < Foto.lecturaFotos(album).size();j++) {
