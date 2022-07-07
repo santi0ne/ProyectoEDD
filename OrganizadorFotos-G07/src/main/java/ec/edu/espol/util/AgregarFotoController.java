@@ -113,7 +113,7 @@ public class AgregarFotoController {
         
         Foto foto=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),image);
         
-        
+        Foto foto2=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue());
         
         if(foto.getNombre().equals("")){
             throw new AlbumException("Nombre vacío");
@@ -142,8 +142,10 @@ public class AgregarFotoController {
         
         Album albumAgregar=new Album();
   
-        foto.escribirFoto();
+        
         Biblioteca.getAlbumSelec().aggFotosDelAlbum(foto);
+        Biblioteca.getAlbumSelec().aggFotosSinImage(foto2);
+        Foto.serializarFoto();
         
         
         App.setRoot("MenuAlbumes");

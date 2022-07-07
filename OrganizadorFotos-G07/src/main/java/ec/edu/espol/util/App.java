@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import javafx.scene.image.Image;
 import tdas.ArrayListG07;
+import tdas.CircularDoublyLinkedListG07;
 
 /**
  * JavaFX App
@@ -20,6 +21,11 @@ import tdas.ArrayListG07;
 public class App extends Application {
 
     private static Scene scene;
+    static ArrayListG07<Album> listaAlbum;
+
+    public static ArrayListG07<Album> getListaAlbum() {
+        return listaAlbum;
+    }
 
     @Override
     public void start(Stage stage) throws IOException {
@@ -37,18 +43,25 @@ public class App extends Application {
         return fxmlLoader.load();
     }
     
+    
+    
     public static void cargarArchivos() throws IOException{
-        ArrayListG07<Album> listaAlbum=Album.lecturaAlbumes();
+        listaAlbum=Album.lecturaAlbumes();
         Persona.setPersonas(Persona.lecturaPersonas());
         
        
         for (Album al:listaAlbum) {
+           
             Album album= new Album(al.getNombre(),al.getDescripcion());
             Biblioteca.getListaAlbumes().addLast(album);
+         
             
-            for (int j = 0; j < Foto.lecturaFotos(album).size();j++) {
+            if(!Foto.lecturaSFotos(album).isEmpty()){
+            for (int j = 0; j < Foto.lecturaSFotos(album).size();j++) {
                 
-                Foto picture=Foto.lecturaFotos(album).get(j);
+                Foto picture=Foto.lecturaSFotos(album).get(j);
+                album.setFotosSinImage(Foto.lecturaSFotos(album));
+       
                 
                 File file = new File("archivos/albumes/"+album.getNombre()+"/"+picture.getNombre());
                 Image image = new Image(file.toURI().toString());
@@ -57,6 +70,7 @@ public class App extends Application {
                 
                 album.aggFotosDelAlbum(foto); 
     
+            }
             }
            
         }

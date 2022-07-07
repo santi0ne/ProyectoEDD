@@ -7,8 +7,10 @@ package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
+import ec.edu.espol.classes.Foto;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import tdas.CircularDoublyLinkedListG07;
 
 /**
  * FXML Controller class
@@ -47,10 +50,10 @@ public class AgregarAlbumController {
         File directorio = new File("archivos/albumes/"+nombreAlbum.getText());
         directorio.mkdirs();
         
-        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes/"+nombreAlbum.getText()+"/infoFotos.txt"))) {
-        } catch (IOException e) {
-            System.out.println(e);
-        }
+        FileOutputStream fout= new FileOutputStream("archivos/albumes/"+album.getNombre()+"/infoFotos.ser");
+        album.setFotosSinImage(new CircularDoublyLinkedListG07<Foto>());
+        Biblioteca.setAlbumSelec(album);
+        Foto.serializarFoto();
         album.escribirAlbum();
         Biblioteca.getListaAlbumes().addLast(album);
         

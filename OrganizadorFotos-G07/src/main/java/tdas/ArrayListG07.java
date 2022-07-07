@@ -5,6 +5,7 @@
  */
 package tdas;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -13,10 +14,11 @@ import java.util.NoSuchElementException;
  * @author jeras
  * @param <E>
  */
-public class ArrayListG07<E> implements ListG07<E>,Iterable<E> {
+public class ArrayListG07<E> implements ListG07<E>,Iterable<E>,Serializable {
     private E[] arreglo;
 	private int capacidad;
 	private int tam; // me indica la cantidad de elementos que está ocupando el arreglo
+        private static final long serialVersionUID = 4444;
 
     public ArrayListG07() {
         capacidad = 10;

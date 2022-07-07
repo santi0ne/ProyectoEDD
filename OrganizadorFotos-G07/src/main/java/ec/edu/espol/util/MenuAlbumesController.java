@@ -71,6 +71,7 @@ public class MenuAlbumesController {
       
 
     public  void initialize() throws FileNotFoundException, IOException {
+        //Foto.serializarFoto();
         cargarFotos(Biblioteca.getAlbumSelec());
     }
     

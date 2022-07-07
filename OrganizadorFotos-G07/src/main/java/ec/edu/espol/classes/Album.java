@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.Objects;
 import tdas.ArrayListG07;
 import tdas.CircularDoublyLinkedListG07;
@@ -18,11 +19,13 @@ import tdas.CircularDoublyLinkedListG07;
  *
  * @author santi
  */
-public class Album {
+public class Album implements Serializable {
     private String nombre;
     private String descripcion;
     private String miniatura;
     private CircularDoublyLinkedListG07<Foto> fotosDelAlbum=new CircularDoublyLinkedListG07();
+    private CircularDoublyLinkedListG07<Foto> fotosDelAlbumSinImage=new CircularDoublyLinkedListG07();
+    private static final long serialVersionUID = 5555;
 
     public Album() {}
     
@@ -64,12 +67,24 @@ public class Album {
         return fotosDelAlbum;
     }
      
+    public CircularDoublyLinkedListG07<Foto> getFotosSinImage() {
+        return fotosDelAlbumSinImage;
+    }
+     
     public void setFotosDelAlbum(CircularDoublyLinkedListG07<Foto> fotosDelAlbum) {
         this.fotosDelAlbum = fotosDelAlbum;
     }
     
+    public void setFotosSinImage(CircularDoublyLinkedListG07<Foto> fotosDelAlbum) {
+        this.fotosDelAlbumSinImage = fotosDelAlbum;
+    }
+    
     public void aggFotosDelAlbum( Foto foto ) {
         fotosDelAlbum.addLast(foto);
+    }
+    
+    public void aggFotosSinImage( Foto foto ) {
+        fotosDelAlbumSinImage.addLast(foto);
     }
     
     public String toString(){

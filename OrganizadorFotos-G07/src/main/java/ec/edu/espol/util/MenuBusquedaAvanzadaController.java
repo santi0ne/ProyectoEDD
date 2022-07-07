@@ -79,7 +79,7 @@ public class MenuBusquedaAvanzadaController  {
 
         for (Album al:Biblioteca.getListaAlbumes()) {
             
-            CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaFotos(al);
+            CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaSFotos(al);
 
             for (int i=0;i<listFotos.size();i++) {
                 

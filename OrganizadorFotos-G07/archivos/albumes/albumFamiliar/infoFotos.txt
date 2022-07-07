@@ -1,4 +1,0 @@
-nombre,lugar,descripcion,fecha,
-fotonoticia_20170418130440_420.jpg,Guayaquil,foto1,2017-03-15
-Por-que-tu-familia-es-importante.png,Guayaquil,foto2,2022-07-14
-la-familia-es-el-futuro-de-la-humanidad.jpg,Quito,foto3,2022-06-09

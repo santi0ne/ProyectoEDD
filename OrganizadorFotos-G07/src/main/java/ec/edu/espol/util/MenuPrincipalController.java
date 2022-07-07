@@ -7,12 +7,16 @@ package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
+import static ec.edu.espol.util.AgregarFotoController.mostrarAlerta;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
@@ -89,8 +93,28 @@ public class MenuPrincipalController  {
                     
            vboxalbum.setOnMouseClicked(eh-> {
                 try {
+                    if(album.getFotosDelAlbum().size()!=0){
                     Biblioteca.setAlbumSelec(album);
                     App.setRoot("MenuAlbumes");
+                    }
+                    else{
+                        
+                       Alert alerta= new Alert(Alert.AlertType.CONFIRMATION);
+                       alerta.setTitle("Diálogo de información");
+                       alerta.setHeaderText("Álbum vacío");
+                       alerta.setContentText("El álbum está vacío, quiere agregar una foto?");
+                       Optional<ButtonType> result=alerta.showAndWait();
+            
+                       if(result.get()==ButtonType.OK){
+                            Biblioteca.setAlbumSelec(album);
+                            App.setRoot("AgregarFoto");
+                       }
+                       
+                       else{
+                           
+                       }
+                       
+                    }
                 } catch (IOException ex) {
                 }
             });
@@ -136,6 +160,15 @@ public class MenuPrincipalController  {
     @FXML
     public void crearAlbum() throws IOException{
         App.setRoot("AgregarAlbum");
+    }
+    
+    public static void mostrarAlerta(Alert.AlertType tipo, String msj){
+        Alert alert= new Alert(tipo);
+        alert.setTitle("Diálogo de información");
+        alert.setHeaderText("Resultado de la operación");
+        alert.setContentText(msj);
+        alert.showAndWait();
+        
     }
     
     

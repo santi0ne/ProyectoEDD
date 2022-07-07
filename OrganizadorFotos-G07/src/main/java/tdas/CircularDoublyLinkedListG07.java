@@ -5,6 +5,7 @@
  */
 package tdas;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -18,9 +19,10 @@ import java.util.function.Consumer;
  * @author jeras
  * @param <E>
  */
-public class CircularDoublyLinkedListG07<E> implements ListG07<E>,Iterable<E> {
+public class CircularDoublyLinkedListG07<E> implements ListG07<E>,Iterable<E>, Serializable {
     private Node<E> tail = null;
     private int size = 0;
+    private static final long serialVersionUID = 2222;
 
     public CircularDoublyLinkedListG07() {
     }
@@ -91,11 +93,12 @@ public class CircularDoublyLinkedListG07<E> implements ListG07<E>,Iterable<E> {
     }
 
 /////////////////////////////////  N  O  D  E  /////////////////////////////////
-    private static class Node<E> {
+    private static class Node<E> implements Serializable {
 
         private E element;
         private Node<E> previous;
         private Node<E> next;
+        private static final long serialVersionUID = 3333;
 
         public Node(E e, Node p, Node n) {
             this.element = e;

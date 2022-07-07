@@ -4,12 +4,19 @@
  */
 package ec.edu.espol.classes;
 
+import ec.edu.espol.util.App;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.time.LocalDate;
 import javafx.scene.image.Image;
 import tdas.ArrayListG07;
@@ -19,13 +26,14 @@ import tdas.CircularDoublyLinkedListG07;
  *
  * @author santi
  */
-public class Foto {
+public class Foto implements Serializable{
     private String descripcion;
     private String lugar;
     private LocalDate fecha;
     private ArrayListG07<String> personas;
     private Image imagen;
     private String nombre;
+    private static final long serialVersionUID = 1111;
 
     public Foto(Image imagen,String nombre,String descripcion, String lugar, LocalDate fecha, ArrayListG07<String> personas) {
         this.imagen=imagen;
@@ -156,7 +164,7 @@ public class Foto {
         
          for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
                
-             CircularDoublyLinkedListG07<Foto> listFotos= lecturaFotos(Biblioteca.getListaAlbumes().get(i));
+             CircularDoublyLinkedListG07<Foto> listFotos= lecturaSFotos(Biblioteca.getListaAlbumes().get(i));
              for (int j = 0; j < listFotos.size();j++) {
                  File file = new File("archivos/albumes/"+Biblioteca.getListaAlbumes().get(i).getNombre()+"/"+listFotos.get(i).getNombre());
                  Image image = new Image(file.toURI().toString(),100,100,true,true);
@@ -177,50 +185,37 @@ public class Foto {
     }
     
     
-    public static CircularDoublyLinkedListG07<Foto> lecturaFotos(Album a) {
+  
+    public static void serializarFoto() throws IOException{
+            
+            FileOutputStream fout= new FileOutputStream("archivos/albumes/"+Biblioteca.getAlbumSelec().getNombre()+"/infoFotos.ser");
+            ObjectOutputStream out=new ObjectOutputStream(fout);
+            out.writeObject(Biblioteca.getAlbumSelec().getFotosSinImage());
+            out.flush();
+            
+     }
+    
+    public static CircularDoublyLinkedListG07<Foto> lecturaSFotos(Album a){
         
-        CircularDoublyLinkedListG07<Foto> listaFotos= new CircularDoublyLinkedListG07<>();
+       CircularDoublyLinkedListG07<Foto> listaFotos=null;
         
-        try(BufferedReader bufferedReader= new BufferedReader(new FileReader ("archivos/albumes/"+a.getNombre()+"/infoFotos.txt"))){
-
-            String linea;
-            bufferedReader.readLine();
+        try{
+            ObjectInputStream in= new ObjectInputStream(new FileInputStream("archivos/albumes/"+a.getNombre()+"/infoFotos.ser"));
+            listaFotos=(CircularDoublyLinkedListG07<Foto>) in.readObject();
+            in.close();
             
-            
-            while((linea=bufferedReader.readLine())!=null){
-
-                        
-                String[] info=linea.split(",");
-         
-                Foto foto=new Foto(info[0],info[1],info[2],LocalDate.parse(info[3]));
-                
-                listaFotos.addLast(foto);
-                }
-
-            
-            
-        } catch (IOException ex) { 
-            ex.printStackTrace();
         }
-    
-        return listaFotos;
-    }
-    
-    public void escribirFoto() {
-        //String mascotas="";
-        StringBuilder sb = new StringBuilder();
-        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes/"+Biblioteca.getAlbumSelec().getNombre()+"/infoFotos.txt", true))) {
-            sb.append("\r\n");
-            sb.append(this.nombre).append(","); 
-            sb.append(this.lugar).append(","); 
-            sb.append(this.descripcion).append(",");
-            sb.append(this.fecha); 
-            bufferedW.write(sb.toString());
-        } catch (IOException e) {
+        
+	catch (FileNotFoundException e){
             System.out.println(e);
         }
+
+        catch (IOException | ClassNotFoundException e){
+            System.out.println(e);
+        }
+
+        return listaFotos;
     }
-    
     
     
 }

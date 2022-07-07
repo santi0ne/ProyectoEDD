@@ -1,3 +1,2 @@
 nombreAlbum,descripcion
-albumFamiliar,Fotos de familias
-albumMascotas,Fotos de las mascotas
+Álbum familiar,Álbum de familia
