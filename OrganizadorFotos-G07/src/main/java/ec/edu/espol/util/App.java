@@ -42,16 +42,18 @@ public class App extends Application {
         Persona.setPersonas(Persona.lecturaPersonas());
         
        
-        for (int i = 0; i < listaAlbum.size(); i++) {
-            Album album= new Album(listaAlbum.get(i).getId(),listaAlbum.get(i).getNombre(),listaAlbum.get(i).getDescripcion());
+        for (Album al:listaAlbum) {
+            Album album= new Album(al.getId(),al.getNombre(),al.getDescripcion());
             Biblioteca.getListaAlbumes().addLast(album);
             
             for (int j = 0; j < Foto.lecturaFotos(album).size();j++) {
                 
-                File file = new File("archivos/albumes/"+album.getNombre()+"/"+Foto.lecturaFotos(album).get(j).getNombre());
+                Foto picture=Foto.lecturaFotos(album).get(j);
+                
+                File file = new File("archivos/albumes/"+album.getNombre()+"/"+picture.getNombre());
                 Image image = new Image(file.toURI().toString());
                 
-                Foto foto=new Foto(Foto.lecturaFotos(album).get(j).getNombre(),Foto.lecturaFotos(album).get(j).getLugar(),Foto.lecturaFotos(album).get(j).getDescripcion(),Foto.lecturaFotos(album).get(j).getFecha(),image);
+                Foto foto=new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(),image);
                 
                 album.aggFotosDelAlbum(foto); 
     

@@ -9,6 +9,7 @@ import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.*;
+import java.util.Iterator;
 import java.util.ListIterator;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -65,6 +66,8 @@ public class MenuAlbumesController {
     private static Album albumSeleccionado=new Album();
     
     private ListIterator<Foto> iterador;
+    
+    private Iterator<Album> iteradorAlbum;
       
 
     public  void initialize() throws FileNotFoundException, IOException {
@@ -72,23 +75,26 @@ public class MenuAlbumesController {
     }
     
     public void cargarFotos(Album a) throws IOException{
+       iteradorAlbum= Biblioteca.getListaAlbumes().iterator();
+       
         Album album=new Album();
                     
-            for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
-                if(Biblioteca.getListaAlbumes().get(i).equals(a)){
-                    album=Biblioteca.getListaAlbumes().get(i);
+            for(Album al:Biblioteca.getListaAlbumes()){
+                if(al.equals(a)){
+                    album=al;
                 }
             }
             
         mostrarFotos(album);
+        
         iterador= albumSeleccionado.getFotosDelAlbum().iterator();
+        
     }
     
-    //Iterator<Foto> iterador= albumSeleccionado.getFotosDelAlbum().iterator();
     
     public void mostrarFotos(Album a){
         albumSeleccionado=a;
-        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().getLast();
+        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().getFirst();
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
@@ -108,12 +114,7 @@ public class MenuAlbumesController {
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
     }
     
-    public void cambiarAlbum(Album a){
-        albumSeleccionado=a; 
-        fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().get(0);
-        imageFoto.setImage(fotoSeleccionada.getImage());
-        nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
-    }
+  
     
     @FXML
     public void regresarMenu() throws IOException{

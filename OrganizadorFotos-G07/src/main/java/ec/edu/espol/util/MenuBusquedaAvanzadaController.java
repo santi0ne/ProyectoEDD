@@ -4,6 +4,7 @@
  */
 package ec.edu.espol.util;
 
+import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.File;
@@ -76,14 +77,17 @@ public class MenuBusquedaAvanzadaController  {
         
         ArrayListG07<Foto> listaFotos = new ArrayListG07<Foto>();
 
-        for (int i = 0; i < Biblioteca.getListaAlbumes().size(); i++) {
+        for (Album al:Biblioteca.getListaAlbumes()) {
             
-            CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaFotos(Biblioteca.getListaAlbumes().get(i));
+            CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaFotos(al);
 
-            for (int j = 0; j < listFotos.size(); j++) {
-                File file1 = new File("archivos/albumes/" + Biblioteca.getListaAlbumes().get(i).getNombre() + "/" + listFotos.get(j).getNombre());
+            for (int i=0;i<listFotos.size();i++) {
+                
+                Foto picture=listFotos.get(i);
+                
+                File file1 = new File("archivos/albumes/" + al.getNombre() + "/" + picture.getNombre());
                 Image image = new Image(file1.toURI().toString(), 100, 100, true, true);
-                Foto foto = new Foto(listFotos.get(j).getNombre(),listFotos.get(j).getLugar(),listFotos.get(j).getDescripcion(),listFotos.get(j).getFecha(), image);
+                Foto foto = new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(), image);
 
                 listaFotos.insert(listaFotos.size(), foto);
 

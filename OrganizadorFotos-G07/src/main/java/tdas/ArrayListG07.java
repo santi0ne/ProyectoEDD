@@ -5,12 +5,15 @@
  */
 package tdas;
 
+import java.util.Iterator;
+import java.util.NoSuchElementException;
+
 /**
  *
  * @author jeras
  * @param <E>
  */
-public class ArrayListG07<E> implements ListG07<E> {
+public class ArrayListG07<E> implements ListG07<E>,Iterable<E> {
     private E[] arreglo;
 	private int capacidad;
 	private int tam; // me indica la cantidad de elementos que está ocupando el arreglo
@@ -19,6 +22,32 @@ public class ArrayListG07<E> implements ListG07<E> {
         capacidad = 10;
         arreglo = (E[]) new Object[capacidad];
         tam = 0;
+    }
+    
+    @Override
+    public Iterator<E> iterator() {
+        
+        Iterator<E> it=new Iterator<E>(){
+            
+            int i=0;
+            E puntero= arreglo[i];
+            
+            @Override
+            public boolean hasNext() {
+                return i < arreglo.length && arreglo[i] != null;
+            }
+
+            @Override
+            public E next() {
+                if (!hasNext()) {throw new NoSuchElementException();}
+                
+                return arreglo[i++];
+ 
+            }
+        
+    };
+        
+        return it;
     }
         
         
@@ -243,6 +272,8 @@ public class ArrayListG07<E> implements ListG07<E> {
     public String toString(){
          return arreglo.toString();
     }
+
+    
         
 
 }

@@ -1,2 +1,3 @@
 idAlbum,nombreAlbum,descripcion
 1,albumFamiliar,"Fotos de familias"
+2,albumMascotas,"Fotos de las mascotas"

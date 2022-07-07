@@ -9,7 +9,6 @@ import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import java.io.IOException;
 import java.io.InputStream;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -19,11 +18,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import tdas.ArrayListG07;
 
 /**
  * FXML Controller class
@@ -63,18 +60,17 @@ public class MenuPrincipalController  {
         scrollBiblioteca.setContent(biblioteca);
 
         
+        //Iterator<Album> iteradorAlbum= Biblioteca.getListaAlbumes().iterator();
         
-  
-        for(int i=0;i<Biblioteca.getListaAlbumes().size();i++){
+        for(Album al: Biblioteca.getListaAlbumes()){
             
-            Album album=Biblioteca.getListaAlbumes().get(i);
-            
-            
+            Album album=al;
+
             VBox vboxalbum = new VBox();
             ImageView imgview = null;
             try{
                 //agrego la imagen de la miniatura
-                InputStream input = App.class.getResource("miniaturaAlbum.jpg").openStream();
+                InputStream input = App.class.getResource("imágenes/miniaturaAlbum.jpg").openStream();
                 Image img = new Image(input, 100,100, true, true);
                 imgview = new ImageView(img);
             }catch(NullPointerException | IOException ex){

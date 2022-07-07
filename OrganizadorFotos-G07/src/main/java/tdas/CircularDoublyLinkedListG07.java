@@ -5,8 +5,13 @@
  */
 package tdas;
 
+import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.Iterator;
+import java.util.List;
 import java.util.ListIterator;
+import java.util.NoSuchElementException;
+import java.util.function.Consumer;
 
 /**
  *
@@ -26,17 +31,20 @@ public class CircularDoublyLinkedListG07<E> implements ListG07<E>,Iterable<E> {
         ListIterator<E> it=new ListIterator<E>(){
             
             private Node<E> p=tail.getNext();
+            private int puntero=0;
            
             @Override
             public boolean hasNext() {
-                return p!=null;
+               return p != null;
             }
 
             @Override
             public E next() {
-                E tmp=p.getElement();
-                p=p.getNext();
-                return tmp;
+                if (!hasNext()) {throw new NoSuchElementException();}
+                
+                puntero++;
+                p=p.next;
+                return p.element;
             }
 
             @Override

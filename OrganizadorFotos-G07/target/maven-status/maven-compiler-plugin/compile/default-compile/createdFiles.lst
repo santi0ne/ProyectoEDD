@@ -2,10 +2,7 @@ ec\edu\espol\util\App.class
 ec\edu\espol\util\MenuAlbumesController.class
 ec\edu\espol\classes\Biblioteca.class
 ec\edu\espol\classes\Persona.class
-tdas\NodeListG07.class
 module-info.class
-tdas\SimpleLinkedListG07.class
-tdas\DoublyLinkedListG07.class
 ec\edu\espol\util\MenuPrincipalController.class
 tdas\CircularDoublyLinkedListG07$Node.class
 tdas\CircularDoublyLinkedListG07.class
@@ -13,7 +10,6 @@ tdas\ArrayListG07.class
 tdas\ListG07.class
 ec\edu\espol\util\MenuAcercaDeGrupoController.class
 ec\edu\espol\util\MenuAgregarBibliotecaController.class
-tdas\DoublyNodeListG07.class
 ec\edu\espol\classes\Album.class
 ec\edu\espol\classes\Foto.class
 ec\edu\espol\classes\Cliente.class
