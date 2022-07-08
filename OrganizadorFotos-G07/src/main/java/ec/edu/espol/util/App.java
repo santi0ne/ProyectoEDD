@@ -66,7 +66,7 @@ public class App extends Application {
                 File file = new File("archivos/albumes/"+album.getNombre()+"/"+picture.getNombre());
                 Image image = new Image(file.toURI().toString());
                 
-                Foto foto=new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(),image);
+                Foto foto=new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(),picture.getPersonas(),image);
                 
                 album.aggFotosDelAlbum(foto); 
     

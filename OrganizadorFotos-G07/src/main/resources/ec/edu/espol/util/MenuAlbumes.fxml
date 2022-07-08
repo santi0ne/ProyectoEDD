@@ -22,7 +22,8 @@
           </Menu>
           <Menu fx:id="menuArchivos" mnemonicParsing="false" text="Editar">
             <items>
-              <MenuItem fx:id="itemEdAlbum" mnemonicParsing="false" onAction="#editarFoto" text="Editar Foto" />
+              <MenuItem fx:id="itemEdFoto" mnemonicParsing="false" onAction="#editarFoto" text="Editar Foto" />
+                  <MenuItem fx:id="itemEdAlbum" mnemonicParsing="false" text="Editar Álbum" />
             </items>
           </Menu>
         </menus>

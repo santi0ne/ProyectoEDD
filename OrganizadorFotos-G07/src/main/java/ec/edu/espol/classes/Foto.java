@@ -31,35 +31,28 @@ public class Foto implements Serializable{
     private String descripcion;
     private String lugar;
     private LocalDate fecha;
-    private ArrayListG07<String> personas;
+    private ArrayListG07<Persona> personas;
     private Image imagen;
     private String nombre;
     private static final long serialVersionUID = 1111;
 
-    public Foto(Image imagen,String nombre,String descripcion, String lugar, LocalDate fecha, ArrayListG07<String> personas) {
+    
+    public Foto(String nombre,String lugar,String descripcion, LocalDate fecha,ArrayListG07<Persona> personas,Image imagen) {
+        this.nombre=nombre;
+        this.descripcion = descripcion;
+        this.lugar = lugar;
+        this.fecha = fecha;
         this.imagen=imagen;
+        this.personas = personas;
+
+    }
+    
+    public Foto(String nombre,String lugar,String descripcion, LocalDate fecha, ArrayListG07<Persona> personas) {
         this.nombre=nombre;
         this.descripcion = descripcion;
         this.lugar = lugar;
         this.fecha = fecha;
         this.personas = personas;
-
-    }
-    
-    public Foto(String nombre,String lugar,String descripcion, LocalDate fecha,Image imagen) {
-        this.nombre=nombre;
-        this.descripcion = descripcion;
-        this.lugar = lugar;
-        this.fecha = fecha;
-        this.imagen=imagen;
-
-    }
-    
-    public Foto(String nombre,String lugar,String descripcion, LocalDate fecha) {
-        this.nombre=nombre;
-        this.descripcion = descripcion;
-        this.lugar = lugar;
-        this.fecha = fecha;
 
     }
     
@@ -114,11 +107,11 @@ public class Foto implements Serializable{
         this.fecha = fecha;
     }
 
-    public ArrayListG07<String> getPersonas() {
+    public ArrayListG07<Persona> getPersonas() {
         return personas;
     }
     
-    public String[] getListaPersonas() {
+    /*public String[] getListaPersonas() {
         String[] listapersonas= new String[this.personas.size()];
         int i=0;
         for (String s : this.personas) {
@@ -126,11 +119,11 @@ public class Foto implements Serializable{
             i++;
         }
         return listapersonas;
-    }
+    }*/
 
    
 
-    public void setPersonas(ArrayListG07<String> personas) {
+    public void setPersonas(ArrayListG07<Persona> personas) {
         this.personas = personas;
     }
     

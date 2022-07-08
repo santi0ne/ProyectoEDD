@@ -52,7 +52,7 @@
                   <Font name="System Bold" size="15.0" />
                </font></Button>
             <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="179.0" layoutY="10.0" mnemonicParsing="false" text="Eliminar" />
-            <Button id="btnModificarBiblioteca" fx:id="btnModificarBiblioteca" layoutX="267.0" layoutY="10.0" mnemonicParsing="false" onAction="#ModificarBiblioteca" text="Modificar" />
+            <Button id="btnModificarBiblioteca" fx:id="btnModificarBiblioteca" layoutX="267.0" layoutY="10.0" mnemonicParsing="false" text="Modificar" />
             <Button fx:id="crearAlbum" layoutX="357.0" layoutY="10.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum" />
          </children>
       </Pane>

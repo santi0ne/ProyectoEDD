@@ -55,6 +55,8 @@ public class MenuAlbumesController {
     @FXML
     private MenuItem itemEdAlbum;
     @FXML
+    private MenuItem itemEdFoto;
+    @FXML
     private Button btnEliminarFoto;
     @FXML
     private Button btnEditarFoto;
@@ -70,6 +72,7 @@ public class MenuAlbumesController {
     private ListIterator<Foto> iterador;
     
     private Iterator<Album> iteradorAlbum;
+    
       
 
     public  void initialize() throws FileNotFoundException, IOException {
@@ -96,14 +99,14 @@ public class MenuAlbumesController {
                 }
             }
             
-        mostrarFotos(album);
+        mostrarFoto(album);
         
         iterador= albumSeleccionado.getFotosDelAlbum().iterator();
         
     }
     
     
-    public void mostrarFotos(Album a){
+    public void mostrarFoto(Album a){
         albumSeleccionado=a;
         fotoSeleccionada=albumSeleccionado.getFotosDelAlbum().getFirst();
         imageFoto.setImage(fotoSeleccionada.getImage());
@@ -116,6 +119,7 @@ public class MenuAlbumesController {
         fotoSeleccionada=iterador.next();
         imageFoto.setImage(fotoSeleccionada.getImage());
         nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
+        
     }
     
     @FXML
@@ -141,9 +145,6 @@ public class MenuAlbumesController {
         //TODO;
     }
     
-    public void eliminarAlbum(){
-        //TODO;
-    }
     
     @FXML
     public void agregarFoto() throws IOException{

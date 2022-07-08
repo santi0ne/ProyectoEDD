@@ -7,9 +7,11 @@ package ec.edu.espol.util;
 import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
+import ec.edu.espol.classes.Persona;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -68,9 +70,10 @@ public class MenuBusquedaAvanzadaController {
     @FXML
     private DatePicker dateCalendario;
     @FXML
-    private ComboBox<String> cbbPersonas;
+    
+    private ComboBox<Persona> cbbPersonas;
 
-    private static ArrayListG07<String> personasFiltro=new ArrayListG07();
+    private static ArrayListG07<Persona> personasFiltro=new ArrayListG07();
     @FXML
     private HBox hboxPersonas;
     @FXML
@@ -97,7 +100,7 @@ public class MenuBusquedaAvanzadaController {
                 
                 File file1 = new File("archivos/albumes/" + al.getNombre() + "/" + picture.getNombre());
                 Image image = new Image(file1.toURI().toString(), 100, 100, true, true);
-                Foto foto = new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(), image);
+                Foto foto = new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(),picture.getPersonas(), image);
 
                 listaFotos.insert(listaFotos.size(), foto);
 
@@ -117,6 +120,14 @@ public class MenuBusquedaAvanzadaController {
                 lblNombre.setText(foto.getNombre());
                 lblFecha.setText("Fecha: "+foto.getDate().toString());
                 lblDescripcion.setText("Descripción: "+foto.getDescripcion());
+                
+                StringBuilder personas = new StringBuilder();
+                for(Persona p:foto.getPersonas()){
+                    personas.append(p.getNombre()).append(" ");  
+                    personas.append(p.getApellido()).append(" ");
+                }
+                
+                lblPersonas.setText(personas.toString());
                 fotoseleccionada= foto;
             };
             
@@ -172,7 +183,7 @@ public class MenuBusquedaAvanzadaController {
         } else{
             LocalDate fecha = dateCalendario.getValue();
             String lugar = txtCriterio.getText();
-            ArrayListG07<String> personas = personasFiltro;
+            ArrayListG07<Persona> personas = personasFiltro;
             
             // En esta parte se debe filtrar poco a poco
                 listaFiltrada = filtrarLugar(listaFotos,lugar);
@@ -224,7 +235,7 @@ public class MenuBusquedaAvanzadaController {
 
     }
 
-    public ArrayListG07<Foto> filtrarPersona(ArrayListG07<Foto> listaFotos, ArrayListG07<String> persona) {
+    public ArrayListG07<Foto> filtrarPersona(ArrayListG07<Foto> listaFotos, ArrayListG07<Persona> persona) {
 
         ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
         boolean bandera=true;
@@ -251,10 +262,10 @@ public class MenuBusquedaAvanzadaController {
 
     }
 
-    public boolean comparePersona(String persona, Foto f2) {
-        String[] p = f2.getListaPersonas();
+    public boolean comparePersona(Persona persona, Foto f2) {
+        ArrayListG07<Persona> p = f2.getPersonas();
         for (int i = 0; i < f2.numeroPersonas(); i++) {
-            if (persona.toLowerCase().equals(p[i].toLowerCase())) {
+            if (persona.getNombre().toLowerCase().equals(p.get(i).getNombre().toLowerCase()) && persona.getApellido().toLowerCase().equals(p.get(i).getApellido().toLowerCase())) {
                 return true;
             }
         }
@@ -285,24 +296,32 @@ public class MenuBusquedaAvanzadaController {
     }
 
     public void cargarComboPersonas() {
-        cbbPersonas.getItems().addAll(listaPersonasExistentes());
+        
+        ArrayListG07<Persona> lista=listaPersonasExistentes();
+        
+        for(Persona persona:lista){
+            cbbPersonas.getItems().addAll(persona);
+        }
 
     }
 
-    public String[] listaPersonasExistentes() {
-        String[] listaPersonas = {"Jefferson", "Jose", "Carlos", "Mario"};
+    public ArrayListG07<Persona> listaPersonasExistentes() {
+        
+        
+        ArrayListG07<Persona> listaPersonasTDA= Persona.lecturaPersonas();
+        
 
-        return listaPersonas;
+        return listaPersonasTDA;
     }
         
     @FXML
     public void comboboxEvents(ActionEvent e) {
         Object evt = e.getSource();
-        String persona = cbbPersonas.getSelectionModel().getSelectedItem();
+        Persona persona = cbbPersonas.getSelectionModel().getSelectedItem();
         
         if (evt.equals(cbbPersonas)) {
             Button nombre = new Button();
-            nombre.setText(persona);
+            nombre.setText(persona.getNombre()+" "+persona.getApellido());
             
             try {
                 if (personasFiltro == null) {

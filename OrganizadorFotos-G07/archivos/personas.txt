@@ -1,2 +1,4 @@
-Guillermo Arévalo
-José Saltos
+Guillermo,Arevalo
+Santiago,Rodriguez
+Jefferson,Eras
+Jose,Saltos

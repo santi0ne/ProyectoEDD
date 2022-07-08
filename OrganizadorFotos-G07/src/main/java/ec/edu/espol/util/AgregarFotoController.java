@@ -18,11 +18,13 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Optional;
 import java.util.Scanner;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -30,8 +32,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import tdas.ArrayListG07;
 
  /* FXML Controller class
  *
@@ -57,15 +62,17 @@ public class AgregarFotoController {
     @FXML
     private DatePicker fechaFoto;
     @FXML
-    private TableView tablaPersonas;
+    private ComboBox<Persona> cbmPersonas;
     @FXML
-    private TableColumn<Persona, String> listaPersonas;
+    private FlowPane personasSeleccionadas;
     
     String ruta=null;
     File file=new File("");
     Image image;
+    ArrayListG07<Persona> listaPersonasSeleccionadas= new ArrayListG07<Persona>();
     
     private static boolean esEdicion=false;
+    
     
     public void initialize(){
         if(esEdicion==true){
@@ -92,6 +99,13 @@ public class AgregarFotoController {
          
         }
         else{
+            
+            
+            for(Persona persona:Persona.lecturaPersonas()){
+                cbmPersonas.getItems().addAll(persona);
+            }
+            
+                    
             btonBuscar.setDisable(false);
             btonBuscar.setVisible(true);
             imgSelecc.imageProperty().set(null);
@@ -155,9 +169,15 @@ public class AgregarFotoController {
         Path path1=Paths.get(ruta);
         Path path2=Paths.get("archivos//albumes//"+Biblioteca.getAlbumSelec().getNombre()+"//"+nombreFoto.getText());
         
-        Foto foto=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),image);
+        ArrayListG07<Persona> listaPersonasFoto=new  ArrayListG07<Persona>();
         
-        Foto foto2=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue());
+        for(Persona persona:listaPersonasSeleccionadas){
+            listaPersonasFoto.addLast(persona);
+        }
+        
+        Foto foto=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),listaPersonasFoto,image);
+        
+        Foto foto2=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),listaPersonasFoto);
         
         if(foto.getNombre().equals("")){
             throw new AlbumException("Nombre vacío");
@@ -197,6 +217,7 @@ public class AgregarFotoController {
         } catch (AlbumException ex) {
             mostrarAlerta(AlertType.ERROR,ex.getMessage());
         }
+        
     }
     
     public void editarFoto() throws IOException {
@@ -263,6 +284,36 @@ public class AgregarFotoController {
         } catch (AlbumException ex) {
             mostrarAlerta(AlertType.ERROR,ex.getMessage());
         }
+    }
+    
+    
+    @FXML
+    public void comboboxEvents(ActionEvent e) {
+        Object evt = e.getSource();
+        Persona persona = cbmPersonas.getSelectionModel().getSelectedItem();
+        
+        if (evt.equals(cbmPersonas)) {
+            Button nombre = new Button();
+            nombre.setText(persona.getNombre()+" "+persona.getApellido());
+            
+            try {
+                if (listaPersonasSeleccionadas == null) {
+                    personasSeleccionadas.getChildren().add(nombre);
+                    listaPersonasSeleccionadas.addFirst(persona);
+                } else {
+                    if (listaPersonasSeleccionadas.contains(persona)) {
+                        System.out.println("YA EXISTE");
+                    } else {
+                        personasSeleccionadas.getChildren().add(nombre);
+                        listaPersonasSeleccionadas.addLast(persona);
+                    }
+                }
+            } catch (NullPointerException f) {
+                System.out.println("NullPointerException thrown!");
+            }
+
+        }
+
     }
     
 

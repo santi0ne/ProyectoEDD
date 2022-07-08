@@ -10,8 +10,8 @@ package ec.edu.espol.classes;
  */
 public class Cliente extends Persona{
 
-    public Cliente(String nombre) {
-        super(nombre);
+    public Cliente(String nombre,String apellido) {
+        super(nombre,apellido);
     }
     
 }

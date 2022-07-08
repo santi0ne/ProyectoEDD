@@ -129,23 +129,6 @@ public class MenuPrincipalController  {
         stage.close();
     }
     
-    public void EliminarBiblioteca(){
-    
-    }
-    
-    @FXML
-    public void ModificarBiblioteca(){
-    
-    }
-
-    
-    // Metodos de la barra de menu
-    
-    @FXML
-    public void NuevaBiblioteca() throws IOException{
-          App.setRoot("MenuAgregarBiblioteca");
-    }
-    
     
     @FXML
     public void Busqueda() throws IOException{
@@ -160,6 +143,16 @@ public class MenuPrincipalController  {
     @FXML
     public void crearAlbum() throws IOException{
         App.setRoot("AgregarAlbum");
+    }
+    
+    @FXML
+    public void editarAlbum() throws IOException{
+        App.setRoot("AgregarAlbum");
+    }
+    
+    @FXML
+    public void eliminarAlbum(){
+        
     }
     
     public static void mostrarAlerta(Alert.AlertType tipo, String msj){
