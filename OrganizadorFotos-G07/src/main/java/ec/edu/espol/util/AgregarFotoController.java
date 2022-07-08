@@ -16,11 +16,13 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Optional;
 import java.util.Scanner;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -63,7 +65,49 @@ public class AgregarFotoController {
     File file=new File("");
     Image image;
     
-   
+    private static boolean esEdicion=false;
+    
+    public void initialize(){
+        if(esEdicion==true){
+            btonBuscar.setDisable(true);
+            btonBuscar.setVisible(false);
+            fechaFoto.setDisable(esEdicion);
+            
+            File file = new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+MenuAlbumesController.getFoto().getNombre());
+            Image image = new Image(file.toURI().toString());
+            imgSelecc.setImage(image);
+            
+            nombreFoto.setText(MenuAlbumesController.getFoto().getNombre());
+            fechaFoto.setValue(MenuAlbumesController.getFoto().getFecha());
+            lugarFoto.setText(MenuAlbumesController.getFoto().getLugar());
+            descripcionFoto.setText(MenuAlbumesController.getFoto().getDescripcion());
+
+            btonGuardar.setOnMouseClicked(eh->{try {
+                editarFoto();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+            
+         
+        }
+        else{
+            btonBuscar.setDisable(false);
+            btonBuscar.setVisible(true);
+            imgSelecc.imageProperty().set(null);
+            btonGuardar.setOnMouseClicked(eh->{try {
+                guardarFoto();
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+            });
+        }
+    }
+
+    public static void setEsEdicion(boolean esEdicion) {
+        AgregarFotoController.esEdicion = esEdicion;
+    }
+    
     
     @FXML
     public void buscarFoto(){
@@ -101,7 +145,7 @@ public class AgregarFotoController {
         nombreFoto.setText(file.getName());
 }
     
-    @FXML
+    
     public void guardarFoto() throws IOException{
         try{
             
@@ -154,6 +198,75 @@ public class AgregarFotoController {
             mostrarAlerta(AlertType.ERROR,ex.getMessage());
         }
     }
+    
+    public void editarFoto() throws IOException {
+        try{
+            
+        Foto foto= MenuAlbumesController.getFoto();
+        Foto fotoSinImage=new Foto();
+           
+        for(int i=0;i<MenuAlbumesController.getAlbum().getFotosDelAlbum().size();i++){
+            if(MenuAlbumesController.getAlbum().getFotosSinImage().get(i).equals(foto)){
+                fotoSinImage=MenuAlbumesController.getAlbum().getFotosSinImage().get(i);
+            }
+        }
+        
+        
+        
+        Alert alerta= new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Diálogo de información");
+        alerta.setHeaderText("Confirmación de edición");
+        alerta.setContentText("Está seguro de editar los datos de ésta foto?");
+        Optional<ButtonType> result=alerta.showAndWait();
+            
+        if(result.get()==ButtonType.OK){
+            
+        File fotoAnterior= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+foto.getNombre());
+        File fotoNueva= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nombreFoto.getText());
+        
+        fotoAnterior.renameTo(fotoNueva);
+        
+        foto.setNombre(nombreFoto.getText());
+        fotoSinImage.setNombre(nombreFoto.getText());
+        
+        foto.setLugar(lugarFoto.getText());
+        fotoSinImage.setLugar(lugarFoto.getText());
+        
+        foto.setDescripcion(descripcionFoto.getText());
+        fotoSinImage.setDescripcion(descripcionFoto.getText());
+        
+        if(foto.getNombre().equals("")){
+            throw new AlbumException("Nombre vacío");
+        }
+       
+        
+        if(!foto.getNombre().substring(foto.getNombre().length()-4, foto.getNombre().length()).equals(".jpg") & !foto.getNombre().substring(foto.getNombre().length()-4, foto.getNombre().length()).equals(".png")  ){
+            throw new AlbumException("Nombre sin extension(.jpg o .png)");
+        }
+        
+        if(foto.getLugar().equals("")){
+            throw new AlbumException("Información de lugar vacío");
+        }
+        
+        if(foto.getDescripcion().equals("")){
+            throw new AlbumException("Descripción vacía");
+        }
+            Foto.serializarFoto();
+            App.setRoot("MenuAlbumes");
+        }
+                       
+        else{
+            App.setRoot("MenuAlbumes");
+        }
+ 
+        
+        } catch (AlbumException ex) {
+            mostrarAlerta(AlertType.ERROR,ex.getMessage());
+        }
+    }
+    
+
+    
     
     public static void mostrarAlerta(AlertType tipo, String msj){
         Alert alert= new Alert(tipo);

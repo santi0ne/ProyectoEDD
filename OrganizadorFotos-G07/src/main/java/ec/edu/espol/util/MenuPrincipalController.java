@@ -111,7 +111,7 @@ public class MenuPrincipalController  {
                        }
                        
                        else{
-                           
+                           App.setRoot("MenuPrincipal");
                        }
                        
                     }

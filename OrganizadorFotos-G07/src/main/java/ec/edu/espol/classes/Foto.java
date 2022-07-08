@@ -18,6 +18,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Objects;
 import javafx.scene.image.Image;
 import tdas.ArrayListG07;
 import tdas.CircularDoublyLinkedListG07;
@@ -149,7 +150,7 @@ public class Foto implements Serializable{
         return nombre;
     }
     
-    public void setNombre(String nombte) {
+    public void setNombre(String nombre) {
         this.nombre=nombre;
     }
     
@@ -168,6 +169,24 @@ public class Foto implements Serializable{
     public static void eliminarPersona(Persona p){
         //personas.remove(p);
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Foto other = (Foto) obj;
+        if (!Objects.equals(this.nombre, other.nombre)) {
+            return false;
+        }
+        return true;
+    } 
     
     public static ArrayListG07<Foto> cargarAllFotos(){
         
@@ -194,6 +213,7 @@ public class Foto implements Serializable{
         
         
     }
+   
     
     
   

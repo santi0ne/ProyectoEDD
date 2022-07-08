@@ -11,10 +11,12 @@ import ec.edu.espol.classes.Foto;
 import java.io.*;
 import java.util.Iterator;
 import java.util.ListIterator;
+import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -75,6 +77,14 @@ public class MenuAlbumesController {
         cargarFotos(Biblioteca.getAlbumSelec());
     }
     
+    public static Foto getFoto(){
+        return fotoSeleccionada;
+    }
+    
+    public static Album getAlbum(){
+        return albumSeleccionado;
+    }
+    
     public void cargarFotos(Album a) throws IOException{
        iteradorAlbum= Biblioteca.getListaAlbumes().iterator();
        
@@ -127,7 +137,6 @@ public class MenuAlbumesController {
         App.setRoot("AgregarAlbum");
     }
     
-    @FXML
     public void editarAlbum(){
         //TODO;
     }
@@ -138,17 +147,51 @@ public class MenuAlbumesController {
     
     @FXML
     public void agregarFoto() throws IOException{
+        AgregarFotoController.setEsEdicion(false);
         App.setRoot("AgregarFoto");
     }
     
     @FXML
-    public void editarFoto(){
-        //TODO;
+    public void editarFoto() throws IOException{
+        AgregarFotoController.setEsEdicion(true);
+        App.setRoot("AgregarFoto");
     }
     
     @FXML
     public void eliminarFoto(){
-        //TODO;
+        Foto fotoEliminar=fotoSeleccionada;
+        Foto fotoEliminarSinImage=new Foto();
+        
+        for(int i=0;i<MenuAlbumesController.getAlbum().getFotosDelAlbum().size();i++){
+            if(MenuAlbumesController.getAlbum().getFotosSinImage().get(i).equals(fotoEliminar)){
+                fotoEliminarSinImage=MenuAlbumesController.getAlbum().getFotosSinImage().get(i);
+            }
+        }
+        
+        Alert alerta= new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Diálogo de información");
+        alerta.setHeaderText("Confirmación de eliminación");
+        alerta.setContentText("Está seguro de borrar ésta foto?");
+        Optional<ButtonType> result=alerta.showAndWait();
+            
+        if(result.get()==ButtonType.OK){
+        
+        MenuAlbumesController.getAlbum().getFotosDelAlbum().remove(MenuAlbumesController.getAlbum().getFotosDelAlbum().indexOf(fotoEliminar));
+        MenuAlbumesController.getAlbum().getFotosSinImage().remove(MenuAlbumesController.getAlbum().getFotosSinImage().indexOf(fotoEliminarSinImage));
+    
+        File borrar= new File("archivos/albumes/"+albumSeleccionado.getNombre()+"/"+fotoEliminar.getNombre());
+        borrar.delete();
+        try {
+            Foto.serializarFoto();
+            App.setRoot("MenuAlbumes");
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        }
+        
+        else{
+            
+        }
     }
     
     @FXML

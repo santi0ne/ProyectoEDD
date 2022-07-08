@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarFotoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarFotoController">
    <center>
       <GridPane maxHeight="300.0" maxWidth="500.0" minWidth="400.0" prefHeight="300.0" prefWidth="464.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -79,7 +79,7 @@
                   <Insets right="10.0" />
                </HBox.margin>
             </Button>
-            <Button fx:id="btonGuardar" mnemonicParsing="false" onAction="#guardarFoto" text="Guardar">
+            <Button fx:id="btonGuardar" mnemonicParsing="false" text="Guardar">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin>
