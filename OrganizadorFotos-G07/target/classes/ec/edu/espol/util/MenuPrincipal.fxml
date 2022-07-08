@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
    <center>
-      <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="532.0" prefWidth="612.0" BorderPane.alignment="CENTER">
          <children>
-            <SplitPane dividerPositions="0.19879518072289157" orientation="VERTICAL" prefHeight="334.0" prefWidth="448.0">
+            <SplitPane dividerPositions="0.19879518072289157" layoutX="14.0" layoutY="99.0" orientation="VERTICAL" prefHeight="334.0" prefWidth="448.0">
                <items>
                   <Pane prefHeight="149.0" prefWidth="446.0">
                      <children>

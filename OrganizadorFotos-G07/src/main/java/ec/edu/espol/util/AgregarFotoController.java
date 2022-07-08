@@ -75,6 +75,8 @@ public class AgregarFotoController {
     
     
     public void initialize(){
+        
+        
         if(esEdicion==true){
             btonBuscar.setDisable(true);
             btonBuscar.setVisible(false);

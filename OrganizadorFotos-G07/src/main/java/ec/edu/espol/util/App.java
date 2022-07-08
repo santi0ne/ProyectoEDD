@@ -23,13 +23,19 @@ public class App extends Application {
     private static Scene scene;
     static ArrayListG07<Album> listaAlbum;
 
+    public static Scene getScene() {
+        return scene;
+    }
+    
+    
+
     public static ArrayListG07<Album> getListaAlbum() {
         return listaAlbum;
     }
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("MenuPrincipal"), 740, 480);
+        scene = new Scene(loadFXML("MenuPrincipal"), 800, 600);
         stage.setScene(scene);
         stage.show();
     }

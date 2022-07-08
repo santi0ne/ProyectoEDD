@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAlbumesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAlbumesController">
    <top>
       <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
@@ -39,10 +39,16 @@
             </Text>
          </top>
          <left>
-            <Button fx:id="btnAnt" mnemonicParsing="false" onAction="#anteriorFoto" text="Anterior" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnAnt" mnemonicParsing="false" onAction="#anteriorFoto" text="Anterior" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="20.0" />
+               </BorderPane.margin></Button>
          </left>
          <right>
-            <Button fx:id="btnSig" mnemonicParsing="false" onAction="#siguienteFoto" text="Siguiente" BorderPane.alignment="CENTER" />
+            <Button fx:id="btnSig" mnemonicParsing="false" onAction="#siguienteFoto" text="Siguiente" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets right="20.0" />
+               </BorderPane.margin></Button>
          </right>
          <bottom>
             <HBox fx:id="menúOpciones" alignment="CENTER" prefHeight="51.0" prefWidth="455.0" BorderPane.alignment="CENTER">
@@ -76,7 +82,7 @@
             </HBox>
          </bottom>
          <center>
-            <ImageView fx:id="imageFoto" fitHeight="248.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
+            <ImageView fx:id="imageFoto" fitHeight="357.0" fitWidth="509.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER" />
          </center>
       </BorderPane>
    </center>
