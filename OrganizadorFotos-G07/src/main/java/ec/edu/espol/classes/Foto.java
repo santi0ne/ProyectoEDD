@@ -116,6 +116,17 @@ public class Foto implements Serializable{
     public ArrayListG07<String> getPersonas() {
         return personas;
     }
+    
+    public String[] getListaPersonas() {
+        String[] listapersonas= new String[this.personas.size()];
+        int i=0;
+        for (String s : this.personas) {
+            listapersonas[i]=s;
+            i++;
+        }
+        return listapersonas;
+    }
+
    
 
     public void setPersonas(ArrayListG07<String> personas) {
