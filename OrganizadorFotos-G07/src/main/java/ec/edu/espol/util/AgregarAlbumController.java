@@ -51,6 +51,7 @@ public class AgregarAlbumController {
         directorio.mkdirs();
         
         FileOutputStream fout= new FileOutputStream("archivos/albumes/"+album.getNombre()+"/infoFotos.ser");
+        fout.close();
         album.setFotosSinImage(new CircularDoublyLinkedListG07<Foto>());
         Biblioteca.setAlbumSelec(album);
         Foto.serializarFoto();

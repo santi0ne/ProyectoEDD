@@ -8,5 +8,6 @@ module ec.edu.espol.util {
     opens ec.edu.espol.util to javafx.fxml;
     opens ec.edu.espol.classes;
     exports ec.edu.espol.util;
+    requires org.apache.commons.io;
 }
 

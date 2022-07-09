@@ -216,6 +216,7 @@ public class Foto implements Serializable{
             ObjectOutputStream out=new ObjectOutputStream(fout);
             out.writeObject(Biblioteca.getAlbumSelec().getFotosSinImage());
             out.flush();
+            out.close();
             
      }
     

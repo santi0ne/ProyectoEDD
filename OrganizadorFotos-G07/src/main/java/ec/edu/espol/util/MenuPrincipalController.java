@@ -7,7 +7,9 @@ package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
+import ec.edu.espol.classes.Foto;
 import static ec.edu.espol.util.AgregarFotoController.mostrarAlerta;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Optional;
@@ -25,6 +27,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.apache.commons.io.FileUtils;
 
 /**
  * FXML Controller class
@@ -51,6 +54,8 @@ public class MenuPrincipalController  {
     private TilePane biblioteca;
     @FXML
     private Button crearAlbum;
+    
+    Album albumSeleccion=new Album();
    
     
     public void initialize() throws IOException {
@@ -89,9 +94,15 @@ public class MenuPrincipalController  {
             vboxalbum.getChildren().add(new Label(album.getDescripcion()));
             
             biblioteca.getChildren().add(vboxalbum);
+            
+           
            
                     
            vboxalbum.setOnMouseClicked(eh-> {
+               if(eh.getClickCount()==1){
+                   albumSeleccion=album;
+               }
+               if(eh.getClickCount()==2){
                 try {
                     if(album.getFotosDelAlbum().size()!=0){
                     Biblioteca.setAlbumSelec(album);
@@ -117,7 +128,9 @@ public class MenuPrincipalController  {
                     }
                 } catch (IOException ex) {
                 }
+               }
             });
+           
         }
           
     }  
@@ -151,7 +164,25 @@ public class MenuPrincipalController  {
     }
     
     @FXML
-    public void eliminarAlbum(){
+    public void eliminarAlbum() throws IOException{
+        
+        Album albumEliminar=albumSeleccion;
+        
+        Alert alerta= new Alert(Alert.AlertType.CONFIRMATION);
+        alerta.setTitle("Diálogo de información");
+        alerta.setHeaderText("Confirmación de eliminación de álbum");
+        alerta.setContentText("Está seguro de borrar el álbum "+albumEliminar.getNombre()+" ?");
+        Optional<ButtonType> result=alerta.showAndWait();
+            
+        if(result.get()==ButtonType.OK){
+
+            Biblioteca.getListaAlbumes().remove(Biblioteca.getListaAlbumes().indexOf(albumEliminar));
+            Album.borradoAlbum();
+            
+            FileUtils.deleteDirectory(new File("archivos/albumes/"+albumSeleccion.getNombre()));
+
+            App.setRoot("MenuPrincipal");
+        }
         
     }
     

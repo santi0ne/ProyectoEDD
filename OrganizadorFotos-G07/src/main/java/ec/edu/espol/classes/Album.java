@@ -6,6 +6,7 @@ package ec.edu.espol.classes;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -147,6 +148,26 @@ public class Album implements Serializable {
             bufferedW.write(sb.toString());
         } catch (IOException e) {
             System.out.println(e);
+        }
+    }
+   
+   
+   public static void borradoAlbum() {
+        File archivo=new File("archivos/albumes.txt");
+        archivo.delete();
+        for(Album a:Biblioteca.getListaAlbumes()){
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes.txt", true))) {
+            sb.append("nombreAlbum,descripcion");
+            sb.append("\r\n");
+            sb.append(a.nombre).append(","); 
+            sb.append(a.descripcion);
+            if(!(Biblioteca.getListaAlbumes().indexOf(a)==(Biblioteca.getListaAlbumes().size()-1))){
+            sb.append("\r\n");}
+            bufferedW.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
         }
     }
     
