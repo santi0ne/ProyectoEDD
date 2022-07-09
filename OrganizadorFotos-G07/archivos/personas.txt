@@ -2,3 +2,6 @@ Guillermo,Arevalo
 Santiago,Rodriguez
 Jefferson,Eras
 Jose,Saltos
+Maria,Cedeño
+Daniela,Saltos
+Juan,Fernandez

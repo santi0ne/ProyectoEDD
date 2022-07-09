@@ -5,7 +5,9 @@
 package ec.edu.espol.classes;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -42,6 +44,10 @@ public class Persona implements Serializable {
 
     public void setApellido(String apellido) {
         this.apellido = apellido;
+    }
+    
+    public static ArrayListG07<Persona> getPersonas(){
+        return listaPersonas;
     }
     
     public static void setPersonas(ArrayListG07<Persona> listaPersonas){
@@ -90,6 +96,19 @@ public class Persona implements Serializable {
         }
     
         return listaPersonas;
+    }
+    
+    public void escribirPersona() {
+        
+        StringBuilder sb = new StringBuilder();
+        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/personas.txt",true))) {
+            sb.append("\r\n");
+            sb.append(this.nombre).append(",");  
+            sb.append(this.apellido);
+            bufferedW.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
     }
     
     public String toString(){

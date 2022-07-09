@@ -47,13 +47,18 @@
    <bottom>
       <Pane prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnSalir" fx:id="btnSalir" layoutX="513.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="25.0" prefWidth="73.0" text="Salir">
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="499.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="25.0" prefWidth="73.0" text="Salir">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="179.0" layoutY="10.0" mnemonicParsing="false" onAction="#eliminarAlbum" text="Eliminar" />
-            <Button id="btnModificarBiblioteca" fx:id="btnModificarBiblioteca" layoutX="267.0" layoutY="10.0" mnemonicParsing="false" text="Modificar" />
-            <Button fx:id="crearAlbum" layoutX="357.0" layoutY="10.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum" />
+            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="231.0" layoutY="6.0" mnemonicParsing="false" onAction="#eliminarAlbum" text="Eliminar">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
+            <Button fx:id="crearAlbum" layoutX="347.0" layoutY="6.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font></Button>
          </children>
       </Pane>
    </bottom>
@@ -70,6 +75,13 @@
               <MenuItem fx:id="menuBusqueda" mnemonicParsing="false" onAction="#Busqueda" text="Busqueda Avanzada" />
             </items>
           </Menu>
+            <Menu mnemonicParsing="false" text="Personas">
+              <items>
+                <MenuItem fx:id="aggPersona" mnemonicParsing="false" onAction="#crearPersona" text="Agregar persona" />
+                  <MenuItem fx:id="editarPersona" mnemonicParsing="false" text="Editar persona" />
+                  <MenuItem fx:id="eliminarPersona" mnemonicParsing="false" text="Eliminar persona" />
+              </items>
+            </Menu>
           <Menu mnemonicParsing="false" text="Acerca de...">
             <items>
               <MenuItem fx:id="menuAcercaDeG07" mnemonicParsing="false" onAction="#AcercaDe" text="About" />

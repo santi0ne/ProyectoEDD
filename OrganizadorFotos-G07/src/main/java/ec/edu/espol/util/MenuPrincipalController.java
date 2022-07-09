@@ -54,8 +54,15 @@ public class MenuPrincipalController  {
     private TilePane biblioteca;
     @FXML
     private Button crearAlbum;
+    @FXML
+    private MenuItem aggPersona;
+    @FXML
+    private MenuItem editarPersona;
+    @FXML
+    private MenuItem eliminarPersona;
     
     Album albumSeleccion=new Album();
+    
    
     
     public void initialize() throws IOException {
@@ -158,10 +165,6 @@ public class MenuPrincipalController  {
         App.setRoot("AgregarAlbum");
     }
     
-    @FXML
-    public void editarAlbum() throws IOException{
-        App.setRoot("AgregarAlbum");
-    }
     
     @FXML
     public void eliminarAlbum() throws IOException{
@@ -184,6 +187,12 @@ public class MenuPrincipalController  {
             App.setRoot("MenuPrincipal");
         }
         
+    }
+    
+    @FXML
+    public void crearPersona() throws IOException{
+        AgregarPersonaController.setAccion("agregar");
+        App.setRoot("AgregarPersona");
     }
     
     public static void mostrarAlerta(Alert.AlertType tipo, String msj){
