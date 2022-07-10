@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAlbumesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAlbumesController">
    <top>
       <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
@@ -31,20 +31,20 @@
    <center>
       <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <top>
-            <Text id="nombreFoto" fx:id="nombreFotoSelec" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="table-view" text="Text" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <Text id="nombreFoto" fx:id="nombreFotoSelec" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" textAlignment="CENTER" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets top="30.0" />
                </BorderPane.margin>
             </Text>
          </top>
          <left>
-            <Button fx:id="btnAnt" mnemonicParsing="false" onAction="#anteriorFoto" text="Anterior" BorderPane.alignment="CENTER">
+            <Button fx:id="btnAnt" mnemonicParsing="false" onAction="#anteriorFoto" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="20.0" />
                </BorderPane.margin></Button>
          </left>
          <right>
-            <Button fx:id="btnSig" mnemonicParsing="false" onAction="#siguienteFoto" text="Siguiente" BorderPane.alignment="CENTER">
+            <Button fx:id="btnSig" mnemonicParsing="false" onAction="#siguienteFoto" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets right="20.0" />
                </BorderPane.margin></Button>
@@ -52,7 +52,7 @@
          <bottom>
             <HBox fx:id="menúOpciones" alignment="CENTER" prefHeight="51.0" prefWidth="455.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#regresarMenu" text="Regresar">
+                  <Button fx:id="btnRegresar" mnemonicParsing="false" onAction="#regresarMenu" text="Atrás">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -62,12 +62,12 @@
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#agregarFoto" text="Agregar Foto">
+                  <Button fx:id="btnAgg" mnemonicParsing="false" onAction="#agregarFoto" text="Agregar Foto">
                      <HBox.margin>
                         <Insets left="10.0" right="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button fx:id="btnEditarFoto" mnemonicParsing="false" onAction="#editarFoto" text="Modificar">
+                  <Button fx:id="btnEditarFoto" mnemonicParsing="false" onAction="#editarFoto" text="Editar">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
@@ -81,7 +81,7 @@
             </HBox>
          </bottom>
          <center>
-            <ImageView fx:id="imageFoto" fitHeight="357.0" fitWidth="509.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fx:id="imageFoto" fitHeight="320.0" fitWidth="431.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets />
                </BorderPane.margin></ImageView>

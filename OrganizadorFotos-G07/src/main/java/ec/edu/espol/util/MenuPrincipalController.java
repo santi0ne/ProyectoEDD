@@ -12,6 +12,7 @@ import static ec.edu.espol.util.AgregarFotoController.mostrarAlerta;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.util.Optional;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
@@ -77,7 +78,7 @@ public class MenuPrincipalController  {
 
         scrollBiblioteca.setContent(biblioteca);
 
-        
+        colocarImagenBoton();
         //Iterator<Album> iteradorAlbum= Biblioteca.getListaAlbumes().iterator();
         
         for(Album al: Biblioteca.getListaAlbumes()){
@@ -231,5 +232,15 @@ public class MenuPrincipalController  {
         
     }
     
-    
+    private void colocarImagenBoton(){
+        URL linkEliminar = getClass().getResource("/ec/edu/espol/util/imágenes/compartimiento.png");
+        URL linkSalir = getClass().getResource("/ec/edu/espol/util/imágenes/apagar.png");
+        URL linkNuevo = getClass().getResource("/ec/edu/espol/util/imágenes/nuevo.png");
+        Image imgEliminar = new Image(linkEliminar.toString(), 20, 20, false, true);
+        Image imgSalir = new Image(linkSalir.toString(), 20, 20, false, true);
+        Image imgNuevo = new Image(linkNuevo.toString(), 20, 20, false, true);
+        btnEliminarBiblioteca.setGraphic(new ImageView(imgEliminar));
+        btnSalir.setGraphic(new ImageView(imgSalir));
+        crearAlbum.setGraphic(new ImageView(imgNuevo));
+    }
 }

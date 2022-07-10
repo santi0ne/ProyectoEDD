@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
    <center>
       <Pane prefHeight="525.0" prefWidth="678.0" styleClass="Pane" stylesheets="@../css/InterfazCSS.css" BorderPane.alignment="CENTER">
          <children>
@@ -45,17 +45,17 @@
       </Pane>
    </left>
    <bottom>
-      <Pane prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="47.0" prefWidth="800.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnSalir" fx:id="btnSalir" layoutX="499.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="33.0" prefWidth="109.0" text="Salir">
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="569.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="33.0" prefWidth="109.0" text="Salir">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="231.0" layoutY="6.0" mnemonicParsing="false" onAction="#eliminarAlbum" text="Eliminar">
+            <Button id="btnEliminarBiblioteca" fx:id="btnEliminarBiblioteca" layoutX="108.0" layoutY="6.0" mnemonicParsing="false" onAction="#eliminarAlbum" text="Eliminar">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Button fx:id="crearAlbum" layoutX="347.0" layoutY="6.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum">
+            <Button fx:id="crearAlbum" layoutX="338.0" layoutY="5.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>

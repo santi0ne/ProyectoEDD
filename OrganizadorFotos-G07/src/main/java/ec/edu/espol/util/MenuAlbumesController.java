@@ -9,6 +9,7 @@ import ec.edu.espol.classes.Album;
 import ec.edu.espol.classes.Biblioteca;
 import ec.edu.espol.classes.Foto;
 import java.io.*;
+import java.net.URL;
 import java.util.Iterator;
 import java.util.ListIterator;
 import java.util.Optional;
@@ -20,6 +21,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
@@ -53,8 +55,6 @@ public class MenuAlbumesController {
     @FXML
     private MenuItem itemAggFotos;
     @FXML
-    private MenuItem itemEdAlbum;
-    @FXML
     private MenuItem itemEdFoto;
     @FXML
     private Button btnEliminarFoto;
@@ -72,10 +72,13 @@ public class MenuAlbumesController {
     private ListIterator<Foto> iterador;
     
     private Iterator<Album> iteradorAlbum;
+    @FXML
+    private Button btnAgg;
     
       
 
     public  void initialize() throws FileNotFoundException, IOException {
+        colocarImagenBoton();
         if(Biblioteca.getAlbumSelec().getFotosDelAlbum().size()==1){
             btnAnt.setDisable(true);
             btnAnt.setVisible(false);
@@ -223,5 +226,31 @@ public class MenuAlbumesController {
         dialogo.setContentText(fotoSeleccionada.toString());
         dialogo.initStyle(StageStyle.UTILITY);
         dialogo.showAndWait();
+    }
+    
+    private void colocarImagenBoton(){
+        URL linkAntes = getClass().getResource("/ec/edu/espol/util/imágenes/anterior.png");
+        URL linkDespues = getClass().getResource("/ec/edu/espol/util/imágenes/siguiente-boton.png");
+        URL linkInfo = getClass().getResource("/ec/edu/espol/util/imágenes/informacion.png");
+        URL linkEliminar = getClass().getResource("/ec/edu/espol/util/imágenes/compartimiento.png");
+        URL linkAgg = getClass().getResource("/ec/edu/espol/util/imágenes/dupdo.png");
+        URL linkEdit = getClass().getResource("/ec/edu/espol/util/imágenes/boton-editar.png");
+        URL linkAtras = getClass().getResource("/ec/edu/espol/util/imágenes/atras.png");
+        
+        Image imgAntes = new Image(linkAntes.toString(), 20,20, false, true);
+        Image imgDespues = new Image(linkDespues.toString(), 20,20, false, true);
+        Image imgInfo = new Image(linkInfo.toString(), 20, 20, false, true);
+        Image imgEliminar = new Image(linkEliminar.toString(), 20, 20, false, true);
+        Image imgAgg = new Image(linkAgg.toString(), 20, 20, false, true);
+        Image imgEdit = new Image(linkEdit.toString(), 20, 20, false, true);
+        Image imgAtras = new Image(linkAtras.toString(), 20, 20, false, true);
+        
+        btnAnt.setGraphic(new ImageView(imgAntes));
+        btnSig.setGraphic(new ImageView(imgDespues));
+        btnInfo.setGraphic(new ImageView(imgInfo));
+        btnEliminarFoto.setGraphic(new ImageView(imgEliminar));
+        btnAgg.setGraphic(new ImageView(imgAgg));
+        btnEditarFoto.setGraphic(new ImageView(imgEdit));
+        btnRegresar.setGraphic(new ImageView(imgAtras));
     }
 }

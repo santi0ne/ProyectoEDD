@@ -40,7 +40,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.setResizable(true);
         stage.setTitle("House Of Pics");
-        stage.getIcons().add(new Image("file:main/resources/ec/edu/espol/util/imagenes/logo.png"));
+        stage.getIcons().add(new Image("file:main/resources/ec/edu/espol/util/imagenes/instagram.png"));
         stage.show();
     }
 

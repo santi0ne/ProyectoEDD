@@ -30,7 +30,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 #nombreFoto{
-    -fx-font-size: 15pt;
+    -fx-font-size: 11pt;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
