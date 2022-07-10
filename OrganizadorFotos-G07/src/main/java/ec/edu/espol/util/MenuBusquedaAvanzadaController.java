@@ -12,13 +12,16 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
+import java.util.Optional;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -31,6 +34,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.stage.StageStyle;
 import tdas.ArrayListG07;
 import tdas.CircularDoublyLinkedListG07;
 
@@ -56,6 +60,7 @@ public class MenuBusquedaAvanzadaController {
     private Foto fotoseleccionada = new Foto();
 
     private ArrayListG07<Foto> listaFotos = new ArrayListG07<Foto>();
+    private static ArrayListG07<Foto> listaFotosFiltradas = new ArrayListG07<Foto>();
 
     @FXML
     private RadioButton rbLugar;
@@ -116,20 +121,36 @@ public class MenuBusquedaAvanzadaController {
                 vboxfoto.getChildren().add(imgview);
                 galeria.getChildren().add(vboxfoto);
 
-                EventHandler eventHandler = (event) -> {
-                    lblNombre.setText("Nombre:\n" + foto.getNombre());
-                    lblFecha.setText("Fecha:\n" + foto.getFecha().toString());
-                    lblLugar.setText("Lugar:\n" + foto.getLugar());
-                    lblPersonas.setText("Personas:\n" + foto.toStringPersonas());
-                    lblDescripcion.setText("Descripcion:\n" + foto.getDescripcion());
-                    fotoseleccionada = foto;
-                };
 
-                vboxfoto.setOnMouseClicked(eventHandler);
+
+          
+                vboxfoto.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 1) {
+                        lblNombre.setText("Nombre:\n" + foto.getNombre());
+                        lblFecha.setText("Fecha:\n" + foto.getFecha().toString());
+                        lblLugar.setText("Lugar:\n" + foto.getLugar());
+                        lblPersonas.setText("Personas:\n" + foto.toStringPersonas());
+                        lblDescripcion.setText("Descripcion:\n" + foto.getDescripcion());
+                        fotoseleccionada = foto;
+                    }
+                    if (event.getClickCount() == 2) {
+                        try {
+                            App.setRoot("VistaPresentacionFotos");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
+
+                
+                
+                
+                
             }
 
         }
         System.out.println("Tenemos una lista Inicial de: " + listaFotos.size());
+        listaFotosFiltradas=listaFotos;
 
     }
 
@@ -152,7 +173,12 @@ public class MenuBusquedaAvanzadaController {
 
     @FXML
     public void buscarFotos() {
-
+        try {
+                listaFotosFiltradas = null;
+                } catch (NullPointerException ex) {
+                    listaFotosFiltradas = new ArrayListG07<Foto>();
+                }
+        
         ArrayListG07<Foto> listaFiltrada = null;
         if (rbTodos.isSelected()) {
             presentarTodasLasFotos();
@@ -160,21 +186,57 @@ public class MenuBusquedaAvanzadaController {
             limpiarGaleria();
             listaFiltrada = filtrarLugar(listaFotos, txtCriterio.getText());
             showFotos(listaFiltrada);
+            System.out.println("Tenemos actualmente: "+ listaFiltrada.size()+"FOTOS ENCONTRADAS");
+            if (listaFiltrada.size()==0) {
+                Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+                dialogo.setTitle("Resultado de Busqueda");
+                dialogo.setContentText("No hay resultados para mostrar!!");
+                dialogo.initStyle(StageStyle.UTILITY);
+                dialogo.showAndWait();
+            }
+            listaFotosFiltradas = listaFiltrada;
         } else if (rbFecha.isSelected() && !(rbLugar.isSelected()) && !(rbTodos.isSelected())) {
             limpiarGaleria();
             LocalDate d = dateCalendario.getValue();
             listaFiltrada = filtrarFecha(listaFotos, d);
             showFotos(listaFiltrada);
+            
+            if (listaFiltrada.size()==0) {
+                Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+                dialogo.setTitle("Resultado de Busqueda");
+                dialogo.setContentText("No hay resultados para mostrar!!");
+                dialogo.initStyle(StageStyle.UTILITY);
+                dialogo.showAndWait();
+            }
+            listaFotosFiltradas = listaFiltrada;
         } else if (rbFecha.isSelected() && rbLugar.isSelected()) {
             limpiarGaleria();
             listaFiltrada = filtrarLugar(listaFotos,txtCriterio.getText());
             LocalDate d = dateCalendario.getValue();
             listaFiltrada = filtrarFecha(listaFiltrada,d);
             showFotos(listaFiltrada);
+            
+            if (listaFiltrada.size()==0) {
+                Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+                dialogo.setTitle("Resultado de Busqueda");
+                dialogo.setContentText("No hay resultados para mostrar!!");
+                dialogo.initStyle(StageStyle.UTILITY);
+                dialogo.showAndWait();
+            }
+            listaFotosFiltradas = listaFiltrada;
         } else if(personasFiltro!=null && !(rbFecha.isSelected()) && !(rbLugar.isSelected()) && !(rbTodos.isSelected())){
             limpiarGaleria();
             listaFiltrada = filtrarPersona(listaFotos,personasFiltro);
-            showFotos(listaFiltrada);        
+            showFotos(listaFiltrada);
+            
+            if (listaFiltrada.size()==0) {
+                Alert dialogo = new Alert(Alert.AlertType.INFORMATION);
+                dialogo.setTitle("Resultado de Busqueda");
+                dialogo.setContentText("No hay resultados para mostrar!!");
+                dialogo.initStyle(StageStyle.UTILITY);
+                dialogo.showAndWait();
+            }
+            listaFotosFiltradas = listaFiltrada;
         }
     }
 
@@ -305,16 +367,23 @@ public class MenuBusquedaAvanzadaController {
             vboxfoto.getChildren().add(imgview);
             galeria.getChildren().add(vboxfoto);
 
-            EventHandler eventHandler = (event) -> {
-                lblNombre.setText("Nombre:\n" + f.getNombre());
-                lblFecha.setText("Fecha:\n" + f.getFecha().toString());
-                lblLugar.setText("Lugar:\n" + f.getLugar());
-                lblPersonas.setText("Personas:\n" + f.toStringPersonas());
-                lblDescripcion.setText("Descripcion:\n" + f.getDescripcion());
-                fotoseleccionada = f;
-            };
-
-            vboxfoto.setOnMouseClicked(eventHandler);
+            vboxfoto.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 1) {
+                        lblNombre.setText("Nombre:\n" + f.getNombre());
+                        lblFecha.setText("Fecha:\n" + f.getFecha().toString());
+                        lblLugar.setText("Lugar:\n" + f.getLugar());
+                        lblPersonas.setText("Personas:\n" + f.toStringPersonas());
+                        lblDescripcion.setText("Descripcion:\n" + f.getDescripcion());
+                        fotoseleccionada = f;
+                    }
+                    if (event.getClickCount() == 2) {
+                        try {
+                            App.setRoot("VistaPresentacionFotos");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
 
         }
 
@@ -384,8 +453,7 @@ public class MenuBusquedaAvanzadaController {
         }
     }
 
-    
-    
+        
     @FXML
     public void limpiarPersonasFiltro() {
         panePersonSelect.getChildren().clear();
@@ -398,6 +466,7 @@ public class MenuBusquedaAvanzadaController {
         lblDescripcion.setText("-");
   
         presentarTodasLasFotos();
+        listaFotosFiltradas = listaFotos;
          try {
                 personasFiltro = null;
                  System.out.println("Ahora hay :"+personasFiltro.size()+" Personas\n");
@@ -425,19 +494,29 @@ public class MenuBusquedaAvanzadaController {
             vboxfoto.getChildren().add(imgview);
             galeria.getChildren().add(vboxfoto);
 
-            EventHandler eventHandler = (event) -> {
-                lblNombre.setText("Nombre:\n" + f.getNombre());
-                lblFecha.setText("Fecha:\n" + f.getFecha().toString());
-                lblLugar.setText("Lugar:\n" + f.getLugar());
-                lblPersonas.setText("Personas:\n" + f.toStringPersonas());
-                lblDescripcion.setText("Descripcion:\n" + f.getDescripcion());
-                fotoseleccionada = f;
-            };
-
-            vboxfoto.setOnMouseClicked(eventHandler);
+             vboxfoto.setOnMouseClicked(event -> {
+                    if (event.getClickCount() == 1) {
+                        lblNombre.setText("Nombre:\n" + f.getNombre());
+                        lblFecha.setText("Fecha:\n" + f.getFecha().toString());
+                        lblLugar.setText("Lugar:\n" + f.getLugar());
+                        lblPersonas.setText("Personas:\n" + f.toStringPersonas());
+                        lblDescripcion.setText("Descripcion:\n" + f.getDescripcion());
+                        fotoseleccionada = f;
+                    }
+                    if (event.getClickCount() == 2) {
+                        try {
+                            App.setRoot("VistaPresentacionFotos");
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+                });
                 
         }
 
     }
-
+    
+    public static ArrayListG07<Foto> getListaFotosFiltradas(){
+        return listaFotosFiltradas;
+    }
 }
