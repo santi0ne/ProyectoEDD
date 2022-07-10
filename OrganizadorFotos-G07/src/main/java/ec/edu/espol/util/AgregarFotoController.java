@@ -54,7 +54,7 @@ public class AgregarFotoController {
     @FXML
     private ImageView imgSelecc;
     @FXML
-    private TextField nombreFoto;
+    private TextField nomFoto;
     @FXML
     private TextField descripcionFoto;
     @FXML
@@ -65,6 +65,8 @@ public class AgregarFotoController {
     private ComboBox<Persona> cbmPersonas;
     @FXML
     private FlowPane personasSeleccionadas;
+    @FXML
+    private ComboBox<Album> cmbAlbum;
     
     String ruta=null;
     File file=new File("");
@@ -76,6 +78,10 @@ public class AgregarFotoController {
     
     public void initialize(){
         
+        for(Album a:Biblioteca.getListaAlbumes()){
+            cmbAlbum.getItems().addAll(a);
+        }
+        
         
         if(esEdicion==true){
             btonBuscar.setDisable(true);
@@ -86,7 +92,7 @@ public class AgregarFotoController {
             Image image = new Image(file.toURI().toString());
             imgSelecc.setImage(image);
             
-            nombreFoto.setText(MenuAlbumesController.getFoto().getNombre());
+            nomFoto.setText(MenuAlbumesController.getFoto().getNombre());
             fechaFoto.setValue(MenuAlbumesController.getFoto().getFecha());
             lugarFoto.setText(MenuAlbumesController.getFoto().getLugar());
             descripcionFoto.setText(MenuAlbumesController.getFoto().getDescripcion());
@@ -158,7 +164,7 @@ public class AgregarFotoController {
         image = new Image(file.toURI().toString());
         
         imgSelecc.setImage(image);
-        nombreFoto.setText(file.getName());
+        nomFoto.setText(file.getName());
 }
     
     
@@ -168,8 +174,10 @@ public class AgregarFotoController {
         if(image==null){
             throw new AlbumException("No se ha seleccionado una foto");
         }
+        
+        Album albumDestino=cmbAlbum.getSelectionModel().getSelectedItem();
         Path path1=Paths.get(ruta);
-        Path path2=Paths.get("archivos//albumes//"+Biblioteca.getAlbumSelec().getNombre()+"//"+nombreFoto.getText());
+        Path path2=Paths.get("archivos//albumes//"+albumDestino.getNombre()+"//"+nomFoto.getText());
         
         ArrayListG07<Persona> listaPersonasFoto=new  ArrayListG07<Persona>();
         
@@ -177,9 +185,9 @@ public class AgregarFotoController {
             listaPersonasFoto.addLast(persona);
         }
         
-        Foto foto=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),listaPersonasFoto,image);
+        Foto foto=new Foto(nomFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),listaPersonasFoto,image);
         
-        Foto foto2=new Foto(nombreFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),listaPersonasFoto);
+        Foto foto2=new Foto(nomFoto.getText(),lugarFoto.getText(),descripcionFoto.getText(),fechaFoto.getValue(),listaPersonasFoto);
         
         if(foto.getNombre().equals("")){
             throw new AlbumException("Nombre vacío");
@@ -206,12 +214,12 @@ public class AgregarFotoController {
         Files.copy(path1, path2);
        
         
-        Album albumAgregar=new Album();
+        //Album albumAgregar=new Album();
   
         
-        Biblioteca.getAlbumSelec().aggFotosDelAlbum(foto);
-        Biblioteca.getAlbumSelec().aggFotosSinImage(foto2);
-        Foto.serializarFoto();
+        albumDestino.aggFotosDelAlbum(foto);
+        albumDestino.aggFotosSinImage(foto2);
+        Foto.serializarFoto(albumDestino);
         
         
         App.setRoot("MenuAlbumes");
@@ -245,12 +253,12 @@ public class AgregarFotoController {
         if(result.get()==ButtonType.OK){
             
         File fotoAnterior= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+foto.getNombre());
-        File fotoNueva= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nombreFoto.getText());
+        File fotoNueva= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nomFoto.getText());
         
         fotoAnterior.renameTo(fotoNueva);
         
-        foto.setNombre(nombreFoto.getText());
-        fotoSinImage.setNombre(nombreFoto.getText());
+        foto.setNombre(nomFoto.getText());
+        fotoSinImage.setNombre(nomFoto.getText());
         
         foto.setLugar(lugarFoto.getText());
         fotoSinImage.setLugar(lugarFoto.getText());
@@ -274,7 +282,7 @@ public class AgregarFotoController {
         if(foto.getDescripcion().equals("")){
             throw new AlbumException("Descripción vacía");
         }
-            Foto.serializarFoto();
+            Foto.serializarFoto(MenuAlbumesController.getAlbum());
             App.setRoot("MenuAlbumes");
         }
                        

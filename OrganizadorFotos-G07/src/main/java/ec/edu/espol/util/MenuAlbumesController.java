@@ -194,7 +194,7 @@ public class MenuAlbumesController {
         File borrar= new File("archivos/albumes/"+albumSeleccionado.getNombre()+"/"+fotoEliminar.getNombre());
         borrar.delete();
         try {
-            Foto.serializarFoto();
+            Foto.serializarFoto(MenuAlbumesController.getAlbum());
             App.setRoot("MenuAlbumes");
         } catch (IOException ex) {
             ex.printStackTrace();

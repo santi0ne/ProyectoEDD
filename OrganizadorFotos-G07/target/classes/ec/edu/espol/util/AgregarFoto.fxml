@@ -15,20 +15,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarFotoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarFotoController">
    <center>
-      <GridPane maxHeight="500.0" maxWidth="500.0" minWidth="400.0" prefHeight="300.0" prefWidth="464.0" BorderPane.alignment="CENTER">
+      <GridPane maxHeight="600.0" maxWidth="500.0" minWidth="400.0" prefHeight="300.0" prefWidth="464.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="89.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="94.0" minHeight="7.0" prefHeight="33.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="137.0" minHeight="10.0" prefHeight="44.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="236.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="128.0" minHeight="10.0" prefHeight="123.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="94.0" minHeight="7.0" prefHeight="43.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="148.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="236.0" minHeight="10.0" prefHeight="172.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="170.0" minHeight="10.0" prefHeight="53.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="199.0" minHeight="10.0" prefHeight="102.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Seleccionar archivo" />
@@ -36,7 +37,7 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Descripción" GridPane.rowIndex="5" />
             <HBox alignment="CENTER" prefHeight="107.0" prefWidth="300.0" GridPane.columnIndex="1">
                <children>
-                  <Button fx:id="btonBuscar" mnemonicParsing="false" onAction="#buscarFoto" text="Buscar">
+                  <Button fx:id="btonBuscar" minWidth="100.0" mnemonicParsing="false" onAction="#buscarFoto" text="Buscar">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -48,7 +49,6 @@
                   </ImageView>
                </children>
             </HBox>
-            <TextField fx:id="nombreFoto" promptText="Seleccionar imagen" styleClass="label-bright" stylesheets="@../css/InterfazCSS.css" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="descripcionFoto" prefHeight="81.0" prefWidth="250.0" promptText="Agregar descripción" GridPane.columnIndex="1" GridPane.rowIndex="5" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Lugar" GridPane.rowIndex="4" />
             <TextField fx:id="lugarFoto" promptText="Indicar lugar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
@@ -58,16 +58,17 @@
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <ComboBox fx:id="cbmPersonas" onAction="#comboboxEvents" prefWidth="150.0" styleClass="button" />
+                  <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label-bright" text="Seleccionar personas de la foto" />
                   <FlowPane fx:id="personasSeleccionadas" prefHeight="200.0" prefWidth="200.0">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
-                     <children>
-                        <Button alignment="CENTER" mnemonicParsing="false" text="Borrar Selección" />
-                     </children>
                   </FlowPane>
                </children>
             </VBox>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Seleccionar álbum" GridPane.rowIndex="6" />
+            <ComboBox fx:id="cmbAlbum" prefWidth="150.0" styleClass="button" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+            <TextField fx:id="nomFoto" promptText="Seleccionar foto" GridPane.columnIndex="1" GridPane.rowIndex="1" />
          </children>
       </GridPane>
    </center>

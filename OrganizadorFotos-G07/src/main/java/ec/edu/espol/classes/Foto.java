@@ -210,11 +210,11 @@ public class Foto implements Serializable{
     
     
   
-    public static void serializarFoto() throws IOException{
+    public static void serializarFoto(Album album) throws IOException{
             
             FileOutputStream fout= new FileOutputStream("archivos/albumes/"+Biblioteca.getAlbumSelec().getNombre()+"/infoFotos.ser");
             ObjectOutputStream out=new ObjectOutputStream(fout);
-            out.writeObject(Biblioteca.getAlbumSelec().getFotosSinImage());
+            out.writeObject(album.getFotosSinImage());
             out.flush();
             out.close();
             
