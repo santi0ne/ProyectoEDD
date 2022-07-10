@@ -112,8 +112,7 @@ public class AgregarFotoController {
             for(Persona persona:Persona.lecturaPersonas()){
                 cbmPersonas.getItems().addAll(persona);
             }
-            
-                    
+                           
             btonBuscar.setDisable(false);
             btonBuscar.setVisible(true);
             imgSelecc.imageProperty().set(null);
@@ -252,6 +251,9 @@ public class AgregarFotoController {
             
         if(result.get()==ButtonType.OK){
             
+            
+            
+            
         File fotoAnterior= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+foto.getNombre());
         File fotoNueva= new File("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nomFoto.getText());
         
@@ -265,6 +267,7 @@ public class AgregarFotoController {
         
         foto.setDescripcion(descripcionFoto.getText());
         fotoSinImage.setDescripcion(descripcionFoto.getText());
+        
         
         if(foto.getNombre().equals("")){
             throw new AlbumException("Nombre vacío");
@@ -282,8 +285,44 @@ public class AgregarFotoController {
         if(foto.getDescripcion().equals("")){
             throw new AlbumException("Descripción vacía");
         }
+            
+            if(cmbAlbum.getSelectionModel().getSelectedItem()!=null){
+               
+            Album al= new Album();
+                
+            for(Album a: Biblioteca.getListaAlbumes()){
+                if(a.equals(cmbAlbum.getSelectionModel().getSelectedItem())){
+                    al=a;
+                }
+            }
+            
+              
+            Path path1=Paths.get("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nomFoto.getText());
+            Path path2=Paths.get("archivos/albumes/"+al.getNombre()+"/"+nomFoto.getText());
+            Files.move(path1, path2);
+            
+            MenuAlbumesController.getAlbum().getFotosDelAlbum().remove(MenuAlbumesController.getAlbum().getFotosDelAlbum().indexOf(foto));
+            MenuAlbumesController.getAlbum().getFotosSinImage().remove(MenuAlbumesController.getAlbum().getFotosSinImage().indexOf(fotoSinImage));
+            
+            al.getFotosDelAlbum().addFirst(foto);
+            al.getFotosSinImage().addFirst(fotoSinImage);
+            
+            Foto.serializarFoto(MenuAlbumesController.getAlbum());
+            
+            Biblioteca.setAlbumSelec(al);
+            Foto.serializarFoto(al);
+            App.setRoot("MenuAlbumes");
+            
+           
+        }
+            
+        else{
             Foto.serializarFoto(MenuAlbumesController.getAlbum());
             App.setRoot("MenuAlbumes");
+            
+            }
+            
+            
         }
                        
         else{

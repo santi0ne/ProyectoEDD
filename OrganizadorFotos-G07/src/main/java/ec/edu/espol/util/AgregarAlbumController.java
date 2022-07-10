@@ -69,7 +69,7 @@ public class AgregarAlbumController {
         
         Biblioteca.getListaAlbumes().addLast(album);
         Biblioteca.setAlbumSelec(album);
-        //Foto.serializarFoto();
+        Foto.serializarFoto(album);
         album.escribirAlbum();
         
         

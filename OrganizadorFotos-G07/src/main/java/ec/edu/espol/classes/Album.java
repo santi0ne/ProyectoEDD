@@ -141,6 +141,7 @@ public class Album implements Serializable {
         
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes.txt",true))) {
+            sb.append("\r\n");
             sb.append(this.nombre).append(",");  
             sb.append(this.descripcion);
             bufferedW.write(sb.toString());
@@ -154,10 +155,15 @@ public class Album implements Serializable {
         
         StringBuilder sb = new StringBuilder();
         
+        
         for(Album a:Biblioteca.getListaAlbumes() ){
+            
+            if(Biblioteca.getListaAlbumes().indexOf(a)!=0){
+            sb.append("\r\n");}
             sb.append(a.nombre).append(",");  
             sb.append(a.descripcion);
-            sb.append("\r\n");
+            
+            
         }    
             
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes.txt"))) {
