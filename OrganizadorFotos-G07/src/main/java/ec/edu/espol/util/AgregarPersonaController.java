@@ -6,11 +6,14 @@
 package ec.edu.espol.util;
 
 import ec.edu.espol.classes.Persona;
+import static ec.edu.espol.util.AgregarAlbumController.mostrarAlerta;
+import exception.AlbumException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -106,6 +109,16 @@ public class AgregarPersonaController  {
     }
     
     public void agregarPersona() throws IOException{
+        
+        try{
+        
+        if(nombrePersona.getText().equals("")){
+            throw new AlbumException("Nombre vacío");
+        }
+        
+        if(apellidoPersona.getText().equals("")){
+            throw new AlbumException("Nombre vacío");
+        }
     
         Persona persona= new Persona(nombrePersona.getText(),apellidoPersona.getText());
         
@@ -113,10 +126,30 @@ public class AgregarPersonaController  {
         
         persona.escribirPersona();
         
+        Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Diálogo de información");
+        alert.setHeaderText("Resultado de la operación");
+        alert.setContentText("Se ha creado la persona exitosamente");
+        alert.showAndWait();
+        
         App.setRoot("MenuPrincipal");
+        
+        } catch (AlbumException ex) {
+            mostrarAlerta(Alert.AlertType.ERROR,ex.getMessage());
+        }
 }
     
     public void editarPersona(Persona personaEditar) throws IOException{
+        
+        try{
+        
+        if(nombrePersona.getText().equals("")){
+            throw new AlbumException("Nombre vacío");
+        }
+        
+        if(apellidoPersona.getText().equals("")){
+            throw new AlbumException("Nombre vacío");
+        }
         
         Persona personaEdicion=Persona.getPersonas().get(Persona.getPersonas().indexOf(personaEditar));
         
@@ -131,7 +164,17 @@ public class AgregarPersonaController  {
 
         personaEdicion.reescrituraPersona();
         
+        Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Diálogo de información");
+        alert.setHeaderText("Resultado de la operación");
+        alert.setContentText("Se ha editado la persona exitosamente");
+        alert.showAndWait();
+        
         App.setRoot("MenuPrincipal");
+        
+        } catch (AlbumException ex) {
+            mostrarAlerta(Alert.AlertType.ERROR,ex.getMessage());
+        }
     }
     
     public void eliminarPersona(Persona personaEliminar) throws IOException{
@@ -139,6 +182,12 @@ public class AgregarPersonaController  {
         Persona.getPersonas().remove(Persona.getPersonas().indexOf(personaEliminar));
 
         personaEliminar.reescrituraPersona();
+        
+        Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Diálogo de información");
+        alert.setHeaderText("Resultado de la operación");
+        alert.setContentText("Se ha eliminado la persona exitosamente");
+        alert.showAndWait();
         
         App.setRoot("MenuPrincipal");
     }
@@ -152,6 +201,14 @@ public class AgregarPersonaController  {
         apellidoPersona.setText(cmbPersonas.getSelectionModel().getSelectedItem().getApellido());
     }
     
+    public static void mostrarAlerta(Alert.AlertType tipo, String msj){
+        Alert alert= new Alert(tipo);
+        alert.setTitle("Diálogo de información");
+        alert.setHeaderText("Resultado de la operación");
+        alert.setContentText(msj);
+        alert.showAndWait();
+        
+    }
     @FXML
     public void cancelar() throws IOException{
         App.setRoot("MenuPrincipal");

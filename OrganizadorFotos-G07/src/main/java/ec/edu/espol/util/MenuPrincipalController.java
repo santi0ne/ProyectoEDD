@@ -180,10 +180,16 @@ public class MenuPrincipalController  {
         if(result.get()==ButtonType.OK){
 
             Biblioteca.getListaAlbumes().remove(Biblioteca.getListaAlbumes().indexOf(albumEliminar));
-            Album.borradoAlbum();
+            Album.reescrituraAlbum();
             
             FileUtils.deleteDirectory(new File("archivos/albumes/"+albumSeleccion.getNombre()));
-
+            
+            Alert alert= new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Diálogo de información");
+            alert.setHeaderText("Resultado de la operación");
+            alert.setContentText("Álbum borrado exitosamente");
+            alert.showAndWait();
+            
             App.setRoot("MenuPrincipal");
         }
         

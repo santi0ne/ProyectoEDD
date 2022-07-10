@@ -117,7 +117,6 @@ public class Album implements Serializable {
         try(BufferedReader bufferedReader= new BufferedReader(new FileReader ("archivos/albumes.txt"))){
 
             String linea;
-            bufferedReader.readLine();
             
             int i=0;
             
@@ -142,7 +141,6 @@ public class Album implements Serializable {
         
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes.txt",true))) {
-            sb.append("\r\n");
             sb.append(this.nombre).append(",");  
             sb.append(this.descripcion);
             bufferedW.write(sb.toString());
@@ -152,23 +150,22 @@ public class Album implements Serializable {
     }
    
    
-   public static void borradoAlbum() {
-        File archivo=new File("archivos/albumes.txt");
-        archivo.delete();
-        for(Album a:Biblioteca.getListaAlbumes()){
+   public static void reescrituraAlbum(){
+        
         StringBuilder sb = new StringBuilder();
-        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes.txt", true))) {
-            sb.append("nombreAlbum,descripcion");
-            sb.append("\r\n");
-            sb.append(a.nombre).append(","); 
+        
+        for(Album a:Biblioteca.getListaAlbumes() ){
+            sb.append(a.nombre).append(",");  
             sb.append(a.descripcion);
-            if(!(Biblioteca.getListaAlbumes().indexOf(a)==(Biblioteca.getListaAlbumes().size()-1))){
-            sb.append("\r\n");}
+            sb.append("\r\n");
+        }    
+            
+        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/albumes.txt"))) {
             bufferedW.write(sb.toString());
         } catch (IOException e) {
             System.out.println(e);
         }
-        }
+        
     }
     
 }

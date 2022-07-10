@@ -107,6 +107,7 @@ public class Persona implements Serializable {
         
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/personas.txt",true))) {
+            sb.append("\r\n");
             sb.append(this.nombre).append(",");  
             sb.append(this.apellido);
             bufferedW.write(sb.toString());
@@ -122,11 +123,7 @@ public class Persona implements Serializable {
         for(Persona p:Persona.getPersonas() ){
             sb.append(p.nombre).append(",");  
             sb.append(p.apellido);
-            System.out.println(Persona.getPersonas().indexOf(p)+" "+(Persona.getPersonas().size()-1));
-            //if(Persona.getPersonas().indexOf(p)!=(Persona.getPersonas().size()-1)){
-                
-                sb.append("\r\n");
-            //}
+            sb.append("\r\n");
         }    
             
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/personas.txt"))) {

@@ -76,7 +76,19 @@ public class MenuAlbumesController {
       
 
     public  void initialize() throws FileNotFoundException, IOException {
-        //Foto.serializarFoto();
+        if(Biblioteca.getAlbumSelec().getFotosDelAlbum().size()==1){
+            btnAnt.setDisable(true);
+            btnAnt.setVisible(false);
+            btnSig.setDisable(true);
+            btnSig.setVisible(false);    
+        }
+        
+        else{
+            btnAnt.setDisable(false);
+            btnAnt.setVisible(true);
+            btnSig.setDisable(false);
+            btnSig.setVisible(true);    
+        }
         cargarFotos(Biblioteca.getAlbumSelec());
     }
     
