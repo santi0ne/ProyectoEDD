@@ -12,24 +12,24 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
    <center>
-      <Pane prefHeight="532.0" prefWidth="612.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="532.0" prefWidth="612.0" styleClass="Pane" stylesheets="@../css/InterfazCSS.css" BorderPane.alignment="CENTER">
          <children>
             <SplitPane dividerPositions="0.19879518072289157" layoutX="14.0" layoutY="99.0" orientation="VERTICAL" prefHeight="334.0" prefWidth="448.0">
                <items>
-                  <Pane prefHeight="149.0" prefWidth="446.0">
+                  <Pane prefHeight="149.0" prefWidth="446.0" styleClass="split-pane-divider">
                      <children>
-                        <Label layoutX="161.0" layoutY="16.0" text="BIBLIOTECA">
+                        <Label id="lblTitulo" layoutX="161.0" layoutY="16.0" stylesheets="@../css/InterfazCSS.css" text="BIBLIOTECA">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <ScrollPane id="scrollBiblioteca" fx:id="scrollBiblioteca" prefHeight="239.0" prefWidth="446.0">
+                  <ScrollPane id="scrollBiblioteca" fx:id="scrollBiblioteca" prefHeight="239.0" prefWidth="446.0" stylesheets="@../css/InterfazCSS.css">
                      <content>
-                        <TilePane id="biblioteca" fx:id="biblioteca" prefHeight="262.0" prefWidth="448.0" />
+                        <TilePane id="biblioteca" fx:id="biblioteca" prefHeight="262.0" prefWidth="448.0" styleClass="split-pane" />
                      </content>
                   </ScrollPane>
                </items>
@@ -38,9 +38,9 @@
       </Pane>
    </center>
    <left>
-      <Pane prefHeight="311.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="PaneUsuario" prefHeight="311.0" prefWidth="150.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="55.0" layoutY="21.0" text="Usuario" />
+            <Label layoutX="55.0" layoutY="21.0" stylesheets="@../css/InterfazCSS.css" text="Usuario" />
          </children>
       </Pane>
    </left>
@@ -63,7 +63,7 @@
       </Pane>
    </bottom>
    <top>
-      <MenuBar prefHeight="25.0" prefWidth="613.0" BorderPane.alignment="CENTER">
+      <MenuBar prefHeight="25.0" prefWidth="613.0" styleClass="Menu" BorderPane.alignment="CENTER">
         <menus>
           <Menu mnemonicParsing="false" text="Opciones">
             <items>

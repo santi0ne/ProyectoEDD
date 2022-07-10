@@ -38,6 +38,9 @@ public class App extends Application {
         scene = new Scene(loadFXML("MenuPrincipal"), 800, 600);
         scene.getStylesheets().add("ec/edu/espol/css/InterfazCSS.css");
         stage.setScene(scene);
+        stage.setResizable(true);
+        stage.setTitle("House Of Pics");
+        stage.getIcons().add(new Image("file:main/resources/ec/edu/espol/util/imagenes/logo.png"));
         stage.show();
     }
 

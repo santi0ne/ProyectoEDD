@@ -8,17 +8,25 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 */
 .root{
     -fx-font-family: "Verdana";
-    -fx-background-color: #D0D3D4;
+    -fx-background-color: linear-gradient(to bottom right, #FF7F50, #6A5ACD);
 }
 
-.background {
-    -fx-background-color: #1d1d1d;
+.Pane {
+    -fx-background-color: linear-gradient(to bottom right, #FF7F50, #6A5ACD);
+}
+
+.split-pane{
+    -fx-background-color: linear-gradient(to bottom right, #FF7F50, #6A5ACD);
+}
+
+.split-pane-divider{
+    -fx-background-color: linear-gradient(to bottom right, #FF7F50, #6A5ACD);
 }
 
 .label {
     -fx-font-size: 11pt;
-    -fx-text-fill: black;
-    -fx-opacity: 0.6;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
 }
 
 .label-bright {
@@ -80,7 +88,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
 }
 
 .menu-bar {
-    -fx-background-color: derive(#2980B9,20%);
+    -fx-background-color: derive(#222,20%);
 }
 
 .context-menu {
