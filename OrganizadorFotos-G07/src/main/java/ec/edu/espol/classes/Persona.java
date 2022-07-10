@@ -61,7 +61,23 @@ public class Persona implements Serializable {
     
      @Override
     public boolean equals(Object obj) {
-        if (this == obj) {
+        Persona p = (Persona)obj;
+        if(obj!=null){
+            System.out.println("Entro a comparar");
+            String nameComplete = this.toString();
+            if(p.toString().equals(nameComplete)){
+                System.out.println("Persona fue igual");
+                return true;
+            }else{
+                System.out.println("Persona NO FUE igual");
+                return false;
+            }
+        }else{
+            return false;
+        }
+        
+        
+       /* if (this == obj) {
             return true;
         }
         if (obj == null) {
@@ -74,7 +90,7 @@ public class Persona implements Serializable {
         if (!Objects.equals(this.nombre, other.nombre)) {
             return false;
         }
-        return true;
+        return true;*/
     } 
     
     public static ArrayListG07<Persona> lecturaPersonas() {

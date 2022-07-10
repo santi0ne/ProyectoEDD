@@ -10,6 +10,7 @@ import ec.edu.espol.classes.Foto;
 import ec.edu.espol.classes.Persona;
 import java.io.File;
 import java.io.IOException;
+import java.io.InputStream;
 import java.time.LocalDate;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -27,6 +28,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import tdas.ArrayListG07;
@@ -51,18 +53,10 @@ public class MenuBusquedaAvanzadaController {
     private TextArea txtCriterio;
     @FXML
     private Button btnBuscar;
-
     private Foto fotoseleccionada = new Foto();
 
-    private ArrayListG07<Foto> listaFotos=new ArrayListG07<Foto>(); //= Foto.cargarAllFotos();
-    @FXML
-    private Label lblNombre;
-    @FXML
-    private Label lblFecha;
-    @FXML
-    private Label lblPersonas;
-    @FXML
-    private Label lblDescripcion;
+    private ArrayListG07<Foto> listaFotos = new ArrayListG07<Foto>();
+
     @FXML
     private RadioButton rbLugar;
     @FXML
@@ -70,39 +64,46 @@ public class MenuBusquedaAvanzadaController {
     @FXML
     private DatePicker dateCalendario;
     @FXML
-    
+
     private ComboBox<Persona> cbbPersonas;
 
-    private static ArrayListG07<Persona> personasFiltro=new ArrayListG07();
-    @FXML
-    private HBox hboxPersonas;
+    private static ArrayListG07<Persona> personasFiltro = new ArrayListG07();
     @FXML
     private Button btnClean;
     @FXML
     private RadioButton rbTodos;
+    @FXML
+    private Label lblNombre;
+    @FXML
+    private Label lblFecha;
+    @FXML
+    private Label lblLugar;
+    @FXML
+    private Label lblDescripcion;
+    @FXML
+    private Label lblPersonas;
+    @FXML
+    private TilePane panePersonSelect;
 
     /**
      * Initializes the controller class.
      */
     public void initialize() {
-         inicializarScroll();
-         cargarComboPersonas();
-        
-        ArrayListG07<Foto> listaFotos = new ArrayListG07<Foto>();
+        inicializarScroll();
+        cargarComboPersonas();
+        for (Album al : Biblioteca.getListaAlbumes()) {
 
-        for (Album al:Biblioteca.getListaAlbumes()) {
-            
-            CircularDoublyLinkedListG07<Foto> listFotos= Foto.lecturaSFotos(al);
+            CircularDoublyLinkedListG07<Foto> listFotos = Foto.lecturaSFotos(al);
 
-            for (int i=0;i<listFotos.size();i++) {
-                
-                Foto picture=listFotos.get(i);
-                
+            for (int i = 0; i < listFotos.size(); i++) {
+
+                Foto picture = listFotos.get(i);
+
                 File file1 = new File("archivos/albumes/" + al.getNombre() + "/" + picture.getNombre());
-                Image image = new Image(file1.toURI().toString(), 100, 100, true, true);
-                Foto foto = new Foto(picture.getNombre(),picture.getLugar(),picture.getDescripcion(),picture.getFecha(),picture.getPersonas(), image);
+                Image image = new Image(file1.toURI().toString(), 180, 180, true, true);
+                Foto foto = new Foto(picture.getNombre(), picture.getLugar(), picture.getDescripcion(), picture.getFecha(), picture.getPersonas(), image);
 
-                listaFotos.insert(listaFotos.size(), foto);
+                listaFotos.addLast(foto);
 
                 VBox vboxfoto = new VBox();
                 ImageView imgview = null;
@@ -114,36 +115,24 @@ public class MenuBusquedaAvanzadaController {
 
                 vboxfoto.getChildren().add(imgview);
                 galeria.getChildren().add(vboxfoto);
-                
-                
-                EventHandler eventHandler = (event)->{ 
-                lblNombre.setText(foto.getNombre());
-                lblFecha.setText("Fecha: "+foto.getDate().toString());
-                lblDescripcion.setText("Descripción: \n"+foto.getDescripcion());
-                
-                StringBuilder personas = new StringBuilder();
-                personas.append("Personas:  \n");
-                for(Persona p:foto.getPersonas()){
-                    personas.append(p.getNombre()).append(" ");  
-                    personas.append(p.getApellido()).append(" ");
-                    personas.append("\n");
-                }
-                
-                lblPersonas.setText(personas.toString());
-                fotoseleccionada= foto;
-            };
-            
-            vboxfoto.setOnMouseClicked(eventHandler);
+
+                EventHandler eventHandler = (event) -> {
+                    lblNombre.setText("Nombre:\n" + foto.getNombre());
+                    lblFecha.setText("Fecha:\n" + foto.getFecha().toString());
+                    lblLugar.setText("Lugar:\n" + foto.getLugar());
+                    lblPersonas.setText("Personas:\n" + foto.toStringPersonas());
+                    lblDescripcion.setText("Descripcion:\n" + foto.getDescripcion());
+                    fotoseleccionada = foto;
+                };
+
+                vboxfoto.setOnMouseClicked(eventHandler);
             }
-            
 
         }
-        
-        
+        System.out.println("Tenemos una lista Inicial de: " + listaFotos.size());
 
     }
 
-    
     @FXML
     public void RegresarMenu() throws IOException {
         limpiarGaleria();
@@ -165,35 +154,27 @@ public class MenuBusquedaAvanzadaController {
     public void buscarFotos() {
 
         ArrayListG07<Foto> listaFiltrada = null;
-
-        if (rbLugar.isSelected() && !(rbFecha.isSelected()) && (rbTodos.isSelected())) {
+        if (rbTodos.isSelected()) {
+            presentarTodasLasFotos();
+        } else if (rbLugar.isSelected() && !(rbFecha.isSelected()) && !(rbTodos.isSelected())) {
             limpiarGaleria();
             listaFiltrada = filtrarLugar(listaFotos, txtCriterio.getText());
             showFotos(listaFiltrada);
-        } else if (rbFecha.isSelected() && !(rbLugar.isSelected()) && (rbTodos.isSelected())) {
+        } else if (rbFecha.isSelected() && !(rbLugar.isSelected()) && !(rbTodos.isSelected())) {
             limpiarGaleria();
             LocalDate d = dateCalendario.getValue();
-            listaFiltrada = filtrarFecha(listaFotos,d);
+            listaFiltrada = filtrarFecha(listaFotos, d);
             showFotos(listaFiltrada);
-        } else if ((cbbPersonas.getValue()!=null)&&!(rbTodos.isSelected()) && !(rbFecha.isSelected()) && !(rbLugar.isSelected())) {
+        } else if (rbFecha.isSelected() && rbLugar.isSelected()) {
+            limpiarGaleria();
+            listaFiltrada = filtrarLugar(listaFotos,txtCriterio.getText());
+            LocalDate d = dateCalendario.getValue();
+            listaFiltrada = filtrarFecha(listaFiltrada,d);
+            showFotos(listaFiltrada);
+        } else if(personasFiltro!=null && !(rbFecha.isSelected()) && !(rbLugar.isSelected()) && !(rbTodos.isSelected())){
             limpiarGaleria();
             listaFiltrada = filtrarPersona(listaFotos,personasFiltro);
-            showFotos(listaFiltrada);
-        }else if((rbTodos.isSelected()) && !(rbFecha.isSelected()) && !(rbLugar.isSelected())){
-            limpiarGaleria();
-            showFotos(listaFotos);
-        } else{
-            LocalDate fecha = dateCalendario.getValue();
-            String lugar = txtCriterio.getText();
-            ArrayListG07<Persona> personas = personasFiltro;
-            
-            // En esta parte se debe filtrar poco a poco
-                listaFiltrada = filtrarLugar(listaFotos,lugar);
-                listaFiltrada = filtrarFecha(listaFiltrada,fecha);
-                listaFiltrada = filtrarPersona(listaFiltrada,personas);
-                showFotos(listaFiltrada);
-            
-        
+            showFotos(listaFiltrada);        
         }
     }
 
@@ -201,15 +182,24 @@ public class MenuBusquedaAvanzadaController {
         ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
 
         if (listaFotos.isEmpty()) {
-            //en esta parte se le debe poner una ventana de dialogo
-            System.out.println("No existen fotos para buscar, esta vacia");
             return listaFiltrada = null;
         } else {
-            for (int i = 0; i < listaFotos.size(); i++) {
-                if (lugar.toLowerCase().equals(listaFotos.get(i).getLugar().toLowerCase())) {
-                    listaFiltrada.addLast(listaFotos.get(i));
+            if(personasFiltro.isEmpty()){
+                for (int i = 0; i < listaFotos.size(); i++) {
+                    if (lugar.toLowerCase().equals(listaFotos.get(i).getLugar().toLowerCase())) {
+                        listaFiltrada.addLast(listaFotos.get(i));
+                    }
+                }
+            
+            }else{
+                listaFotos = filtrarPersona(listaFotos,personasFiltro);
+                for (int i = 0; i < listaFotos.size(); i++) {
+                    if (lugar.toLowerCase().equals(listaFotos.get(i).getLugar().toLowerCase())) {
+                        listaFiltrada.addLast(listaFotos.get(i));
+                    }
                 }
             }
+
 
         }
 
@@ -217,20 +207,28 @@ public class MenuBusquedaAvanzadaController {
 
     }
 
-    public ArrayListG07<Foto> filtrarFecha(ArrayListG07<Foto> listaFotos,LocalDate fecha) {
+    public ArrayListG07<Foto> filtrarFecha(ArrayListG07<Foto> listaFotos, LocalDate fecha) {
         ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
 
         if (listaFotos.isEmpty()) {
-            //en esta parte se le debe poner una ventana de dialogo
             System.out.println("No existen fotos para buscar, esta vacia");
             return listaFiltrada = null;
         } else {
-            for (int i = 0; i < listaFotos.size(); i++) {
-                if (fecha.equals(listaFotos.get(i).getFecha())) {
-                    listaFiltrada.addLast(listaFotos.get(i));
+            if (personasFiltro.isEmpty()) {
+                for (int i = 0; i < listaFotos.size(); i++) {
+                    if (fecha.equals(listaFotos.get(i).getFecha())) {
+                        listaFiltrada.addLast(listaFotos.get(i));
+                    }
+                }
+
+            } else {
+                listaFotos = filtrarPersona(listaFotos,personasFiltro);
+                for (int i = 0; i < listaFotos.size(); i++) {
+                    if (fecha.equals(listaFotos.get(i).getFecha())) {
+                        listaFiltrada.addLast(listaFotos.get(i));
+                    }
                 }
             }
-
         }
 
         return listaFiltrada;
@@ -240,37 +238,51 @@ public class MenuBusquedaAvanzadaController {
     public ArrayListG07<Foto> filtrarPersona(ArrayListG07<Foto> listaFotos, ArrayListG07<Persona> persona) {
 
         ArrayListG07<Foto> listaFiltrada = new ArrayListG07<Foto>();
-        boolean bandera=true;
+        boolean personasFound = true;
 
-        if (listaFotos.isEmpty()) {
-            //en esta parte se le debe poner una ventana de dialogo
-            System.out.println("No existen fotos para buscar, esta vacia");
-            return listaFiltrada = null;
-        } else {
+        if (personasFiltro != null) {
+            if (personasFiltro.size() == 1) {
+                for (Foto f : listaFotos) {
+                    for (Persona p : personasFiltro) {
+                        if (comparePersona(p, f)) {
+                            listaFiltrada.addLast(f);
+                        }
+                    }
 
-            for (int j = 0; j < listaFotos.size(); j++) {
-                for (int i = 0; i < persona.size(); i++) {
-                    if (!(comparePersona(persona.get(i), listaFotos.get(j)))) {
-                        bandera=false;
+                }
+
+            } else {
+                for(Foto f: listaFotos){
+                    for(int i=0;i<personasFiltro.size();i++){
+                        if(!(comparePersona(personasFiltro.get(i),f))){
+                            personasFound=false;
+                        }else{
+                            personasFound=true;
+                        }
+                    }
+                    if(personasFound){
+                        listaFiltrada.addLast(f);
                     }
                 }
-                if(bandera){
-                    listaFiltrada.addLast(listaFotos.get(j));
-                }
+                
             }
 
         }
+
         return listaFiltrada;
 
     }
 
     public boolean comparePersona(Persona persona, Foto f2) {
-        ArrayListG07<Persona> p = f2.getPersonas();
-        for (int i = 0; i < f2.numeroPersonas(); i++) {
-            if (persona.getNombre().toLowerCase().equals(p.get(i).getNombre().toLowerCase()) && persona.getApellido().toLowerCase().equals(p.get(i).getApellido().toLowerCase())) {
+      
+        for (Persona p : f2.getPersonas()) {
+            
+            if (persona.equals(p)) {
                 return true;
             }
+
         }
+
         return false;
     }
 
@@ -279,13 +291,11 @@ public class MenuBusquedaAvanzadaController {
     }
 
     public void showFotos(ArrayListG07<Foto> listaFiltrada) {
-
-        for (int i = 0; i < listaFiltrada.size(); i++) {
-            String url = listaFiltrada.get(i).getImage().getUrl();
-            Image image = new Image(url, 100, 100, true, true);
-            System.out.println("Se creo miniatura: " + listaFiltrada.get(i).getNombre());
+        for (Foto f : listaFiltrada) {
+            Image image = new Image(f.getImage().getUrl(), 180, 180, true, true);
             VBox vboxfoto = new VBox();
             ImageView imgview = null;
+
             try {
                 imgview = new ImageView(image);
             } catch (NullPointerException ex) {
@@ -294,46 +304,56 @@ public class MenuBusquedaAvanzadaController {
 
             vboxfoto.getChildren().add(imgview);
             galeria.getChildren().add(vboxfoto);
+
+            EventHandler eventHandler = (event) -> {
+                lblNombre.setText("Nombre:\n" + f.getNombre());
+                lblFecha.setText("Fecha:\n" + f.getFecha().toString());
+                lblLugar.setText("Lugar:\n" + f.getLugar());
+                lblPersonas.setText("Personas:\n" + f.toStringPersonas());
+                lblDescripcion.setText("Descripcion:\n" + f.getDescripcion());
+                fotoseleccionada = f;
+            };
+
+            vboxfoto.setOnMouseClicked(eventHandler);
+
         }
+
     }
 
     public void cargarComboPersonas() {
-        
-        ArrayListG07<Persona> lista=listaPersonasExistentes();
-        
-        for(Persona persona:lista){
+
+        ArrayListG07<Persona> lista = listaPersonasExistentes();
+
+        for (Persona persona : lista) {
             cbbPersonas.getItems().addAll(persona);
         }
 
     }
 
     public ArrayListG07<Persona> listaPersonasExistentes() {
-        
-        
-        ArrayListG07<Persona> listaPersonasTDA= Persona.lecturaPersonas();
-        
+
+        ArrayListG07<Persona> listaPersonasTDA = Persona.lecturaPersonas();
 
         return listaPersonasTDA;
     }
-        
+
     @FXML
     public void comboboxEvents(ActionEvent e) {
         Object evt = e.getSource();
         Persona persona = cbbPersonas.getSelectionModel().getSelectedItem();
-        
+
         if (evt.equals(cbbPersonas)) {
             Button nombre = new Button();
-            nombre.setText(persona.getNombre()+" "+persona.getApellido());
-            
+            nombre.setText(persona.getNombre() + " " + persona.getApellido());
+
             try {
                 if (personasFiltro == null) {
-                    hboxPersonas.getChildren().add(nombre);
+                    panePersonSelect.getChildren().add(nombre);
                     personasFiltro.addFirst(persona);
                 } else {
                     if (personasFiltro.contains(persona)) {
-                        System.out.println("YA EXISTE");
                     } else {
-                        hboxPersonas.getChildren().add(nombre);
+                        panePersonSelect.getChildren().add(nombre);
                         personasFiltro.addLast(persona);
                     }
                 }
@@ -344,14 +364,80 @@ public class MenuBusquedaAvanzadaController {
         }
 
     }
+
+    public void radioButtonTodosEvents(ActionEvent e) {
+        if (rbTodos.isSelected()) {
+            rbLugar.setSelected(false);
+            rbFecha.setSelected(false);
+        }
+    }
+
+    public void radioButtonLugarEvents(ActionEvent e) {
+        if (rbLugar.isSelected()) {
+            rbTodos.setSelected(false);
+        }
+    }
+
+    public void radioButtonFechaEvents(ActionEvent e) {
+        if (rbFecha.isSelected()) {
+            rbTodos.setSelected(false);
+        }
+    }
+
     
     
     @FXML
     public void limpiarPersonasFiltro() {
-        hboxPersonas.getChildren().clear();
-        personasFiltro = null;
+        panePersonSelect.getChildren().clear();
+        System.out.println("Habian :"+personasFiltro.size()+" Personas\n");
+        txtCriterio.clear();
+        lblNombre.setText("-");
+        lblFecha.setText("-");
+        lblLugar.setText("-");
+        lblPersonas.setText("-");
+        lblDescripcion.setText("-");
+  
+        presentarTodasLasFotos();
+         try {
+                personasFiltro = null;
+                 System.out.println("Ahora hay :"+personasFiltro.size()+" Personas\n");
+                } catch (NullPointerException ex) {
+                    personasFiltro = new ArrayListG07<Persona>();
+                    System.out.println("Ahora hay :"+personasFiltro.size()+" Personas\n");
+                }
+        
     }
-    
 
+    public void presentarTodasLasFotos() {
+        limpiarGaleria();
+
+        for (Foto f : listaFotos) {
+                Image image = new Image(f.getImage().getUrl(), 180, 180, true, true);
+                VBox vboxfoto = new VBox();
+                ImageView imgview = null;
+                
+                try {
+                    imgview = new ImageView(image);
+                } catch (NullPointerException ex) {
+                    imgview = new ImageView();
+                }
+                
+            vboxfoto.getChildren().add(imgview);
+            galeria.getChildren().add(vboxfoto);
+
+            EventHandler eventHandler = (event) -> {
+                lblNombre.setText("Nombre:\n" + f.getNombre());
+                lblFecha.setText("Fecha:\n" + f.getFecha().toString());
+                lblLugar.setText("Lugar:\n" + f.getLugar());
+                lblPersonas.setText("Personas:\n" + f.toStringPersonas());
+                lblDescripcion.setText("Descripcion:\n" + f.getDescripcion());
+                fotoseleccionada = f;
+            };
+
+            vboxfoto.setOnMouseClicked(eventHandler);
+                
+        }
+
+    }
 
 }

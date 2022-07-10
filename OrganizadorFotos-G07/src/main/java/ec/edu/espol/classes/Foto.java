@@ -164,6 +164,17 @@ public class Foto implements Serializable{
         
     }
     
+
+    public String toStringPersonas() {
+        
+        String listaPersonas="";
+        for(Persona p:personas){
+            listaPersonas=listaPersonas+p.nombre+" "+p.apellido+"\n";
+        }
+        return listaPersonas;
+        
+    }
+    
     
     
     public static void eliminarPersona(Persona p){
