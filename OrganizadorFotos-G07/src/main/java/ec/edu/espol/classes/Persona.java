@@ -29,6 +29,11 @@ public class Persona implements Serializable {
         this.nombre = nombre;
         this.apellido=apellido;
     }
+    
+    public Persona(Persona personaEdicion) {
+        nombre=personaEdicion.nombre;
+        apellido=personaEdicion.apellido;
+    }
 
     public String getNombre() {
         return nombre;
@@ -102,13 +107,34 @@ public class Persona implements Serializable {
         
         StringBuilder sb = new StringBuilder();
         try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/personas.txt",true))) {
-            sb.append("\r\n");
             sb.append(this.nombre).append(",");  
             sb.append(this.apellido);
             bufferedW.write(sb.toString());
         } catch (IOException e) {
             System.out.println(e);
         }
+    }
+    
+    public void reescrituraPersona(){
+        
+        StringBuilder sb = new StringBuilder();
+        
+        for(Persona p:Persona.getPersonas() ){
+            sb.append(p.nombre).append(",");  
+            sb.append(p.apellido);
+            System.out.println(Persona.getPersonas().indexOf(p)+" "+(Persona.getPersonas().size()-1));
+            //if(Persona.getPersonas().indexOf(p)!=(Persona.getPersonas().size()-1)){
+                
+                sb.append("\r\n");
+            //}
+        }    
+            
+        try (BufferedWriter bufferedW = new BufferedWriter(new FileWriter("archivos/personas.txt"))) {
+            bufferedW.write(sb.toString());
+        } catch (IOException e) {
+            System.out.println(e);
+        }
+        
     }
     
     public String toString(){

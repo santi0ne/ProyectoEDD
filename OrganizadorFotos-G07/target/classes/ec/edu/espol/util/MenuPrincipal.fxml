@@ -78,8 +78,8 @@
             <Menu mnemonicParsing="false" text="Personas">
               <items>
                 <MenuItem fx:id="aggPersona" mnemonicParsing="false" onAction="#crearPersona" text="Agregar persona" />
-                  <MenuItem fx:id="editarPersona" mnemonicParsing="false" text="Editar persona" />
-                  <MenuItem fx:id="eliminarPersona" mnemonicParsing="false" text="Eliminar persona" />
+                  <MenuItem fx:id="editarPersona" mnemonicParsing="false" onAction="#editarPersona" text="Editar persona" />
+                  <MenuItem fx:id="eliminarPersona" mnemonicParsing="false" onAction="#eliminarPersona" text="Eliminar persona" />
               </items>
             </Menu>
           <Menu mnemonicParsing="false" text="Acerca de...">

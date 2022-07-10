@@ -27,7 +27,7 @@
             <Text fx:id="labelPersona" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar persona" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de la persona" GridPane.rowIndex="1" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido de la persona" GridPane.rowIndex="2" />
-            <ComboBox fx:id="cmbPersonas" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <ComboBox fx:id="cmbPersonas" onAction="#comboEvents" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <TextField fx:id="nombrePersona" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="apellidoPersona" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>

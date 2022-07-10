@@ -195,6 +195,18 @@ public class MenuPrincipalController  {
         App.setRoot("AgregarPersona");
     }
     
+    @FXML
+    public void editarPersona() throws IOException{
+        AgregarPersonaController.setAccion("editar");
+        App.setRoot("AgregarPersona");
+    }
+    
+    @FXML
+    public void eliminarPersona() throws IOException{
+        AgregarPersonaController.setAccion("eliminar");
+        App.setRoot("AgregarPersona");
+    }
+    
     public static void mostrarAlerta(Alert.AlertType tipo, String msj){
         Alert alert= new Alert(tipo);
         alert.setTitle("Diálogo de información");
