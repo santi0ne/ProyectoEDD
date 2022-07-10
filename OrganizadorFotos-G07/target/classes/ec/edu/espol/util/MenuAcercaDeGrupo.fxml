@@ -10,25 +10,25 @@
 
 <AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAcercaDeGrupoController">
    <children>
-      <Pane prefHeight="600.0" prefWidth="800.0">
+      <Pane prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/InterfazCSS.css">
          <children>
-            <Label fx:id="lblTitulo" layoutX="285.0" layoutY="14.0" text="ACERCA DE NOSOTROS">
+            <Label fx:id="lblTitulo" layoutX="271.0" layoutY="21.0" styleClass="label-header" text="ACERCA DE NOSOTROS">
                <font>
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
             <Button id="btnRegresar" fx:id="btnRegresar" layoutX="648.0" layoutY="535.0" mnemonicParsing="false" onAction="#RegresarMenu" prefHeight="32.0" prefWidth="114.0" text="Regresar Menu" />
-            <Label fx:id="txtParrafo" layoutX="93.0" layoutY="46.0" prefHeight="151.0" prefWidth="615.0" text="Hola a todxs! Somos el grupo 7 de Estructuras de Datos. Nuestra aplicación consiste en un organizador de fotos que implemeta los TDAs listas aprendidos. Su base principal es la presentacion de las fotos con un comportamiento de recorrido circular, lo cual fue implementado con una lista circular doblemente enlazada. Espero que sea de su agrado! " wrapText="true">
+            <Label fx:id="txtParrafo" layoutX="93.0" layoutY="46.0" prefHeight="151.0" prefWidth="615.0" text="Hola a todxs! Somos el grupo 7 de Estructuras de Datos. Nuestra aplicación consiste en un organizador de fotos que implemeta los TDAs listas aprendidos. Su base principal es la presentacion de las fotos con un comportamiento de recorrido circular, lo cual fue implementado con una lista circular doblemente enlazada. Espero que sea de su agrado! " textAlignment="JUSTIFY" wrapText="true">
                <font>
                   <Font size="18.0" />
                </font>
             </Label>
-            <Label fx:id="lblDesarroladores" layoutX="334.0" layoutY="221.0" text="Desarrolladores">
+            <Label fx:id="lblDesarroladores" layoutX="311.0" layoutY="220.0" styleClass="label-header" text="Desarrolladores">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
-            <ImageView fx:id="imgSantiago" fitHeight="189.0" fitWidth="179.0" layoutX="67.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgSantiago" fitHeight="189.0" fitWidth="179.0" layoutX="55.0" layoutY="274.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../acercade/a1ce1423-7f69-4da0-b2ca-6af184e3bd22.jpg" />
                </image>
@@ -38,11 +38,11 @@
                   <Image url="@../acercade/ff5e72bd-0b4c-4d02-94a8-6e7ec12bd222.jpg" />
                </image>
             </ImageView>
-            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="79.0" layoutY="460.0" prefHeight="52.0" prefWidth="133.0" text="Johnny Santiago Rodriguez Salinas" textAlignment="CENTER" wrapText="true">
+            <Label alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="465.0" prefHeight="52.0" prefWidth="179.0" styleClass="table-view" text="Johnny Santiago Rodriguez Salinas" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font></Label>
-            <Label layoutX="351.0" layoutY="460.0" prefHeight="52.0" prefWidth="97.0" text="Guillermo Jose Arevalo Saltos" wrapText="true">
+            <Label alignment="CENTER" layoutX="317.0" layoutY="465.0" prefHeight="52.0" prefWidth="169.0" styleClass="table-view" text="Guillermo Jose Arevalo Saltos" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font></Label>
@@ -51,7 +51,7 @@
                   <Image url="@../acercade/011185d1-681f-4208-82a5-4fd91c5fd67d.jpg" />
                </image>
             </ImageView>
-            <Label layoutX="591.0" layoutY="470.0" prefHeight="42.0" prefWidth="114.0" text="Jefferson Andres Eras Lindao" textAlignment="CENTER" wrapText="true">
+            <Label layoutX="557.0" layoutY="465.0" prefHeight="52.0" prefWidth="189.0" styleClass="table-view" text="Jefferson Andres Eras Lindao" textAlignment="CENTER" wrapText="true">
                <font>
                   <Font size="14.0" />
                </font>

@@ -14,7 +14,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuPrincipalController">
    <center>
-      <Pane prefHeight="532.0" prefWidth="612.0" styleClass="Pane" stylesheets="@../css/InterfazCSS.css" BorderPane.alignment="CENTER">
+      <Pane prefHeight="513.0" prefWidth="632.0" styleClass="Pane" stylesheets="@../css/InterfazCSS.css" BorderPane.alignment="CENTER">
          <children>
             <SplitPane dividerPositions="0.19879518072289157" layoutX="14.0" layoutY="99.0" orientation="VERTICAL" prefHeight="334.0" prefWidth="448.0">
                <items>
@@ -47,7 +47,7 @@
    <bottom>
       <Pane prefHeight="43.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
-            <Button id="btnSalir" fx:id="btnSalir" layoutX="499.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="25.0" prefWidth="73.0" text="Salir">
+            <Button id="btnSalir" fx:id="btnSalir" layoutX="499.0" layoutY="6.0" mnemonicParsing="false" onAction="#Salir" prefHeight="33.0" prefWidth="109.0" text="Salir">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
