@@ -36,7 +36,7 @@
                <HBox.margin>
                   <Insets right="10.0" />
                </HBox.margin></Button>
-            <Button fx:id="crear" mnemonicParsing="false" onAction="#crearAlbum" text="Crear Álbum">
+            <Button fx:id="crear" mnemonicParsing="false" onAction="#crearAlbum" text="Guardar">
                <HBox.margin>
                   <Insets left="10.0" />
                </HBox.margin></Button>

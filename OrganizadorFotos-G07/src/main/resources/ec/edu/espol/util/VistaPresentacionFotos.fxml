@@ -8,16 +8,15 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="616.0" prefWidth="734.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/18" fx:controller="ec.edu.espol.util.VistaPresentacionFotosController">
+<AnchorPane id="AnchorPane" prefHeight="650.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.VistaPresentacionFotosController">
    <children>
       <SplitPane dividerPositions="0.1237785016286645" layoutX="-3.0" layoutY="-5.0" orientation="VERTICAL" prefHeight="616.0" prefWidth="734.0">
         <items>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="53.0" prefWidth="732.0">
                <children>
-                  <Pane prefHeight="73.0" prefWidth="734.0">
+                  <Pane prefHeight="74.0" prefWidth="809.0">
                      <children>
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="25.0" layoutY="14.0" prefHeight="31.0" prefWidth="702.0" text="PRESENTACION" textAlignment="CENTER">
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="54.0" layoutY="22.0" prefHeight="31.0" prefWidth="702.0" styleClass="table-view" text="PRESENTACION" textAlignment="CENTER">
                            <font>
                               <Font name="System Bold" size="21.0" />
                            </font>
@@ -28,14 +27,14 @@
             </AnchorPane>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                <children>
-                  <Pane id="paneFotoFiltro" fx:id="paneFotoFiltro" layoutX="3.0" prefHeight="461.0" prefWidth="732.0">
+                  <Pane id="paneFotoFiltro" fx:id="paneFotoFiltro" layoutX="3.0" prefHeight="462.0" prefWidth="800.0">
                      <children>
-                        <ImageView id="imageFoto" fx:id="imageFoto" fitHeight="441.0" fitWidth="525.0" layoutX="104.0" pickOnBounds="true" preserveRatio="true" />
-                        <Button id="btnAnterior" fx:id="btnAnterior" layoutX="252.0" layoutY="429.0" mnemonicParsing="false" onAction="#anteriorFoto" text="Anterior" />
-                        <Button id="btnSiguiente" fx:id="btnSiguiente" layoutX="452.0" layoutY="429.0" mnemonicParsing="false" onAction="#siguienteFoto" text="Siguiente" />
+                        <ImageView id="imageFoto" fx:id="imageFoto" fitHeight="441.0" fitWidth="525.0" layoutX="138.0" pickOnBounds="true" preserveRatio="true" />
+                        <Button id="btnAnterior" fx:id="btnAnterior" layoutX="138.0" layoutY="424.0" mnemonicParsing="false" onAction="#anteriorFoto" />
+                        <Button id="btnSiguiente" fx:id="btnSiguiente" layoutX="590.0" layoutY="424.0" mnemonicParsing="false" onAction="#siguienteFoto" />
                      </children>
                   </Pane>
-                  <Button id="btnSalir" fx:id="btnSalir" layoutX="489.0" layoutY="496.0" mnemonicParsing="false" onAction="#salirDePresentación" text="Salir de Presentacion" />
+                  <Button id="btnSalir" fx:id="btnSalir" layoutX="347.0" layoutY="488.0" mnemonicParsing="false" onAction="#salirDePresentación" text="Cancelar" />
                </children>
             </AnchorPane>
         </items>

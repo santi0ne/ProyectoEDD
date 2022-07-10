@@ -11,6 +11,7 @@ import ec.edu.espol.classes.Persona;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import javafx.collections.ObservableList;
@@ -96,6 +97,7 @@ public class MenuBusquedaAvanzadaController {
     public void initialize() {
         inicializarScroll();
         cargarComboPersonas();
+        colocarImagenBoton();
         for (Album al : Biblioteca.getListaAlbumes()) {
 
             CircularDoublyLinkedListG07<Foto> listFotos = Foto.lecturaSFotos(al);
@@ -434,6 +436,7 @@ public class MenuBusquedaAvanzadaController {
 
     }
 
+    @FXML
     public void radioButtonTodosEvents(ActionEvent e) {
         if (rbTodos.isSelected()) {
             rbLugar.setSelected(false);
@@ -441,12 +444,14 @@ public class MenuBusquedaAvanzadaController {
         }
     }
 
+    @FXML
     public void radioButtonLugarEvents(ActionEvent e) {
         if (rbLugar.isSelected()) {
             rbTodos.setSelected(false);
         }
     }
 
+    @FXML
     public void radioButtonFechaEvents(ActionEvent e) {
         if (rbFecha.isSelected()) {
             rbTodos.setSelected(false);
@@ -518,5 +523,19 @@ public class MenuBusquedaAvanzadaController {
     
     public static ArrayListG07<Foto> getListaFotosFiltradas(){
         return listaFotosFiltradas;
+    }
+    
+    public void colocarImagenBoton(){
+        URL linkBuscar = getClass().getResource("/ec/edu/espol/util/imágenes/buscar.png");
+        URL linkLimpiar = getClass().getResource("/ec/edu/espol/util/imágenes/reiniciar.png");
+        URL linkCancelar = getClass().getResource("/ec/edu/espol/util/imágenes/cancelar.png");
+        
+        Image imgBuscar = new Image(linkBuscar.toString(), 20, 20, false, true);
+        Image imgLimpiar = new Image(linkLimpiar.toString(), 20, 20, false, true);
+        Image imgCancel = new Image(linkCancelar.toString(), 20, 20, false, true);
+        
+        btnBuscar.setGraphic(new ImageView(imgBuscar));
+        btnClean.setGraphic(new ImageView(imgLimpiar));
+        btnRegresar.setGraphic(new ImageView(imgCancel));
     }
 }

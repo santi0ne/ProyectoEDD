@@ -49,6 +49,7 @@ public class VistaPresentacionFotosController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        colocarImagenBoton();
         listaFotosPresentacion = cargarFotosFiltradas();
         mostrarFotos();
     }
@@ -92,6 +93,20 @@ public class VistaPresentacionFotosController implements Initializable {
         Image image = new Image(fotoSeleccionada.getImage().getUrl());
         imageFoto.setImage(image);
         //nombreFotoSelec.setText(albumSeleccionado.getNombre()+"/"+fotoSeleccionada.getNombre());
+    }
+    
+    private void colocarImagenBoton(){
+        URL linkAntes = getClass().getResource("/ec/edu/espol/util/imágenes/anterior.png");
+        URL linkDespues = getClass().getResource("/ec/edu/espol/util/imágenes/siguiente-boton.png");
+        URL linkCerrar = getClass().getResource("/ec/edu/espol/util/imágenes/cancelar.png");
+        
+        Image imgAntes = new Image(linkAntes.toString(), 30, 30, false, true);
+        Image imgDespues = new Image(linkDespues.toString(), 30, 30, false, true);
+        Image imgCerrar = new Image(linkCerrar.toString(), 20, 20, false, true);
+        
+        btnAnterior.setGraphic(new ImageView(imgAntes));
+        btnSiguiente.setGraphic(new ImageView(imgDespues));
+        btnSalir.setGraphic(new ImageView(imgCerrar));
     }
     
 }

@@ -17,6 +17,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 /**
  * FXML Controller class
@@ -43,7 +45,7 @@ public class AgregarPersonaController  {
     
     
     public void initialize() {
-        
+        colocarImagenBoton();
         for(Persona persona:Persona.lecturaPersonas()){
                 cmbPersonas.getItems().addAll(persona);
             }
@@ -212,6 +214,17 @@ public class AgregarPersonaController  {
     @FXML
     public void cancelar() throws IOException{
         App.setRoot("MenuPrincipal");
+    }
+    
+    public void colocarImagenBoton(){
+        URL linkGuardar = getClass().getResource("/ec/edu/espol/util/imágenes/guardar.png");
+        URL linkCancel = getClass().getResource("/ec/edu/espol/util/imágenes/cancelar.png");
+        
+        Image imgGuardar = new Image(linkGuardar.toString(), 20,20, false, true);
+        Image imgCancelar = new Image(linkCancel.toString(), 20,20, false, true);
+        
+        btonGuardar.setGraphic(new ImageView(imgGuardar));
+        btonCancelar.setGraphic(new ImageView(imgCancelar));
     }
     
 }

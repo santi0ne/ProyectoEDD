@@ -20,7 +20,7 @@
          <bottom>
             <Pane prefHeight="61.0" prefWidth="734.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button id="btnRegresar" fx:id="btnRegresar" layoutX="561.0" layoutY="20.0" mnemonicParsing="false" onAction="#RegresarMenu" text="Regresar Menu" />
+                  <Button id="btnRegresar" fx:id="btnRegresar" layoutX="597.0" layoutY="14.0" mnemonicParsing="false" onAction="#RegresarMenu" text="Cancelar" />
                </children>
             </Pane>
          </bottom>
@@ -67,7 +67,7 @@
                         <RadioButton id="rbFecha" fx:id="rbFecha" layoutX="292.0" layoutY="17.0" mnemonicParsing="false" onAction="#radioButtonFechaEvents" styleClass="label" stylesheets="@../css/InterfazCSS.css" text="Fecha" />
                         <ComboBox id="cbbPersonas" fx:id="cbbPersonas" layoutX="382.0" layoutY="5.0" onAction="#comboboxEvents" prefHeight="25.0" prefWidth="150.0" styleClass="button" stylesheets="@../css/InterfazCSS.css" />
                         <Label layoutX="547.0" layoutY="17.0" text="Personas" />
-                        <RadioButton id="rbTodos" fx:id="rbTodos" layoutX="630.0" layoutY="19.0" mnemonicParsing="false" onAction="#radioButtonTodosEvents" text="Todos" />
+                        <RadioButton id="rbTodos" fx:id="rbTodos" layoutX="644.0" layoutY="16.0" mnemonicParsing="false" onAction="#radioButtonTodosEvents" styleClass="label" text="Todos" />
                      </children>
                   </Pane>
                   <Pane prefHeight="49.0" prefWidth="734.0" VBox.vgrow="ALWAYS">
@@ -77,20 +77,20 @@
                               <Font size="10.0" />
                            </font>
                         </Label>
-                        <TextArea id="txtCriterio" fx:id="txtCriterio" layoutX="206.0" layoutY="15.0" prefHeight="36.0" prefWidth="204.0" promptText="Ingrese Lugar " stylesheets="@../css/InterfazCSS.css" />
-                        <Button id="btnBuscar" fx:id="btnBuscar" layoutX="595.0" layoutY="15.0" mnemonicParsing="false" onAction="#buscarFotos" prefHeight="33.0" prefWidth="103.0" text="Buscar" />
-                        <DatePicker id="dateCalendario" fx:id="dateCalendario" layoutX="444.0" layoutY="17.0" prefHeight="25.0" prefWidth="145.0" promptText="Elegir Fecha" />
+                        <TextArea id="txtCriterio" fx:id="txtCriterio" layoutX="206.0" layoutY="15.0" prefHeight="36.0" prefWidth="144.0" promptText="Ingrese Lugar " stylesheets="@../css/InterfazCSS.css" />
+                        <Button id="btnBuscar" fx:id="btnBuscar" layoutX="577.0" layoutY="16.0" mnemonicParsing="false" onAction="#buscarFotos" prefHeight="33.0" prefWidth="135.0" text="Buscar" />
+                        <DatePicker id="dateCalendario" fx:id="dateCalendario" layoutX="386.0" layoutY="17.0" prefHeight="25.0" prefWidth="145.0" promptText="Elegir Fecha" />
                      </children>
                   </Pane>
-                  <Pane prefHeight="61.0" prefWidth="734.0">
+                  <Pane prefHeight="60.0" prefWidth="734.0">
                      <children>
-                        <Label layoutX="24.0" layoutY="8.0" styleClass="label-header" text="Personas:">
+                        <Label layoutX="21.0" layoutY="18.0" styleClass="label-header" text="Personas:">
                            <font>
                               <Font name="System Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button id="btnClean" fx:id="btnClean" layoutX="631.0" layoutY="14.0" mnemonicParsing="false" onAction="#limpiarPersonasFiltro" text="Limpiar" />
-                        <TilePane id="panePersonSelect" fx:id="panePersonSelect" layoutX="158.0" layoutY="-3.0" prefHeight="68.0" prefWidth="472.0" />
+                        <Button id="btnClean" fx:id="btnClean" layoutX="666.0" layoutY="13.0" mnemonicParsing="false" onAction="#limpiarPersonasFiltro" prefHeight="33.0" prefWidth="32.0" />
+                        <TilePane id="panePersonSelect" fx:id="panePersonSelect" layoutX="164.0" layoutY="-3.0" prefHeight="68.0" prefWidth="502.0" />
                      </children>
                   </Pane>
                </children>

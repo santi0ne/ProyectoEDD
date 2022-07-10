@@ -13,6 +13,7 @@ import exception.AlbumException;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -34,6 +35,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Text;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import tdas.ArrayListG07;
@@ -74,10 +76,12 @@ public class AgregarFotoController {
     ArrayListG07<Persona> listaPersonasSeleccionadas= new ArrayListG07<Persona>();
     
     private static boolean esEdicion=false;
+    @FXML
+    private Text labelAlbum;
     
     
     public void initialize(){
-        
+        colocarImagenBoton();
         for(Album a:Biblioteca.getListaAlbumes()){
             cmbAlbum.getItems().addAll(a);
         }
@@ -393,6 +397,21 @@ public class AgregarFotoController {
     @FXML
     public void cancelar() throws IOException{
         App.setRoot("MenuPrincipal");
+    }
+    
+    public void colocarImagenBoton(){
+        URL linkBuscar = getClass().getResource("/ec/edu/espol/util/imágenes/buscar.png");
+        URL linkGuardar = getClass().getResource("/ec/edu/espol/util/imágenes/guardar.png");
+        URL linkCancel = getClass().getResource("/ec/edu/espol/util/imágenes/cancelar.png");
+        
+        Image imgBuscar = new Image(linkBuscar.toString(), 20,20, false, true);
+        Image imgGuardar = new Image(linkGuardar.toString(), 20,20, false, true);
+        Image imgCancelar = new Image(linkCancel.toString(), 20,20, false, true);
+        
+        btonBuscar.setGraphic(new ImageView(imgBuscar));
+        btonGuardar.setGraphic(new ImageView(imgGuardar));
+        btonCancelar.setGraphic(new ImageView(imgCancelar));
+        
     }
 }
 

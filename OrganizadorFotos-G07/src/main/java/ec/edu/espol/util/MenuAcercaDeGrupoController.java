@@ -43,7 +43,7 @@ public class MenuAcercaDeGrupoController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
+        colocarImagenBoton();
     }    
     
    @FXML
@@ -51,5 +51,9 @@ public class MenuAcercaDeGrupoController implements Initializable {
          App.setRoot("MenuPrincipal");
     }
     
-    
+    public void colocarImagenBoton(){
+        URL linkHome = getClass().getResource("/ec/edu/espol/util/imágenes/casa.png");
+        Image imgHome = new Image(linkHome.toString(), 20,20, false, true);
+        btnRegresar.setGraphic(new ImageView(imgHome));
+    }
 }

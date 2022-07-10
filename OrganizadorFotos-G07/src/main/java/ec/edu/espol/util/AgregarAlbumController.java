@@ -21,6 +21,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import tdas.CircularDoublyLinkedListG07;
 
 /**
@@ -41,7 +43,7 @@ public class AgregarAlbumController {
 
    
     public void initialize() {
-        
+        colocarImagenBoton();
     }    
     
     @FXML
@@ -102,6 +104,17 @@ public class AgregarAlbumController {
     @FXML
     public void cancelar() throws IOException{
         App.setRoot("MenuPrincipal");
+    }
+    
+    public void colocarImagenBoton(){
+        URL linkCancel = getClass().getResource("/ec/edu/espol/util/imágenes/cancelar.png");
+        URL linkCrear = getClass().getResource("/ec/edu/espol/util/imágenes/guardar.png");
+        
+        Image imgCancelar = new Image(linkCancel.toString(), 20,20, false, true);
+        Image imgCrear = new Image(linkCrear.toString(), 20,20, false, true);
+        
+        cancelar.setGraphic(new ImageView(imgCancelar));
+        crear.setGraphic(new ImageView(imgCrear));
     }
     
 }

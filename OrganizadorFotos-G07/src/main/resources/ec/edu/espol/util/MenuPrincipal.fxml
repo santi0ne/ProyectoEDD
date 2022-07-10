@@ -55,7 +55,7 @@
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
-            <Button fx:id="crearAlbum" layoutX="338.0" layoutY="5.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum">
+            <Button fx:id="crearAlbum" layoutX="330.0" layoutY="6.0" mnemonicParsing="false" onAction="#crearAlbum" text="Crear álbum">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font></Button>
