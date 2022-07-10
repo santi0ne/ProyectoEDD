@@ -20,7 +20,7 @@
                <items>
                   <Pane prefHeight="149.0" prefWidth="446.0" styleClass="split-pane-divider">
                      <children>
-                        <Label id="lblTitulo" layoutX="161.0" layoutY="16.0" stylesheets="@../css/InterfazCSS.css" text="BIBLIOTECA">
+                        <Label id="lblTitulo" layoutX="161.0" layoutY="17.0" styleClass="table-view" stylesheets="@../css/InterfazCSS.css" text="BIBLIOTECA">
                            <font>
                               <Font name="System Bold" size="22.0" />
                            </font>
@@ -40,7 +40,7 @@
    <left>
       <Pane fx:id="PaneUsuario" prefHeight="311.0" prefWidth="150.0" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="55.0" layoutY="21.0" stylesheets="@../css/InterfazCSS.css" text="Usuario" />
+            <Label layoutX="32.0" layoutY="23.0" styleClass="label-header" stylesheets="@../css/InterfazCSS.css" text="Usuario" />
          </children>
       </Pane>
    </left>
