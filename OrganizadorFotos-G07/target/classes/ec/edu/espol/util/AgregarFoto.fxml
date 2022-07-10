@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarFotoController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="600.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarFotoController">
    <center>
       <GridPane maxHeight="500.0" maxWidth="500.0" minWidth="400.0" prefHeight="300.0" prefWidth="464.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -31,9 +31,9 @@
           <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="129.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar archivo" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de la foto" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Descripción" GridPane.rowIndex="5" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Seleccionar archivo" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Nombre de la foto" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Descripción" GridPane.rowIndex="5" />
             <HBox alignment="CENTER" prefHeight="107.0" prefWidth="300.0" GridPane.columnIndex="1">
                <children>
                   <Button fx:id="btonBuscar" mnemonicParsing="false" onAction="#buscarFoto" text="Buscar">
@@ -50,11 +50,11 @@
             </HBox>
             <TextField fx:id="nombreFoto" promptText="Seleccionar imagen" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="descripcionFoto" prefHeight="81.0" prefWidth="250.0" promptText="Agregar descripción" GridPane.columnIndex="1" GridPane.rowIndex="5" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Lugar" GridPane.rowIndex="4" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Lugar" GridPane.rowIndex="4" />
             <TextField fx:id="lugarFoto" promptText="Indicar lugar" GridPane.columnIndex="1" GridPane.rowIndex="4" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fecha" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Fecha" GridPane.rowIndex="2" />
             <DatePicker fx:id="fechaFoto" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Personas" GridPane.rowIndex="3" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Personas" GridPane.rowIndex="3" />
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <children>
                   <ComboBox fx:id="cbmPersonas" onAction="#comboboxEvents" prefWidth="150.0" />

@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="734.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuBusquedaAvanzadaController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="734.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuBusquedaAvanzadaController">
    <children>
       <BorderPane prefHeight="583.0" prefWidth="734.0">
          <bottom>
@@ -65,7 +65,7 @@
                <children>
                   <Pane prefHeight="51.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label layoutX="272.0" layoutY="13.0" text="GALERIA DE FOTOS">
+                        <Label layoutX="287.0" layoutY="14.0" text="GALERIA DE FOTOS">
                            <font>
                               <Font name="System Bold" size="20.0" />
                            </font>
@@ -74,39 +74,39 @@
                   </Pane>
                   <Pane prefHeight="56.0" prefWidth="600.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label layoutX="115.0" layoutY="11.0" text="Filtrar por :">
+                        <Label layoutX="54.0" layoutY="15.0" text="Filtrar por :">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <RadioButton id="rbLugar" fx:id="rbLugar" layoutX="231.0" layoutY="15.0" mnemonicParsing="false" text="Lugar" />
-                        <RadioButton id="rbFecha" fx:id="rbFecha" layoutX="310.0" layoutY="15.0" mnemonicParsing="false" text="Fecha" />
-                        <ComboBox id="cbbPersonas" fx:id="cbbPersonas" layoutX="389.0" layoutY="13.0" onAction="#comboboxEvents" prefWidth="150.0" />
+                        <RadioButton id="rbLugar" fx:id="rbLugar" layoutX="192.0" layoutY="16.0" mnemonicParsing="false" styleClass="label" stylesheets="@../css/InterfazCSS.css" text="Lugar" />
+                        <RadioButton id="rbFecha" fx:id="rbFecha" layoutX="292.0" layoutY="17.0" mnemonicParsing="false" styleClass="label" stylesheets="@../css/InterfazCSS.css" text="Fecha" />
+                        <ComboBox id="cbbPersonas" fx:id="cbbPersonas" layoutX="382.0" layoutY="5.0" onAction="#comboboxEvents" prefWidth="150.0" styleClass="button" stylesheets="@../css/InterfazCSS.css" />
                         <Label layoutX="547.0" layoutY="17.0" text="Personas" />
-                        <RadioButton id="rbTodos" fx:id="rbTodos" layoutX="612.0" layoutY="18.0" mnemonicParsing="false" text="Todos" />
+                        <RadioButton id="rbTodos" fx:id="rbTodos" layoutX="630.0" layoutY="19.0" mnemonicParsing="false" text="Todos" />
                      </children>
                   </Pane>
                   <Pane prefHeight="49.0" prefWidth="734.0" VBox.vgrow="ALWAYS">
                      <children>
-                        <Label layoutX="125.0" layoutY="9.0" text="Ingresar lugar">
+                        <Label layoutX="40.0" layoutY="11.0" text="Ingresar lugar">
                            <font>
                               <Font size="14.0" />
                            </font>
                         </Label>
-                        <TextArea id="txtCriterio" fx:id="txtCriterio" layoutX="221.0" layoutY="3.0" prefHeight="38.0" prefWidth="208.0" promptText="Ingrese Lugar " />
-                        <Button id="btnBuscar" fx:id="btnBuscar" layoutX="602.0" layoutY="6.0" mnemonicParsing="false" onAction="#buscarFotos" prefHeight="30.0" prefWidth="67.0" text="Buscar" />
+                        <TextArea id="txtCriterio" fx:id="txtCriterio" layoutX="206.0" layoutY="4.0" prefHeight="36.0" prefWidth="204.0" promptText="Ingrese Lugar " stylesheets="@../css/InterfazCSS.css" />
+                        <Button id="btnBuscar" fx:id="btnBuscar" layoutX="631.0" layoutY="5.0" mnemonicParsing="false" onAction="#buscarFotos" prefHeight="30.0" prefWidth="67.0" text="Buscar" />
                         <DatePicker id="dateCalendario" fx:id="dateCalendario" layoutX="444.0" layoutY="7.0" prefHeight="25.0" prefWidth="145.0" promptText="Elegir Fecha" />
                      </children>
                   </Pane>
                   <Pane prefHeight="46.0" prefWidth="727.0">
                      <children>
                         <HBox id="hboxPersonas" fx:id="hboxPersonas" layoutX="159.0" layoutY="1.0" prefHeight="38.0" prefWidth="477.0" />
-                        <Label layoutX="85.0" layoutY="9.0" text="Personas:">
+                        <Label layoutX="51.0" layoutY="11.0" text="Personas:">
                            <font>
                               <Font name="System Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button id="btnClean" fx:id="btnClean" layoutX="683.0" layoutY="9.0" mnemonicParsing="false" onAction="#limpiarPersonasFiltro" text="clean" />
+                        <Button id="btnClean" fx:id="btnClean" layoutX="625.0" layoutY="4.0" mnemonicParsing="false" onAction="#limpiarPersonasFiltro" text="clean" />
                      </children>
                   </Pane>
                </children>
@@ -115,7 +115,7 @@
          <center>
             <ScrollPane id="scrollPane" fx:id="scrollPane" prefHeight="255.0" prefWidth="564.0" BorderPane.alignment="CENTER">
                <content>
-                  <TilePane id="galeria" fx:id="galeria" alignment="CENTER" prefHeight="382.0" prefWidth="560.0" />
+                  <TilePane id="galeria" fx:id="galeria" alignment="CENTER" prefHeight="382.0" prefWidth="560.0" styleClass="Pane" stylesheets="@../css/InterfazCSS.css" />
                </content>
             </ScrollPane>
          </center>

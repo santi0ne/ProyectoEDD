@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarPersonaController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.AgregarPersonaController">
    <center>
       <GridPane maxHeight="300.0" maxWidth="500.0" prefWidth="500.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -19,18 +19,21 @@
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>
-          <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="135.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="225.0" minHeight="10.0" prefHeight="136.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="129.0" minHeight="10.0" prefHeight="92.79998779296875" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="230.0" minHeight="10.0" prefHeight="96.60001220703124" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="225.0" minHeight="10.0" prefHeight="110.99998779296874" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Text fx:id="labelPersona" strokeType="OUTSIDE" strokeWidth="0.0" text="Seleccionar persona" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de la persona" GridPane.rowIndex="1" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Apellido de la persona" GridPane.rowIndex="2" />
-            <ComboBox fx:id="cmbPersonas" onAction="#comboEvents" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+            <Text fx:id="labelPersona" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Seleccionar persona" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Nombre de la persona" GridPane.rowIndex="1" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="label" text="Apellido de la persona" GridPane.rowIndex="2" />
+            <ComboBox fx:id="cmbPersonas" onAction="#comboEvents" prefWidth="150.0" styleClass="button" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
             <TextField fx:id="nombrePersona" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <TextField fx:id="apellidoPersona" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
       </GridPane>
    </center>
    <bottom>

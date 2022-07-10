@@ -29,6 +29,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/CascadeStyleSheet.css to ed
     -fx-font-weight: bold;
 }
 
+#nombreFoto{
+    -fx-font-size: 15pt;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
 .label-bright {
     -fx-font-size: 11pt;
     -fx-text-fill: white;
