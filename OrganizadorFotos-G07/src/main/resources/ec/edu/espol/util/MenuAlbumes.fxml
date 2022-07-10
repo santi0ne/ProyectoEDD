@@ -10,20 +10,19 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAlbumesController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="400.0" minWidth="600.0" prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAlbumesController">
    <top>
       <MenuBar fx:id="menuBar" BorderPane.alignment="CENTER">
         <menus>
           <Menu fx:id="menuArchivos" mnemonicParsing="false" text="Archivos">
             <items>
-              <MenuItem fx:id="itemAggAlbum" mnemonicParsing="false" onAction="#crearAlbum" text="Agregar Álbum" />
-                  <MenuItem fx:id="itemAggFotos" mnemonicParsing="false" onAction="#agregarFoto" text="Agregar Fotos" />
+              <MenuItem fx:id="itemAggAlbum" mnemonicParsing="false" onAction="#crearAlbum" text="Agregar álbum" />
+                  <MenuItem fx:id="itemAggFotos" mnemonicParsing="false" onAction="#agregarFoto" text="Agregar fotos" />
             </items>
           </Menu>
           <Menu fx:id="menuArchivos" mnemonicParsing="false" text="Editar">
             <items>
-              <MenuItem fx:id="itemEdFoto" mnemonicParsing="false" onAction="#editarFoto" text="Editar Foto" />
-                  <MenuItem fx:id="itemEdAlbum" mnemonicParsing="false" text="Editar Álbum" />
+              <MenuItem fx:id="itemEdFoto" mnemonicParsing="false" onAction="#editarFoto" text="Editar foto" />
             </items>
           </Menu>
         </menus>

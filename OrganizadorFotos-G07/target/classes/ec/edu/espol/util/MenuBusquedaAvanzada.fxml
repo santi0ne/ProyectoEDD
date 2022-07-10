@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="734.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuBusquedaAvanzadaController">
+<AnchorPane id="AnchorPane" prefHeight="583.0" prefWidth="734.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuBusquedaAvanzadaController">
    <children>
       <BorderPane prefHeight="583.0" prefWidth="734.0">
          <bottom>
@@ -45,12 +45,12 @@
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label id="lblPersonas" fx:id="lblPersonas" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="161.0" text="-" textAlignment="CENTER">
+                        <Label id="lblPersonas" fx:id="lblDescripcion" alignment="CENTER" contentDisplay="CENTER" prefHeight="78.0" prefWidth="161.0" text="-" textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
-                        <Label id="lblDescripcion" fx:id="lblDescripcion" alignment="CENTER" contentDisplay="CENTER" prefHeight="17.0" prefWidth="161.0" text="-" textAlignment="CENTER">
+                        <Label id="lblDescripcion" fx:id="lblPersonas" alignment="CENTER" contentDisplay="CENTER" prefHeight="109.0" prefWidth="161.0" text="-" textAlignment="CENTER">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -94,19 +94,19 @@
                            </font>
                         </Label>
                         <TextArea id="txtCriterio" fx:id="txtCriterio" layoutX="206.0" layoutY="4.0" prefHeight="36.0" prefWidth="204.0" promptText="Ingrese Lugar " stylesheets="@../css/InterfazCSS.css" />
-                        <Button id="btnBuscar" fx:id="btnBuscar" layoutX="631.0" layoutY="5.0" mnemonicParsing="false" onAction="#buscarFotos" prefHeight="30.0" prefWidth="67.0" text="Buscar" />
+                        <Button id="btnBuscar" fx:id="btnBuscar" layoutX="595.0" layoutY="5.0" mnemonicParsing="false" onAction="#buscarFotos" prefHeight="33.0" prefWidth="103.0" text="Buscar" />
                         <DatePicker id="dateCalendario" fx:id="dateCalendario" layoutX="444.0" layoutY="7.0" prefHeight="25.0" prefWidth="145.0" promptText="Elegir Fecha" />
                      </children>
                   </Pane>
                   <Pane prefHeight="46.0" prefWidth="727.0">
                      <children>
-                        <HBox id="hboxPersonas" fx:id="hboxPersonas" layoutX="159.0" layoutY="1.0" prefHeight="38.0" prefWidth="477.0" />
+                        <HBox id="hboxPersonas" fx:id="hboxPersonas" layoutX="159.0" layoutY="1.0" prefHeight="38.0" prefWidth="431.0" />
                         <Label layoutX="31.0" layoutY="8.0" styleClass="label-header" text="Personas:">
                            <font>
                               <Font name="System Italic" size="16.0" />
                            </font>
                         </Label>
-                        <Button id="btnClean" fx:id="btnClean" layoutX="625.0" layoutY="4.0" mnemonicParsing="false" onAction="#limpiarPersonasFiltro" text="Clean" />
+                        <Button id="btnClean" fx:id="btnClean" layoutX="598.0" layoutY="4.0" mnemonicParsing="false" onAction="#limpiarPersonasFiltro" text="Limpiar" />
                      </children>
                   </Pane>
                </children>

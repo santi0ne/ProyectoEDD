@@ -152,9 +152,16 @@ public class Foto implements Serializable{
 
     @Override
     public String toString() {
+        
+        String listaPersonas="";
+        for(Persona p:personas){
+            listaPersonas=listaPersonas+p.nombre+" "+p.apellido+"\n";
+        }
         return "descripcion = " + descripcion + "\n"
                + "lugar = " + lugar + "\n"
-                + "fecha = " + fecha;
+               + "fecha = " + fecha + "\n"
+               + "personas= "+ "\n"+ listaPersonas;
+        
     }
     
     

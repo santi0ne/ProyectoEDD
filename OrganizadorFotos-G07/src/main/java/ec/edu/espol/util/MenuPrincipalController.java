@@ -83,6 +83,7 @@ public class MenuPrincipalController  {
         for(Album al: Biblioteca.getListaAlbumes()){
             
             Album album=al;
+            
 
             VBox vboxalbum = new VBox();
             ImageView imgview = null;
@@ -95,6 +96,8 @@ public class MenuPrincipalController  {
                 //no hay la imagen buscada
                 imgview = new ImageView();
             } 
+            
+            
             
             vboxalbum.getChildren().add(imgview);
             vboxalbum.getChildren().add(new Label(album.getNombre()));
@@ -163,6 +166,12 @@ public class MenuPrincipalController  {
     @FXML
     public void crearAlbum() throws IOException{
         App.setRoot("AgregarAlbum");
+    }
+    
+    @FXML
+    public void agregarFoto() throws IOException{
+        AgregarFotoController.setEsEdicion(false);
+        App.setRoot("AgregarFoto");
     }
     
     

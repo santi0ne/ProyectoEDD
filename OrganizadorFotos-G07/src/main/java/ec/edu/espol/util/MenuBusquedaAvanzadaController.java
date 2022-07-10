@@ -119,12 +119,14 @@ public class MenuBusquedaAvanzadaController {
                 EventHandler eventHandler = (event)->{ 
                 lblNombre.setText(foto.getNombre());
                 lblFecha.setText("Fecha: "+foto.getDate().toString());
-                lblDescripcion.setText("Descripción: "+foto.getDescripcion());
+                lblDescripcion.setText("Descripción: \n"+foto.getDescripcion());
                 
                 StringBuilder personas = new StringBuilder();
+                personas.append("Personas:  \n");
                 for(Persona p:foto.getPersonas()){
                     personas.append(p.getNombre()).append(" ");  
                     personas.append(p.getApellido()).append(" ");
+                    personas.append("\n");
                 }
                 
                 lblPersonas.setText(personas.toString());

@@ -1,2 +1,6 @@
 Album familiar,Fotos de la familia
-hola,hola
+Paseo Playa 2022,Fotos del paseo a la playa
+Mascotas,Fotos de mascotas
+Paseo campo,Fotos del paseo al campo
+Paseos familiares,Fotos de varios paseos
+Boda 2022,Boda de los tíos

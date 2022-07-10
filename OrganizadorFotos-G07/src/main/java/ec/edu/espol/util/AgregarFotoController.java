@@ -175,6 +175,10 @@ public class AgregarFotoController {
         }
         
         Album albumDestino=cmbAlbum.getSelectionModel().getSelectedItem();
+        
+        if(albumDestino==null){
+            throw new AlbumException("No se ha seleccionado un álbum");
+        }
         Path path1=Paths.get(ruta);
         Path path2=Paths.get("archivos//albumes//"+albumDestino.getNombre()+"//"+nomFoto.getText());
         
@@ -287,31 +291,40 @@ public class AgregarFotoController {
         }
             
             if(cmbAlbum.getSelectionModel().getSelectedItem()!=null){
-               
-            Album al= new Album();
                 
-            for(Album a: Biblioteca.getListaAlbumes()){
-                if(a.equals(cmbAlbum.getSelectionModel().getSelectedItem())){
-                    al=a;
+            Alert alerta2= new Alert(Alert.AlertType.CONFIRMATION);
+            alerta2.setTitle("Diálogo de información");
+            alerta2.setHeaderText("Confirmación de edición");
+            alerta2.setContentText("Mover imagen a "+cmbAlbum.getSelectionModel().getSelectedItem().getNombre()+"?");
+            Optional<ButtonType> result2=alerta2.showAndWait();
+            
+            if(result2.get()==ButtonType.OK){
+               
+                Album al= new Album();
+                
+                for(Album a: Biblioteca.getListaAlbumes()){
+                    if(a.equals(cmbAlbum.getSelectionModel().getSelectedItem())){
+                        al=a;
+                    }
                 }
-            }
             
               
-            Path path1=Paths.get("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nomFoto.getText());
-            Path path2=Paths.get("archivos/albumes/"+al.getNombre()+"/"+nomFoto.getText());
-            Files.move(path1, path2);
+                Path path1=Paths.get("archivos/albumes/"+MenuAlbumesController.getAlbum().getNombre()+"/"+nomFoto.getText());
+                Path path2=Paths.get("archivos/albumes/"+al.getNombre()+"/"+nomFoto.getText());
+                Files.move(path1, path2);
             
-            MenuAlbumesController.getAlbum().getFotosDelAlbum().remove(MenuAlbumesController.getAlbum().getFotosDelAlbum().indexOf(foto));
-            MenuAlbumesController.getAlbum().getFotosSinImage().remove(MenuAlbumesController.getAlbum().getFotosSinImage().indexOf(fotoSinImage));
+                MenuAlbumesController.getAlbum().getFotosDelAlbum().remove(MenuAlbumesController.getAlbum().getFotosDelAlbum().indexOf(foto));
+                MenuAlbumesController.getAlbum().getFotosSinImage().remove(MenuAlbumesController.getAlbum().getFotosSinImage().indexOf(fotoSinImage));
             
-            al.getFotosDelAlbum().addFirst(foto);
-            al.getFotosSinImage().addFirst(fotoSinImage);
+                al.getFotosDelAlbum().addFirst(foto);
+                al.getFotosSinImage().addFirst(fotoSinImage);
             
-            Foto.serializarFoto(MenuAlbumesController.getAlbum());
+                Foto.serializarFoto(MenuAlbumesController.getAlbum());
             
-            Biblioteca.setAlbumSelec(al);
-            Foto.serializarFoto(al);
-            App.setRoot("MenuAlbumes");
+                Biblioteca.setAlbumSelec(al);
+                Foto.serializarFoto(al);
+                App.setRoot("MenuPrincipal");
+             }
             
            
         }
@@ -379,7 +392,7 @@ public class AgregarFotoController {
     
     @FXML
     public void cancelar() throws IOException{
-        App.setRoot("MenuAlbumes");
+        App.setRoot("MenuPrincipal");
     }
 }
 

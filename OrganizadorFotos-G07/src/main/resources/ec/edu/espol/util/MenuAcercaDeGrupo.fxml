@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAcercaDeGrupoController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/InterfazCSS.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ec.edu.espol.util.MenuAcercaDeGrupoController">
    <children>
       <Pane prefHeight="600.0" prefWidth="800.0" styleClass="root" stylesheets="@../css/InterfazCSS.css">
          <children>
@@ -17,7 +17,7 @@
                   <Font name="System Bold" size="22.0" />
                </font>
             </Label>
-            <Button id="btnRegresar" fx:id="btnRegresar" layoutX="648.0" layoutY="535.0" mnemonicParsing="false" onAction="#RegresarMenu" prefHeight="32.0" prefWidth="114.0" text="Regresar Menu" />
+            <Button id="btnRegresar" fx:id="btnRegresar" layoutX="577.0" layoutY="537.0" mnemonicParsing="false" onAction="#RegresarMenu" prefHeight="33.0" prefWidth="169.0" text="Regresar Menu" />
             <Label fx:id="txtParrafo" layoutX="93.0" layoutY="46.0" prefHeight="151.0" prefWidth="615.0" text="Hola a todxs! Somos el grupo 7 de Estructuras de Datos. Nuestra aplicación consiste en un organizador de fotos que implemeta los TDAs listas aprendidos. Su base principal es la presentacion de las fotos con un comportamiento de recorrido circular, lo cual fue implementado con una lista circular doblemente enlazada. Espero que sea de su agrado! " textAlignment="JUSTIFY" wrapText="true">
                <font>
                   <Font size="18.0" />

@@ -84,7 +84,7 @@ public class ArrayListG07<E> implements ListG07<E>,Iterable<E>,Serializable {
         capacidad = capacidad*2;    
         E[] arreglo2 = (E[]) new Object[capacidad];
         
-        for(int i=0; i<=tam;i++){
+        for(int i=0; i<tam;i++){
             arreglo2[i] = arreglo[i];
         }
         
@@ -98,7 +98,8 @@ public class ArrayListG07<E> implements ListG07<E>,Iterable<E>,Serializable {
         } else if (isEmpty()) {
             arreglo[tam++] = e;
             return true;
-        } else if (capacidad == tam) {
+        } 
+        if (capacidad == tam) {
             crecerArreglo();
         }
         int index = tam;
