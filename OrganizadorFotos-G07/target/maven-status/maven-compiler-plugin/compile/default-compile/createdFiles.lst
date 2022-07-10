@@ -1,10 +1,16 @@
 ec\edu\espol\util\App.class
+exception\AlbumException.class
+tdas\ArrayListG07$1.class
 ec\edu\espol\util\MenuAlbumesController.class
+ec\edu\espol\util\AgregarPersonaController.class
 ec\edu\espol\classes\Biblioteca.class
 ec\edu\espol\classes\Persona.class
+ec\edu\espol\util\AgregarFotoController.class
+ec\edu\espol\util\AgregarAlbumController.class
 module-info.class
 ec\edu\espol\util\MenuPrincipalController.class
 tdas\CircularDoublyLinkedListG07$Node.class
+tdas\CircularDoublyLinkedListG07$1.class
 tdas\CircularDoublyLinkedListG07.class
 tdas\ArrayListG07.class
 tdas\ListG07.class

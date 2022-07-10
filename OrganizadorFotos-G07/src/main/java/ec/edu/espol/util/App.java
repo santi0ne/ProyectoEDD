@@ -36,6 +36,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         scene = new Scene(loadFXML("MenuPrincipal"), 800, 600);
+        scene.getStylesheets().add("ec/edu/espol/css/InterfazCSS.css");
         stage.setScene(scene);
         stage.show();
     }
