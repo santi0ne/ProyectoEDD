@@ -25,8 +25,10 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import org.apache.commons.io.FileUtils;
 
@@ -48,8 +50,6 @@ public class MenuPrincipalController  {
     @FXML
     private Button btnEliminarBiblioteca;
     @FXML
-    private Button btnModificarBiblioteca;
-    @FXML
     private ScrollPane scrollBiblioteca;
     @FXML
     private TilePane biblioteca;
@@ -63,6 +63,10 @@ public class MenuPrincipalController  {
     private MenuItem eliminarPersona;
     
     Album albumSeleccion=new Album();
+    @FXML
+    private Pane PaneUsuario;
+    @FXML
+    private Text txtAlbumSel;
     
    
     
@@ -112,6 +116,7 @@ public class MenuPrincipalController  {
            vboxalbum.setOnMouseClicked(eh-> {
                if(eh.getClickCount()==1){
                    albumSeleccion=album;
+                   txtAlbumSel.setText("Álbum seleccionado: "+album.getNombre());
                }
                if(eh.getClickCount()==2){
                 try {
