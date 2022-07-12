@@ -77,7 +77,7 @@ public class MenuPrincipalController  {
         scrollBiblioteca.setFitToWidth(true);
         biblioteca.setAlignment(Pos.CENTER);
         biblioteca.setPadding(new Insets(15, 15, 15, 15));
-        biblioteca.setVgap(30);
+        biblioteca.setVgap(20);
         biblioteca.setHgap(20);
 
         scrollBiblioteca.setContent(biblioteca);

@@ -51,6 +51,7 @@ public class AgregarPersonaController  {
             }
         
         if(accion.equals("agregar")){
+            btonGuardar.setText("Guardar");
             cmbPersonas.setDisable(true);
             cmbPersonas.setVisible(false);
             
@@ -66,6 +67,7 @@ public class AgregarPersonaController  {
         } 
         
         else if(accion.equals("editar")){
+            btonGuardar.setText("Guardar");
             cmbPersonas.setDisable(false);
             cmbPersonas.setVisible(true);
             
@@ -83,7 +85,7 @@ public class AgregarPersonaController  {
         }
         
         else{
-            
+            btonGuardar.setText("Eliminar");
             cmbPersonas.setDisable(false);
             cmbPersonas.setVisible(true);
             
